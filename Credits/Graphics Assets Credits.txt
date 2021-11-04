@@ -1,0 +1,8 @@
+Hex Tiles
+https://assetstore.unity.com/packages/2d/textures-materials/tiles/hexlands-low-poly-style-133586
+
+Rock and Wood Textures
+https://assetstore.unity.com/packages/2d/textures-materials/free-stylized-pbr-textures-pack-111778
+
+Lowpoly Trees
+https://assetstore.unity.com/packages/3d/vegetation/trees/free-trees-103208
