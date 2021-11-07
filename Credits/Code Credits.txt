@@ -1,0 +1,2 @@
+Base of Camera Movement Script
+https://gist.github.com/gunderson/d7f096bd07874f31671306318019d996
