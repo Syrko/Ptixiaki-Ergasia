@@ -5,14 +5,20 @@ public class FlyCamera : MonoBehaviour
 {
 
     /*
-    Base script Writen by Windexglow 11-13-10
-    wasd : basic movement
-    shift : Makes camera accelerate
-
-    Modified by Syrko 11-08-21
-    Made variables modifiable in the Unity Editor
-    Controls work only when the right mouse button is held
-    Confines the camera within limits
+    |----------------------------------------------------------|
+    | Base script Writen by Windexglow 11-13-10                |
+    |----------------------------------------------------------|
+    |   WASD: basic movement                                   |
+    |   Shift: Makes camera accelerate                         |
+    |----------------------------------------------------------|
+    |                                                          |
+    |----------------------------------------------------------|
+    | Modified by Syrko 11-08-21                               |
+    |----------------------------------------------------------|
+    |   Made variables modifiable in the Unity Editor          |
+    |   Controls work only when the right mouse button is held |
+    |   Confines the camera within limits                      |
+    |----------------------------------------------------------|
     */
 
     [Header("Camera Settings")]
@@ -24,7 +30,7 @@ public class FlyCamera : MonoBehaviour
     float maxShift = 1000.0f; 
     [SerializeField, Tooltip("How sensitive it with mouse")]
     float camSens = 0.25f;
-    private Vector3 lastMouse = new Vector3(255, 255, 255); //kind of in the middle of the screen, rather than at the top (play)
+    private Vector3 lastMouse = new Vector3(255, 255, 255);
     private float totalRun = 1.0f;
     
     // Flag to process the first frame that the right mouse button is held down
@@ -34,7 +40,7 @@ public class FlyCamera : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Mouse1))
 		{
-            // Process the Camera angle
+            // Processing the Camera angle
             if (!isMoving)
             {
                 isMoving = true;
@@ -49,10 +55,10 @@ public class FlyCamera : MonoBehaviour
             transform.eulerAngles = lastMouse;
             lastMouse = Input.mousePosition; 
 
-            // Process the camera movent
+            // Processing the camera movement
             Vector3 p = GetBaseInput();
             if (p.sqrMagnitude > 0)
-            { // only move while a direction key is pressed
+            { // Only move while a direction key is pressed
                 if (Input.GetKey(KeyCode.LeftShift))
                 {
                     totalRun += Time.deltaTime;
@@ -84,7 +90,9 @@ public class FlyCamera : MonoBehaviour
     }
 
     private Vector3 GetBaseInput()
-    { //returns the basic values, if it's 0 than it's not active.
+    {
+        // Returns the basic values
+        // If it's 0 then it's not active.
         Vector3 p_Velocity = new Vector3();
         if (Input.GetKey(KeyCode.W))
         {
