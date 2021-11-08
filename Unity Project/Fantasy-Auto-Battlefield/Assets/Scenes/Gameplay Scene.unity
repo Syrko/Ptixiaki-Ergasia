@@ -2223,6 +2223,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b29b8185433b39b47a47c0424be9a4a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainSpeed: 50
+  shiftAdd: 50
+  maxShift: 50
+  camSens: 0.2
 --- !u!1 &965130603
 GameObject:
   m_ObjectHideFlags: 0
@@ -4402,7 +4406,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4010414909479502, guid: 12e9b7c885d5efd4f8a9ce049c557867, type: 3}
       propertyPath: m_LocalScale.x
-      value: 20
+      value: 21.562
       objectReference: {fileID: 0}
     - target: {fileID: 4010414909479502, guid: 12e9b7c885d5efd4f8a9ce049c557867, type: 3}
       propertyPath: m_LocalScale.y
@@ -4422,7 +4426,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4010414909479502, guid: 12e9b7c885d5efd4f8a9ce049c557867, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 45
+      value: 46
       objectReference: {fileID: 0}
     - target: {fileID: 4010414909479502, guid: 12e9b7c885d5efd4f8a9ce049c557867, type: 3}
       propertyPath: m_LocalRotation.w
