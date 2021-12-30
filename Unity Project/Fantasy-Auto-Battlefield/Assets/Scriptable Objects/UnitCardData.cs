@@ -15,4 +15,15 @@ public class UnitCardData : ScriptableObject
     [SerializeField] int maxHitPoints;
     [SerializeField] HexPattern attackPattern;
     [SerializeField] Sprite cardImage;
+
+    public string CardName { get => cardName; }
+    public int CardCost { get => cardCost; }
+    public string CardText { get => cardText; }
+    public CardType CardType { get => cardType; }
+    public string CardID { get => cardID; }
+    public int Attack { get => attack; }
+    public int Defense { get => defense; }
+    public int MaxHitPoints { get => maxHitPoints; }
+    public HexPattern AttackPattern { get => attackPattern; }
+    public Sprite CardImage { get => cardImage; }
 }
