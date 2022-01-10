@@ -35,7 +35,7 @@ public class Unit : Card
     // Start is called before the first frame update
     void Start()
     {
-        Spawn();
+        
     }
 
     // Update is called once per frame
@@ -44,10 +44,9 @@ public class Unit : Card
 
     }
 
-    public void Initialize()
+    public void Initialize(string unitName)
     {
-        UnitCardData data = Resources.Load<UnitCardData>("Cards/Units/");
-
+        UnitCardData data = Resources.Load<UnitCardData>("Cards/Units/" + unitName + "/" + unitName);
         cardName = data.CardName;
         cardCost = data.CardCost;
         cardText = data.CardText;
@@ -56,8 +55,22 @@ public class Unit : Card
         attack = data.Attack;
         defense = data.Defense;
         maxHitPoints = data.MaxHitPoints;
+        currentHP = maxHitPoints;
         attackPattern = data.AttackPattern;
         cardImage = data.CardImage;
+
+        cardMaterial = Resources.Load<Material>("Cards/Units/" + unitName + "/" + unitName);
+        transform.Find("Image").GetComponent<MeshRenderer>().material = cardMaterial;
+
+        UpdateUI();
+    }
+
+    void UpdateUI()
+    {
+        PawnStats ui = transform.GetComponentInParent<PawnStats>();
+        ui.AttackText.text = attack.ToString();
+        ui.DefenseText.text = defense.ToString();
+        ui.HitpointsText.text = CurrentHP.ToString();
     }
 
     void Spawn()

@@ -1063,6 +1063,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9217344073331205155}
+  - component: {fileID: 2148804533629638398}
   m_Layer: 0
   m_Name: Pawn Template
   m_TagString: Untagged
@@ -1088,6 +1089,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2148804533629638398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9217344073331205152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e13bc14191003d74d8ff8c20413a44fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attack: {fileID: 1152647499224365876}
+  defense: {fileID: 2456443165989254368}
+  hitpoints: {fileID: 3550630000585687313}
 --- !u!1 &9217344073664993506
 GameObject:
   m_ObjectHideFlags: 0
