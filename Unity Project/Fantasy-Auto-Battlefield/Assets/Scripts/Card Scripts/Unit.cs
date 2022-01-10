@@ -17,6 +17,7 @@ public class Unit : Card
     int currentHP;
     HexPattern attackPattern;
     Sprite cardImage;
+    Material cardMaterial;
 
     public string CardName { get => cardName; set => cardName = value; }
     public int CardCost { get => cardCost; set => cardCost = value; }
@@ -29,6 +30,7 @@ public class Unit : Card
     public int CurrentHP { get => currentHP; set => currentHP = value; }
     public HexPattern AttackPattern { get => attackPattern; set => attackPattern = value; }
     public Sprite CardImage { get => cardImage; set => cardImage = value; }
+    public Material CardMaterial { get => cardMaterial; set => cardMaterial = value; }
 
     // Start is called before the first frame update
     void Start()
@@ -42,8 +44,10 @@ public class Unit : Card
 
     }
 
-    public void Initialize(UnitCardData data)
+    public void Initialize()
     {
+        // UnitCardData data = Resources.Load<UnitCardData>("Cards/Units/" + )
+
         cardName = data.CardName;
         cardCost = data.CardCost;
         cardText = data.CardText;
@@ -58,7 +62,8 @@ public class Unit : Card
 
     void Spawn()
     {
-        DisplayPawnImage();
+        // TODO implement
+        throw new NotImplementedException();
     }
 
     void Move()
@@ -77,12 +82,5 @@ public class Unit : Card
     {
         // TODO implement
         throw new NotImplementedException();
-    }
-
-    private void DisplayPawnImage()
-    {
-        Material mat = new Material(Resources.Load<Material>("Materials/CardArtwork"));
-        mat.SetTexture("_MainTex", cardImage.texture);
-        transform.Find("Image").GetComponent<MeshRenderer>().material = mat;
     }
 }
