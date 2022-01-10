@@ -46,7 +46,7 @@ public class Unit : Card
 
     public void Initialize()
     {
-        // UnitCardData data = Resources.Load<UnitCardData>("Cards/Units/" + )
+        UnitCardData data = Resources.Load<UnitCardData>("Cards/Units/");
 
         cardName = data.CardName;
         cardCost = data.CardCost;

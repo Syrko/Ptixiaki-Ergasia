@@ -27,9 +27,9 @@ public class TestingManager : MonoBehaviour
     void SpawnUnit()
     {
         spawnedUnit = Instantiate(PawnTemplate, new Vector3(0, 0.5f, 0), Quaternion.identity);
-        spawnedUnit.AddComponent<Unit>().Initialize(SoldierData);
+        spawnedUnit.AddComponent<Unit>().Initialize();
 
-        spawnedUnit = Instantiate(PawnTemplate, new Vector3(0, 0.5f, 2*HexDimensions.r), Quaternion.identity);
-        spawnedUnit.AddComponent<Unit>().Initialize(GateData);
+        // spawnedUnit = Instantiate(PawnTemplate, new Vector3(0, 0.5f, 2*HexDimensions.r), Quaternion.identity);
+        // spawnedUnit.AddComponent<Unit>().Initialize(GateData);
     }
 }
