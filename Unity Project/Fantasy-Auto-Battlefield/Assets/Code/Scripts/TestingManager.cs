@@ -4,14 +4,6 @@ using UnityEngine;
 
 public class TestingManager : MonoBehaviour
 {
-
-    // SPAWN UNIT-------------------
-    [Header("Unit Spawn")]
-    [SerializeField] GameObject PawnTemplate;
-    //[SerializeField] UnitCardData SoldierData;
-    //[SerializeField] UnitCardData GateData;
-    //------------------------------
-
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +18,14 @@ public class TestingManager : MonoBehaviour
 
     void SpawnUnit()
     {
-        GameObject spawnedUnit = Instantiate(PawnTemplate, new Vector3(0, 0.5f, 0), Quaternion.identity);
-        UnitFactory.AddUnitComponents("Soldier", ref spawnedUnit);
+        UnitFactory.CreateUnitPawn("soldier", 0, 0);
+        UnitFactory.CreateUnitPawn("soldier", 3, 4);
+        UnitFactory.CreateUnitPawn("soldier", 1, 3);
+        UnitFactory.CreateUnitPawn("soldier", 4, 6);
+
+        BuildingFactory.CreateBuildingPawn("Gate", 0, 1);
+        BuildingFactory.CreateBuildingPawn("Gate", 2, 3);
+        BuildingFactory.CreateBuildingPawn("Gate", 2, 4);
+        BuildingFactory.CreateBuildingPawn("Gate", 3, 2);
     }
 }

@@ -1,40 +1,25 @@
-using System.Collections;
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Building : Card
+public class Building : Spawnable
 {
-    int currentHP;
-    BuildingCardData cardData;
-
-    // Start is called before the first frame update
-    void Start()
+    public void InitializeBuildingPawn(string buildingName)
     {
-        
-    }
+        BuildingCardData data = Resources.Load<BuildingCardData>("Cards/Buildings/" + buildingName + "/" + buildingName);
+        cardName = data.CardName;
+        cardCost = data.CardCost;
+        cardText = data.CardText;
+        cardType = data.CardType;
+        attack = data.Attack;
+        defense = data.Defense;
+        maxHitPoints = data.MaxHitPoints;
+        currentHP = maxHitPoints;
+        attackPattern = data.AttackPattern;
+        cardImage = data.CardImage;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+        cardMaterial = Resources.Load<Material>("Cards/Buildings/" + buildingName + "/" + buildingName);
+        transform.Find("Image").GetComponent<MeshRenderer>().material = cardMaterial;
 
-    void Spawn()
-    {
-        // TODO implement
-        throw new NotImplementedException();
-    }
-
-    void Attack()
-    {
-        // TODO implement
-        throw new NotImplementedException();
-    }
-
-    void Die()
-    {
-        // TODO implement
-        throw new NotImplementedException();
+        UpdateUI();
     }
 }

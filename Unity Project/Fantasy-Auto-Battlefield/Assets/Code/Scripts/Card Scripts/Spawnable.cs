@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class Spawnable : Card
 {
-    string cardName;
-    int cardCost;
-    string cardText;
-    CardType cardType;
-    int attack;
-    int defense;
-    int maxHitPoints;
-    int currentHP;
-    HexPattern attackPattern;
-    Sprite cardImage;
-    Material cardMaterial;
+    protected string cardName;
+    protected int cardCost;
+    protected string cardText;
+    protected CardType cardType;
+    protected int attack;
+    protected int defense;
+    protected int maxHitPoints;
+    protected int currentHP;
+    protected HexPattern attackPattern;
+    protected Sprite cardImage;
+    protected Material cardMaterial;
 
     public string CardName { get => cardName; set => cardName = value; }
     public int CardCost { get => cardCost; set => cardCost = value; }
@@ -28,27 +28,7 @@ public class Spawnable : Card
     public Sprite CardImage { get => cardImage; set => cardImage = value; }
     public Material CardMaterial { get => cardMaterial; set => cardMaterial = value; }
 
-    public void InitializePawn(string unitName)
-    {
-        UnitCardData data = Resources.Load<UnitCardData>("Cards/Units/" + unitName + "/" + unitName);
-        cardName = data.CardName;
-        cardCost = data.CardCost;
-        cardText = data.CardText;
-        cardType = data.CardType;
-        attack = data.Attack;
-        defense = data.Defense;
-        maxHitPoints = data.MaxHitPoints;
-        currentHP = maxHitPoints;
-        attackPattern = data.AttackPattern;
-        cardImage = data.CardImage;
-
-        cardMaterial = Resources.Load<Material>("Cards/Units/" + unitName + "/" + unitName);
-        transform.Find("Image").GetComponent<MeshRenderer>().material = cardMaterial;
-
-        UpdateUI();
-    }
-
-    void UpdateUI()
+    protected void UpdateUI()
     {
         PawnStats ui = transform.GetComponentInParent<PawnStats>();
         ui.AttackText.text = attack.ToString();

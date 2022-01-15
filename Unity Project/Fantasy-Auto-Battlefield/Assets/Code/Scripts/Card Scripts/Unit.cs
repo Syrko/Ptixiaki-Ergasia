@@ -1,23 +1,26 @@
-using System.Collections;
 using System;
-using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 public class Unit : Spawnable
 {
-   
-
-    // Start is called before the first frame update
-    void Start()
+    public void InitializeUnitPawn(string unitName)
     {
-        
-    }
+        UnitCardData data = Resources.Load<UnitCardData>("Cards/Units/" + unitName + "/" + unitName);
+        cardName = data.CardName;
+        cardCost = data.CardCost;
+        cardText = data.CardText;
+        cardType = data.CardType;
+        attack = data.Attack;
+        defense = data.Defense;
+        maxHitPoints = data.MaxHitPoints;
+        currentHP = maxHitPoints;
+        attackPattern = data.AttackPattern;
+        cardImage = data.CardImage;
 
-    // Update is called once per frame
-    void Update()
-    {
+        cardMaterial = Resources.Load<Material>("Cards/Units/" + unitName + "/" + unitName);
+        transform.Find("Image").GetComponent<MeshRenderer>().material = cardMaterial;
 
+        UpdateUI();
     }
 
     void Move()

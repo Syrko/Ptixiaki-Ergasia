@@ -9,7 +9,6 @@ public class UnitCardData : ScriptableObject
     [SerializeField] int cardCost;
     [SerializeField] string cardText;
     [SerializeField] CardType cardType;
-    [SerializeField] string cardID;
     [SerializeField] int attack;
     [SerializeField] int defense;
     [SerializeField] int maxHitPoints;
@@ -20,7 +19,6 @@ public class UnitCardData : ScriptableObject
     public int CardCost { get => cardCost; }
     public string CardText { get => cardText; }
     public CardType CardType { get => cardType; }
-    public string CardID { get => cardID; }
     public int Attack { get => attack; }
     public int Defense { get => defense; }
     public int MaxHitPoints { get => maxHitPoints; }
