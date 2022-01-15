@@ -12,11 +12,6 @@ public class BoardGenerator : MonoBehaviour
     int boardWidth = 5;
     [SerializeField, Tooltip("Depth of the board in hexes")]
     int boardDepth = 8;
-    [Space(5)]
-    [SerializeField, Tooltip("The height difference between hexes of different height steps")]
-    float hexHeightModifier = 0.2f;
-    [SerializeField, Tooltip("Delay between the hexes' reveal during board construction")]
-    float hexRevealDelay = 0.2f;
     [Space(10)]
 
     [Header("Terrain Percentages - must add up to 100")]
