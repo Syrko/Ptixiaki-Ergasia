@@ -18,10 +18,10 @@ public class TestingManager : MonoBehaviour
 
     void SpawnUnit()
     {
-        UnitFactory.CreateUnitPawn("soldier", 0, 0);
-        UnitFactory.CreateUnitPawn("soldier", 3, 4);
-        UnitFactory.CreateUnitPawn("soldier", 1, 3);
-        UnitFactory.CreateUnitPawn("soldier", 4, 6);
+        UnitFactory.CreateUnitPawn("Soldier", 0, 0);
+        UnitFactory.CreateUnitPawn("Soldier", 3, 4);
+        UnitFactory.CreateUnitPawn("Soldier", 1, 3);
+        UnitFactory.CreateUnitPawn("Soldier", 4, 6);
 
         BuildingFactory.CreateBuildingPawn("Gate", 0, 1);
         BuildingFactory.CreateBuildingPawn("Gate", 2, 3);

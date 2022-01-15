@@ -3380,7 +3380,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 300d3ad45eff87e408ca0cf2a2ccb2a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PawnTemplate: {fileID: 9217344073331205152, guid: b0aed12e40b368349a21a7571b9724bb, type: 3}
 --- !u!4 &2039519253
 Transform:
   m_ObjectHideFlags: 0
