@@ -18,14 +18,14 @@ public class TestingManager : MonoBehaviour
 
     void SpawnUnit()
     {
-        UnitFactory.CreateUnitPawn("Soldier", 0, 0);
-        UnitFactory.CreateUnitPawn("Soldier", 3, 4);
-        UnitFactory.CreateUnitPawn("Soldier", 1, 3);
-        UnitFactory.CreateUnitPawn("Soldier", 4, 6);
+        UnitFactory.CreateUnitPawn(CardNames.Soldier, 0, 0);
+        UnitFactory.CreateUnitPawn(CardNames.Soldier, 3, 4);
+        UnitFactory.CreateUnitPawn(CardNames.Soldier, 1, 3);
+        UnitFactory.CreateUnitPawn(CardNames.Soldier, 4, 6);
 
-        BuildingFactory.CreateBuildingPawn("Gate", 0, 1);
-        BuildingFactory.CreateBuildingPawn("Gate", 2, 3);
-        BuildingFactory.CreateBuildingPawn("Gate", 2, 4);
-        BuildingFactory.CreateBuildingPawn("Gate", 3, 2);
+        BuildingFactory.CreateBuildingPawn(CardNames.Gate, 0, 1);
+        BuildingFactory.CreateBuildingPawn(CardNames.Gate, 2, 3);
+        BuildingFactory.CreateBuildingPawn(CardNames.Gate, 2, 4);
+        BuildingFactory.CreateBuildingPawn(CardNames.Gate, 3, 2);
     }
 }
