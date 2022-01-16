@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class Hand
 {
-    List<CardNames> cards;
+    List<string> cards;
+
+    public Hand()
+    {
+        cards = new List<string>();
+    }
 
     void ToggleHand()
     { 

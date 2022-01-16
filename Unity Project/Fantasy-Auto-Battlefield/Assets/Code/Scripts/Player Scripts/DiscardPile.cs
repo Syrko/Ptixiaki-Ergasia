@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class DiscardPile
 {
-    List<CardNames> cards;
+    List<string> cards;
+
+    public DiscardPile()
+    {
+        cards = new List<string>();
+    }
 
     void ShuffleIntoDeck()
     {

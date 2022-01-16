@@ -4,24 +4,34 @@ using UnityEngine;
 
 public class Player
 {
-    Deck deck;
-    int hp;
-    bool hasInitiative;
-    int frontline;
+    protected Deck deck;
+    protected int maxHP;
+    protected int hp;
+    protected bool hasInitiative;
+    protected int frontline;
 
-    void ToggleInitiative()
+    public Player(List<string> deck, int maxHP)
+    {
+        this.deck = new Deck(deck);
+        this.maxHP = maxHP;
+        this.hp = maxHP;
+        this.hasInitiative = false;
+        this.frontline = 0;
+    }
+
+    protected void ToggleInitiative()
     {
         // TODO implement
         throw new NotImplementedException();
     }
 
-    void TakeDamage(int amount)
+    protected void TakeDamage(int amount)
     {
         // TODO implement
         throw new NotImplementedException();
     }
 
-    void HealSelf(int amount)
+    protected void HealSelf(int amount)
     {
         // TODO implement
         throw new NotImplementedException();

@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class Deck
 {
-    List<CardNames> cards;
+    List<string> cards;
+
+    public Deck(List<string> deck)
+    {
+        cards = deck;
+    }
 
     void DrawCard()
     {

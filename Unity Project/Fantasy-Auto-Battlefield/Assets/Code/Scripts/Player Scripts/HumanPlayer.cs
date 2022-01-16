@@ -10,6 +10,15 @@ public class HumanPlayer : Player
     int mana;
     int maxMana;
 
+    public HumanPlayer(List<string> deck, int maxHP, int maxHandSize, int maxMana) : base(deck, maxHP)
+    {
+        this.hand = new Hand();
+        this.discardPile = new DiscardPile();
+        this.maxHandSize = maxHP;
+        this.maxMana = maxMana;
+        this.mana = 0;
+    }
+
     void PayMana(int amount)
     {
         // TODO implement
