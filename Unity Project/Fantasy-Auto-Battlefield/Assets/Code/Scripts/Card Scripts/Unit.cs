@@ -8,10 +8,13 @@ public class Unit : Spawnable
         UnitCardData data = Resources.Load<UnitCardData>("Cards/Units/" + unitName + "/" + unitName);
         cardName = data.CardName;
         cardCost = data.CardCost;
+        originalCardCost = data.CardCost;
         cardText = data.CardText;
         cardType = data.CardType;
         attack = data.Attack;
+        originalAttack = data.Attack;
         defense = data.Defense;
+        originalDefense = data.Defense;
         maxHitPoints = data.MaxHitPoints;
         currentHP = maxHitPoints;
         attackPattern = data.AttackPattern;
@@ -20,12 +23,18 @@ public class Unit : Spawnable
         cardMaterial = Resources.Load<Material>("Cards/Units/" + unitName + "/" + unitName);
         transform.Find("Image").GetComponent<MeshRenderer>().material = cardMaterial;
 
-        UpdateUI();
+        UpdatePawnUI();
     }
 
     void Move()
     {
         // TODO implement
         throw new NotImplementedException();
+    }
+
+    
+    private void OnMouseDown()
+    {
+        FindObjectOfType<UIManager>().UpdateCardInfo(this);
     }
 }

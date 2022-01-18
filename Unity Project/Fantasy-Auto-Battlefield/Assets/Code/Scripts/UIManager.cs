@@ -84,7 +84,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void UpdateCardInfo(Unit data)
+    public void UpdateCardInfo(Unit data)
     {
         CardName.text = data.CardName;
         
@@ -107,7 +107,7 @@ public class UIManager : MonoBehaviour
         CardHexPattern.sprite = HexPattern.getHexPatternSprite(data.AttackPattern); 
     }
     
-    private void UpdateCardInfo(Building data)
+    public void UpdateCardInfo(Building data)
     {
         CardName.text = data.CardName;
 

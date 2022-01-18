@@ -38,7 +38,7 @@ public class Spawnable : Card
     public Sprite CardImage { get => cardImage; set => cardImage = value; }
     public Material CardMaterial { get => cardMaterial; set => cardMaterial = value; }
 
-    protected void UpdateUI()
+    protected void UpdatePawnUI()
     {
         PawnStats ui = transform.GetComponentInParent<PawnStats>();
         ui.AttackText.text = attack.ToString();

@@ -8,10 +8,13 @@ public class Building : Spawnable
         BuildingCardData data = Resources.Load<BuildingCardData>("Cards/Buildings/" + buildingName + "/" + buildingName);
         cardName = data.CardName;
         cardCost = data.CardCost;
+        originalCardCost = data.CardCost;
         cardText = data.CardText;
         cardType = data.CardType;
         attack = data.Attack;
+        originalAttack = data.Attack;
         defense = data.Defense;
+        originalDefense = data.Defense;
         maxHitPoints = data.MaxHitPoints;
         currentHP = maxHitPoints;
         attackPattern = data.AttackPattern;
@@ -20,6 +23,11 @@ public class Building : Spawnable
         cardMaterial = Resources.Load<Material>("Cards/Buildings/" + buildingName + "/" + buildingName);
         transform.Find("Image").GetComponent<MeshRenderer>().material = cardMaterial;
 
-        UpdateUI();
+        UpdatePawnUI();
+    }
+
+    private void OnMouseDown()
+    {
+        FindObjectOfType<UIManager>().UpdateCardInfo(this);
     }
 }

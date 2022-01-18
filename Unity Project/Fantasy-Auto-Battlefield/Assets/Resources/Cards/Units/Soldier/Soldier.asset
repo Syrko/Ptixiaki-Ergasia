@@ -16,9 +16,8 @@ MonoBehaviour:
   cardCost: 1
   cardText: '"Be brave young soldiers!"'
   cardType: 0
-  cardID: 001
   attack: 1
   defense: 1
   maxHitPoints: 3
-  attackPattern: 0
+  attackPattern: 1
   cardImage: {fileID: 21300000, guid: f22154c785a20c04896a21301db026bd, type: 3}

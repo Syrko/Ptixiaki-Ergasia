@@ -28,8 +28,6 @@ public class HexTile : MonoBehaviour
 
 	private void OnMouseDown()
 	{
-        Debug.Log(tileData);
-        Debug.Log(uiManager);
         uiManager.UpdateTileInfo(tileData);
 	}
 }

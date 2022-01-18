@@ -740,7 +740,7 @@ GameObject:
   - component: {fileID: 586709801128348389}
   - component: {fileID: 586709801128348378}
   m_Layer: 5
-  m_Name: Attack Pattern
+  m_Name: Hex Pattern
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

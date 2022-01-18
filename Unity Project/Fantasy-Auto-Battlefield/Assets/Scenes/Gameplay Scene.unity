@@ -977,7 +977,7 @@ MonoBehaviour:
   CardAttack: {fileID: 462331496}
   CardDefense: {fileID: 462331495}
   CardHitPoints: {fileID: 462331494}
-  HexPattern: {fileID: 462331493}
+  CardHexPattern: {fileID: 462331493}
   TileImage: {fileID: 1807922062}
   TileName: {fileID: 637327747}
   TileText: {fileID: 2052505271}
@@ -1244,6 +1244,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 943739818}
     m_Modifications:
+    - target: {fileID: 586709801128348376, guid: ee6f4e90ec50d2c43b6ed14a656d9095, type: 3}
+      propertyPath: m_Name
+      value: Hex Pattern
+      objectReference: {fileID: 0}
     - target: {fileID: 586709801608362049, guid: ee6f4e90ec50d2c43b6ed14a656d9095, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
