@@ -8,9 +8,21 @@ public class UIManager : MonoBehaviour
 {
     [Header("Card Info")]
     [SerializeField]
+    TextMeshProUGUI CardName;
+    [SerializeField]
+    TextMeshProUGUI CardCost;
+    [SerializeField]
     Image CardImage;
     [SerializeField]
     TextMeshProUGUI CardText;
+    [SerializeField]
+    TextMeshProUGUI CardAttack;
+    [SerializeField]
+    TextMeshProUGUI CardDefense;
+    [SerializeField]
+    TextMeshProUGUI CardHitPoints;
+    [SerializeField]
+    Image HexPattern;
     [Space(10)]
     
     [Header("Tile Info")]
@@ -30,6 +42,8 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     Text ToggleCardsText;
     [SerializeField]
+    Button EndPhase;
+    [SerializeField]
     Button Menu;
 
     [Space(10)]
@@ -42,10 +56,37 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI HitPoints;
 
+    [Space(10)]
+
+    [SerializeField]
+    GameObject[] CardTray;
+
     public void UpdateTileInfo(TileData tileData)
 	{
         TileImage.sprite = tileData.TileImage;
         TileName.text = tileData.TileType.ToString();
         TileText.text = tileData.TileDescription;
 	}
+
+    private void UpdateCardInfo(Unit data)
+    {
+        CardName.text = data.CardName;
+        CardCost.text = data.CardCost.ToString();
+        CardImage.sprite = data.CardImage;
+        CardText.text = data.CardText;
+        CardAttack.text = data.AttackValue.ToString();
+        CardDefense.text = data.Defense.ToString();
+        CardHitPoints.text = data.CurrentHP.ToString();
+        HexPattern.sprite = data.AttackPattern;
+    }
+    
+    private void UpdateCardInfo(BuildingCardData data)
+    {
+
+    }
+    
+    private void UpdateCardInfo(SpellCardData data)
+    {
+
+    }
 }
