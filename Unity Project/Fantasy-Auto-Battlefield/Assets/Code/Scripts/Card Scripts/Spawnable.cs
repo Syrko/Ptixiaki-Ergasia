@@ -17,7 +17,7 @@ public class Spawnable : Card
     protected int originalDefense;
     protected int maxHitPoints;
     protected int currentHP;
-    protected HexPattern attackPattern;
+    protected HexPatternCodes attackPattern;
     protected Sprite cardImage;
     protected Material cardMaterial;
 
@@ -34,7 +34,7 @@ public class Spawnable : Card
     public int OriginalDefense { get => originalDefense; set => originalDefense = value; }
     public int MaxHitPoints { get => maxHitPoints; set => maxHitPoints = value; }
     public int CurrentHP { get => currentHP; set => currentHP = value; }
-    public HexPattern AttackPattern { get => attackPattern; set => attackPattern = value; }
+    public HexPatternCodes AttackPattern { get => attackPattern; set => attackPattern = value; }
     public Sprite CardImage { get => cardImage; set => cardImage = value; }
     public Material CardMaterial { get => cardMaterial; set => cardMaterial = value; }
 

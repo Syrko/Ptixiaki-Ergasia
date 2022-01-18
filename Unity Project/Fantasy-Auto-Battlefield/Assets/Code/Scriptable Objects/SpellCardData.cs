@@ -11,6 +11,6 @@ public class SpellCardData : ScriptableObject
     [SerializeField] string cardText;
     [SerializeField] CardType cardType;
     [SerializeField] string cardID;
-    [SerializeField] HexPattern targetPattern;
+    [SerializeField] HexPatternCodes targetPattern;
     [SerializeField] Sprite cardImage;
 }
