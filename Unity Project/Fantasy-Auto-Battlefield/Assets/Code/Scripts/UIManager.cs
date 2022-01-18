@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,7 +22,7 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI CardHitPoints;
     [SerializeField]
-    Image HexPattern;
+    Image CardHexPattern;
     [Space(10)]
     
     [Header("Tile Info")]
@@ -68,25 +68,71 @@ public class UIManager : MonoBehaviour
         TileText.text = tileData.TileDescription;
 	}
 
+    private Color DetermineValueColor(int originalValue, int currentCalue)
+    {
+        if (originalValue > currentCalue)
+        {
+            return Color.red;
+        } 
+        else if (originalValue < currentCalue) 
+        {
+            return Color.green;
+        }
+        else
+        {
+            return Color.white;
+        }
+    }
+
     private void UpdateCardInfo(Unit data)
     {
         CardName.text = data.CardName;
+        
         CardCost.text = data.CardCost.ToString();
+        CardCost.color = DetermineValueColor(data.OriginalCardCost, data.CardCost);
+
         CardImage.sprite = data.CardImage;
+
         CardText.text = data.CardText;
+
         CardAttack.text = data.AttackValue.ToString();
+        CardAttack.color = DetermineValueColor(data.OriginalAttackValue, data.AttackValue);
+
         CardDefense.text = data.Defense.ToString();
+        CardDefense.color = DetermineValueColor(data.OriginalDefense, data.Defense);
+
         CardHitPoints.text = data.CurrentHP.ToString();
-        HexPattern.sprite = data.AttackPattern;
+        CardHitPoints.color = DetermineValueColor(data.MaxHitPoints, data.CurrentHP);
+
+        CardHexPattern.sprite = HexPattern.getHexPatternSprite(data.AttackPattern); 
     }
     
-    private void UpdateCardInfo(BuildingCardData data)
+    private void UpdateCardInfo(Building data)
     {
+        CardName.text = data.CardName;
 
+        CardCost.text = data.CardCost.ToString();
+        CardCost.color = DetermineValueColor(data.OriginalCardCost, data.CardCost);
+
+        CardImage.sprite = data.CardImage;
+
+        CardText.text = data.CardText;
+
+        CardAttack.text = data.AttackValue.ToString();
+        CardAttack.color = DetermineValueColor(data.OriginalAttackValue, data.AttackValue);
+
+        CardDefense.text = data.Defense.ToString();
+        CardDefense.color = DetermineValueColor(data.OriginalDefense, data.Defense);
+
+        CardHitPoints.text = data.CurrentHP.ToString();
+        CardHitPoints.color = DetermineValueColor(data.MaxHitPoints, data.CurrentHP);
+
+        CardHexPattern.sprite = HexPattern.getHexPatternSprite(data.AttackPattern);
     }
     
     private void UpdateCardInfo(SpellCardData data)
     {
-
+        // TODO implement
+        throw new NotImplementedException();
     }
 }
