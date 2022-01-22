@@ -61,6 +61,14 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     GameObject[] CardTray;
 
+    private void Awake()
+    {
+        foreach (var card in CardTray)
+        {
+            card.gameObject.SetActive(false);
+        }
+    }
+
     public void UpdateTileInfo(TileData tileData)
 	{
         TileImage.sprite = tileData.TileImage;
@@ -131,6 +139,42 @@ public class UIManager : MonoBehaviour
     }
     
     private void UpdateCardInfo(SpellCardData data)
+    {
+        // TODO implement
+        throw new NotImplementedException();
+    }
+
+    public void ShowCardInHand(int index, string card)
+    {
+        switch (CardCatalog.GetType(card))
+        {
+            case CardType.Unit:
+                ShowUnitInHand(index, Resources.Load<UnitCardData>("Cards/Units/" + card + "/" + card));
+                break;
+            case CardType.Building:
+                ShowBuildingInHand(index, Resources.Load<BuildingCardData>("Cards/Buildings/" + card + "/" + card));
+                break;
+            case CardType.Spell:
+                ShowSpellInHand(index, Resources.Load<SpellCardData>("Cards/Spells/" + card + "/" + card));
+                break;
+            case null:
+                // TODO implement handling
+                throw new NotImplementedException();
+        }
+
+    }
+
+    private void ShowUnitInHand(int index, UnitCardData data)
+    {
+
+    }
+    
+    private void ShowBuildingInHand(int index, BuildingCardData data)
+    {
+
+    }
+
+    private void ShowSpellInHand(int index, SpellCardData data)
     {
         // TODO implement
         throw new NotImplementedException();

@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     // ================================
     // Testing Variables
     // --------------------------------
-    List<string> testingDeck = new List<string> { CardNames.Soldier, CardNames.Soldier, CardNames.Gate };
+    List<string> testingDeck = new List<string> { CardCatalog.Soldier, CardCatalog.Soldier, CardCatalog.Gate, CardCatalog.Soldier, CardCatalog.Soldier, CardCatalog.Gate };
     int maxHP = 10;
     int maxMana = 10;
     int maxHandSize = 5;
@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
 
     HumanPlayer player;
     HumanPlayer opponent; // TODO change type to AIPlayer
+
+    GamePhases currentPhase;
 
     private void Start()
     {
@@ -25,6 +27,12 @@ public class GameManager : MonoBehaviour
     {
         player = new HumanPlayer(testingDeck, maxHP, maxHandSize, maxMana);
         opponent = new HumanPlayer(testingDeck, maxHP, maxHandSize, maxMana);
+
+        currentPhase = GamePhases.Upkeep_Phase;
+
+        player.DrawCardFromDeck();
+        player.DrawCardFromDeck();
+        player.DrawCardFromDeck();
     }
 
     void SwapInitiative()

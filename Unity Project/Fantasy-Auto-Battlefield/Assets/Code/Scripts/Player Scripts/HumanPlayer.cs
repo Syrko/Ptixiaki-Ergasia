@@ -30,4 +30,10 @@ public class HumanPlayer : Player
         // TODO implement
         throw new NotImplementedException();
     }
+
+    public void DrawCardFromDeck()
+    {
+        string cardName = deck.DrawCard();
+        hand.AddCard(cardName);
+    }
 }
