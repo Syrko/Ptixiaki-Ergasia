@@ -14,6 +14,7 @@ public class HumanPlayer : Player
     {
         this.hand = new Hand();
         this.discardPile = new DiscardPile();
+        this.deck.AssignDiscardPile(this.discardPile);
         this.maxHandSize = maxHP;
         this.maxMana = maxMana;
         this.mana = 0;

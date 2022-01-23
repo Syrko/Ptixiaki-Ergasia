@@ -7,6 +7,7 @@ public class Deck
 {
     List<string> cards;
     BoardUI boardUI;
+    DiscardPile discardPile;
 
     public Deck(List<string> deck)
     {
@@ -25,8 +26,7 @@ public class Deck
         int newDeckCount = int.Parse(boardUI.PlayerDeckCounter.text) - 1;
         if(newDeckCount == 0)
         {
-            // TODO implement re-shuffling
-            throw new System.NotImplementedException();
+            ShuffleDiscardPileIntoDeck();
             newDeckCount = cards.Count;
         }
         boardUI.PlayerDeckCounter.text = newDeckCount.ToString();
@@ -35,14 +35,27 @@ public class Deck
         return drawnCard;
     }
 
+    public void AssignDiscardPile(DiscardPile discardPile)
+    {
+        this.discardPile = discardPile;
+    }
+
     void ShuffleDeck()
     {
         cards = cards.OrderBy(x => UnityEngine.Random.value).ToList();
     }
 
-    void ShuffleCardsIntoDeck(List<string> newCards)
+    public void ShuffleCardsIntoDeck(List<string> newCards)
     {
-        // TODO implement ShuffleCardsIntoDeck of deck
-        throw new NotImplementedException();
+        foreach(string card in newCards)
+        {
+            cards.Add(card);
+            ShuffleDeck();
+        }
+    }
+
+    void ShuffleDiscardPileIntoDeck()
+    {
+        ShuffleCardsIntoDeck(discardPile.Cards);
     }
 }

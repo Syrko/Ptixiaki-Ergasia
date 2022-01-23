@@ -11,9 +11,5 @@ public class DiscardPile
         cards = new List<string>();
     }
 
-    void ShuffleIntoDeck()
-    {
-        // TODO implement ShuffleIntoDeck of discard
-        throw new NotImplementedException();
-    }
+    public List<string> Cards { get => cards; }
 }

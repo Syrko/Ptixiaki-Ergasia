@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     UIManager uiManager;
 
     HumanPlayer player;
-    HumanPlayer opponent; // TODO change type to AIPlayer
+    //HumanPlayer opponent; // TODO change type to AIPlayer
 
     GamePhases currentPhase;
 
@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     void InitializeGame()
     {
         player = new HumanPlayer(testingDeck, maxHP, maxHandSize, maxMana);
-        opponent = new HumanPlayer(testingDeck, maxHP, maxHandSize, maxMana);
+        //opponent = new HumanPlayer(testingDeck, maxHP, maxHandSize, maxMana);
 
         SetPhase(GamePhases.Combat_Phase);
 

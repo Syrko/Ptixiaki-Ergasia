@@ -982,8 +982,8 @@ MonoBehaviour:
   TileName: {fileID: 637327747}
   TileText: {fileID: 2052505271}
   PlayCard: {fileID: 95474582}
-  ToggleCards: {fileID: 389954831}
-  ToggleCardsText: {fileID: 1635934063}
+  toggleCards: {fileID: 389954831}
+  toggleCardsText: {fileID: 1635934063}
   EndPhase: {fileID: 812573900}
   Menu: {fileID: 1895040278}
   mana: {fileID: 1104924720}

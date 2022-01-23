@@ -38,9 +38,9 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     Button PlayCard;
     [SerializeField]
-    Button ToggleCards;
+    Button toggleCards;
     [SerializeField]
-    Text ToggleCardsText;
+    Text toggleCardsText;
     [SerializeField]
     Button EndPhase;
     [SerializeField]
@@ -64,6 +64,8 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI Mana { get => mana; }
     public TextMeshProUGUI Phase { get => phase; }
     public TextMeshProUGUI HitPoints { get => hitPoints; }
+    public Button ToggleCards { get => toggleCards; }
+    public Text ToggleCardsText { get => toggleCardsText; }
 
     private void Awake()
     {
@@ -181,6 +183,8 @@ public class UIManager : MonoBehaviour
         cardUI.CardDefense.text = data.Defense.ToString();
         cardUI.CardHitPoints.text = data.MaxHitPoints.ToString();
         cardUI.CardHexPattern.sprite = HexPattern.getHexPatternSprite(data.AttackPattern);
+
+        cardUI.IsCardFilled = true;
     }
     
     private void ShowBuildingInHand(int index, BuildingCardData data)
@@ -196,6 +200,8 @@ public class UIManager : MonoBehaviour
         cardUI.CardDefense.text = data.Defense.ToString();
         cardUI.CardHitPoints.text = data.MaxHitPoints.ToString();
         cardUI.CardHexPattern.sprite = HexPattern.getHexPatternSprite(data.AttackPattern);
+        
+        cardUI.IsCardFilled = true;
     }
 
     private void ShowSpellInHand(int index, SpellCardData data)

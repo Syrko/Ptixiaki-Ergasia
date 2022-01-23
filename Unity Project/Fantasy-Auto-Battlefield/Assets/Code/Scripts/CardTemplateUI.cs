@@ -28,6 +28,7 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     Image cardHexPattern;
 
     private int cardTrayIndex;
+    private bool isCardFilled = false;
 
     public TextMeshProUGUI CardName { get => cardName.GetComponent<TextMeshProUGUI>(); }
     public TextMeshProUGUI CardCost { get => cardCost.GetComponent<TextMeshProUGUI>(); }
@@ -37,6 +38,7 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public TextMeshProUGUI CardDefense { get => cardDefense.GetComponent<TextMeshProUGUI>(); }
     public TextMeshProUGUI CardHitPoints { get => cardHitPoints.GetComponent<TextMeshProUGUI>(); }
     public Image CardHexPattern { get => cardHexPattern; }
+    public bool IsCardFilled { get => isCardFilled; set => isCardFilled = value; }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
