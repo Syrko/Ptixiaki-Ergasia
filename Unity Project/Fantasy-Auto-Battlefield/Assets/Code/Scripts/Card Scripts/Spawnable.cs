@@ -48,13 +48,13 @@ public class Spawnable : Card
 
     void Attack()
     {
-        // TODO implement
+        // TODO implement Attack of spawnable
         throw new NotImplementedException();
     }
 
     void Die()
     {
-        // TODO implement
+        // TODO implement Die of spawnable
         throw new NotImplementedException();
     }
 }

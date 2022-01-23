@@ -13,7 +13,7 @@ public class DiscardPile
 
     void ShuffleIntoDeck()
     {
-        // TODO implement
+        // TODO implement ShuffleIntoDeck of discard
         throw new NotImplementedException();
     }
 }

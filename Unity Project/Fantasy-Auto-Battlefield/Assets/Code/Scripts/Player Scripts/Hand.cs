@@ -16,7 +16,7 @@ public class Hand
 
     void ToggleHand()
     { 
-        // TODO implement
+        // TODO implement toggle hand
         throw new NotImplementedException();
     }
 

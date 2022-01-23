@@ -21,19 +21,19 @@ public class Player
 
     protected void ToggleInitiative()
     {
-        // TODO implement
+        // TODO implement ToggleInitiative
         throw new NotImplementedException();
     }
 
     protected void TakeDamage(int amount)
     {
-        // TODO implement
+        // TODO implement TakeDamage
         throw new NotImplementedException();
     }
 
     protected void HealSelf(int amount)
     {
-        // TODO implement
+        // TODO implement HealSelf
         throw new NotImplementedException();
     }
 }

@@ -140,7 +140,7 @@ public class UIManager : MonoBehaviour
     
     private void UpdateCardInfo(SpellCardData data)
     {
-        // TODO implement
+        // TODO implement UpdateCardInfo for spells
         throw new NotImplementedException();
     }
 
@@ -158,7 +158,7 @@ public class UIManager : MonoBehaviour
                 ShowSpellInHand(index, Resources.Load<SpellCardData>("Cards/Spells/" + card + "/" + card));
                 break;
             case null:
-                // TODO implement handling
+                // TODO implement handling of null value
                 throw new NotImplementedException();
         }
 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// TODO GENERAL: Write many many comments
 public class GameManager : MonoBehaviour
 {
     // ================================

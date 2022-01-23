@@ -21,13 +21,13 @@ public class HumanPlayer : Player
 
     void PayMana(int amount)
     {
-        // TODO implement
+        // TODO implement pay mana
         throw new NotImplementedException();
     }
 
     void GainMana(int amount)
     {
-        // TODO implement
+        // TODO implement gain mana
         throw new NotImplementedException();
     }
 
