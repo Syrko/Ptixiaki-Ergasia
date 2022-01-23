@@ -50,16 +50,20 @@ public class UIManager : MonoBehaviour
 
     [Header("Status Bar")]
     [SerializeField]
-    TextMeshProUGUI Mana;
+    TextMeshProUGUI mana;
     [SerializeField]
-    TextMeshProUGUI Phase;
+    TextMeshProUGUI phase;
     [SerializeField]
-    TextMeshProUGUI HitPoints;
+    TextMeshProUGUI hitPoints;
 
     [Space(10)]
 
     [SerializeField]
     GameObject[] CardTray;
+
+    public TextMeshProUGUI Mana { get => mana; }
+    public TextMeshProUGUI Phase { get => phase; }
+    public TextMeshProUGUI HitPoints { get => hitPoints; }
 
     private void Awake()
     {
@@ -166,17 +170,37 @@ public class UIManager : MonoBehaviour
 
     private void ShowUnitInHand(int index, UnitCardData data)
     {
+        CardTray[index].SetActive(true);
+        CardTemplateUI cardUI = CardTray[index].GetComponent<CardTemplateUI>();
 
+        cardUI.CardName.text = data.CardName;
+        cardUI.CardCost.text = data.CardCost.ToString();
+        cardUI.CardImage.sprite = data.CardImage;
+        cardUI.CardText.text = data.CardText;
+        cardUI.CardAttack.text = data.Attack.ToString();
+        cardUI.CardDefense.text = data.Defense.ToString();
+        cardUI.CardHitPoints.text = data.MaxHitPoints.ToString();
+        cardUI.CardHexPattern.sprite = HexPattern.getHexPatternSprite(data.AttackPattern);
     }
     
     private void ShowBuildingInHand(int index, BuildingCardData data)
     {
+        CardTray[index].SetActive(true);
+        CardTemplateUI cardUI = CardTray[index].GetComponent<CardTemplateUI>();
 
+        cardUI.CardName.text = data.CardName;
+        cardUI.CardCost.text = data.CardCost.ToString();
+        cardUI.CardImage.sprite = data.CardImage;
+        cardUI.CardText.text = data.CardText;
+        cardUI.CardAttack.text = data.Attack.ToString();
+        cardUI.CardDefense.text = data.Defense.ToString();
+        cardUI.CardHitPoints.text = data.MaxHitPoints.ToString();
+        cardUI.CardHexPattern.sprite = HexPattern.getHexPatternSprite(data.AttackPattern);
     }
 
     private void ShowSpellInHand(int index, SpellCardData data)
     {
-        // TODO implement
+        // TODO implement ShowSpellInHand
         throw new NotImplementedException();
     }
 }

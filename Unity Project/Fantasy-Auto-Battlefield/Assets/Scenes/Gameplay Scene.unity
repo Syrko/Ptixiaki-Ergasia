@@ -210,7 +210,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 586709801608362049, guid: ee6f4e90ec50d2c43b6ed14a656d9095, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -39
+      value: -9.5
       objectReference: {fileID: 0}
     - target: {fileID: 586709801608362049, guid: ee6f4e90ec50d2c43b6ed14a656d9095, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -374,7 +374,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 586709801608362049, guid: ee6f4e90ec50d2c43b6ed14a656d9095, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 116.00006
+      value: 216.3
       objectReference: {fileID: 0}
     - target: {fileID: 586709801608362049, guid: ee6f4e90ec50d2c43b6ed14a656d9095, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -986,9 +986,9 @@ MonoBehaviour:
   ToggleCardsText: {fileID: 1635934063}
   EndPhase: {fileID: 812573900}
   Menu: {fileID: 1895040278}
-  Mana: {fileID: 1104924720}
-  Phase: {fileID: 1673391611}
-  HitPoints: {fileID: 1398438156}
+  mana: {fileID: 1104924720}
+  phase: {fileID: 1673391611}
+  hitPoints: {fileID: 1398438156}
   CardTray:
   - {fileID: 2039246898}
   - {fileID: 1275444592}
@@ -1336,7 +1336,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card Template
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4461333427653355593, guid: ee6f4e90ec50d2c43b6ed14a656d9095, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ee6f4e90ec50d2c43b6ed14a656d9095, type: 3}
 --- !u!114 &462331493 stripped
 MonoBehaviour:
@@ -2435,7 +2436,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -175, y: -300.00003}
+  m_AnchoredPosition: {x: -175, y: -247}
   m_SizeDelta: {x: -350, y: -600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &893182943
@@ -2896,7 +2897,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 586709801608362049, guid: ee6f4e90ec50d2c43b6ed14a656d9095, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -184
+      value: -234.4
       objectReference: {fileID: 0}
     - target: {fileID: 586709801608362049, guid: ee6f4e90ec50d2c43b6ed14a656d9095, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2938,7 +2939,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 586709801608362049, guid: ee6f4e90ec50d2c43b6ed14a656d9095, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 252
+      value: 439
       objectReference: {fileID: 0}
     - target: {fileID: 586709801608362049, guid: ee6f4e90ec50d2c43b6ed14a656d9095, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -3528,7 +3529,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0000095367, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 275, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1673391611
@@ -4221,7 +4222,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 586709801608362049, guid: ee6f4e90ec50d2c43b6ed14a656d9095, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -397
+      value: -460
       objectReference: {fileID: 0}
     - target: {fileID: 586709801608362049, guid: ee6f4e90ec50d2c43b6ed14a656d9095, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -4498,9 +4499,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2077583947}
+  - component: {fileID: 2077583948}
   m_Layer: 0
   m_Name: BoardUI
-  m_TagString: Untagged
+  m_TagString: BoardUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4519,10 +4521,26 @@ Transform:
   - {fileID: 496257382}
   - {fileID: 1848087580}
   - {fileID: 1569527976}
-  - {fileID: 3603677443261936775}
+  - {fileID: 3603677443261936773}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2077583948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2077583946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa3e2f2d31d7fad429baa2dd443ce5b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  opponentHP: {fileID: 496257381}
+  playerHP: {fileID: 1848087579}
+  playerDeckCounter: {fileID: 1569527975}
+  initiativeToken: {fileID: 3603677443261507749}
 --- !u!33 &3603677443258545319
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4584,22 +4602,6 @@ GameObject:
   - component: {fileID: 3603677443258545319}
   - component: {fileID: 3603677443259512423}
   m_Layer: 0
-  m_Name: Default
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &3603677443261507751
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3603677443261936775}
-  m_Layer: 0
   m_Name: Initiative Token
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4613,25 +4615,10 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3603677443261507749}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -2, y: -0.3, z: 0.5}
   m_LocalScale: {x: 20, y: 20, z: 20}
   m_Children: []
-  m_Father: {fileID: 3603677443261936775}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &3603677443261936775
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3603677443261507751}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 3603677443261936773}
   m_Father: {fileID: 2077583947}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

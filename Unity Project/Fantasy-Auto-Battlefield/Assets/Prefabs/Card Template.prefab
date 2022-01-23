@@ -1045,14 +1045,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b2925cfd3d5eea499329e9a10af40d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CardName: {fileID: 586709802343877916}
-  CardCost: {fileID: 586709800754626063}
-  CardImage: {fileID: 586709802400734466}
-  CardText: {fileID: 586709800711795090}
-  CardAttack: {fileID: 586709802311419449}
-  CardDefense: {fileID: 586709800822320955}
-  CardHitPoints: {fileID: 586709802045561162}
-  CardHexPattern: {fileID: 586709801128348378}
+  cardName: {fileID: 586709802343877906}
+  cardCost: {fileID: 586709800754626061}
+  cardImage: {fileID: 586709802400734466}
+  cardText: {fileID: 586709800711795088}
+  cardAttack: {fileID: 586709802311419455}
+  cardDefense: {fileID: 586709800822320953}
+  cardHitPoints: {fileID: 586709802045561160}
+  cardHexPattern: {fileID: 586709801128348378}
 --- !u!1 &586709801777140617
 GameObject:
   m_ObjectHideFlags: 0
