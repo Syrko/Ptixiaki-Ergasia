@@ -36,11 +36,14 @@ public class GameManager : MonoBehaviour
         player = new HumanPlayer(testingDeck, maxHP, maxHandSize, maxMana);
         //opponent = new HumanPlayer(testingDeck, maxHP, maxHandSize, maxMana);
 
-        SetPhase(GamePhases.Combat_Phase);
+        SetPhase(GamePhases.Upkeep_Phase);
 
         player.DrawCardFromDeck();
         player.DrawCardFromDeck();
         player.DrawCardFromDeck();
+
+        uiManager.Mana.text = "0";
+        uiManager.HitPoints.text = maxHP.ToString();
     }
 
     void SwapInitiative()

@@ -8,6 +8,8 @@ public class UIManager : MonoBehaviour
 {
     [Header("Card Info")]
     [SerializeField]
+    Image cardCover;
+    [SerializeField]
     TextMeshProUGUI CardName;
     [SerializeField]
     TextMeshProUGUI CardCost;
@@ -66,6 +68,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI HitPoints { get => hitPoints; }
     public Button ToggleCards { get => toggleCards; }
     public Text ToggleCardsText { get => toggleCardsText; }
+    public Image CardCover { get => cardCover; }
 
     private void Awake()
     {
@@ -100,6 +103,8 @@ public class UIManager : MonoBehaviour
 
     public void UpdateCardInfo(Unit data)
     {
+        cardCover.gameObject.SetActive(false);
+
         CardName.text = data.CardName;
         
         CardCost.text = data.CardCost.ToString();
@@ -123,6 +128,8 @@ public class UIManager : MonoBehaviour
     
     public void UpdateCardInfo(Building data)
     {
+        cardCover.gameObject.SetActive(false);
+
         CardName.text = data.CardName;
 
         CardCost.text = data.CardCost.ToString();
@@ -146,6 +153,7 @@ public class UIManager : MonoBehaviour
     
     private void UpdateCardInfo(SpellCardData data)
     {
+        cardCover.gameObject.SetActive(false);
         // TODO implement UpdateCardInfo for spells
         throw new NotImplementedException();
     }
