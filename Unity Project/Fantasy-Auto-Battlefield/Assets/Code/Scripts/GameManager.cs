@@ -14,22 +14,29 @@ public class GameManager : MonoBehaviour
     int maxHandSize = 5;
     // ================================
 
+    UIManager uiManager;
+
     HumanPlayer player;
     HumanPlayer opponent; // TODO change type to AIPlayer
 
     GamePhases currentPhase;
 
-    private void Start()
+    private void Awake()
     {
-        Initialize();
+        uiManager = FindObjectOfType<UIManager>();
     }
 
-    void Initialize()
+    private void Start()
+    {
+        InitializeGame();
+    }
+
+    void InitializeGame()
     {
         player = new HumanPlayer(testingDeck, maxHP, maxHandSize, maxMana);
         opponent = new HumanPlayer(testingDeck, maxHP, maxHandSize, maxMana);
 
-        currentPhase = GamePhases.Upkeep_Phase;
+        SetPhase(GamePhases.Combat_Phase);
 
         player.DrawCardFromDeck();
         player.DrawCardFromDeck();
@@ -39,5 +46,11 @@ public class GameManager : MonoBehaviour
     void SwapInitiative()
     {
 
+    }
+
+    void SetPhase(GamePhases PhaseToSet)
+    {
+        currentPhase = PhaseToSet;
+        uiManager.Phase.text = currentPhase.GetLabel();
     }
 }

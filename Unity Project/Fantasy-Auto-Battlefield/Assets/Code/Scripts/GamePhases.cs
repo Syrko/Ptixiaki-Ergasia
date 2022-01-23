@@ -18,4 +18,10 @@ public static class GamePhasesExtension
         int nextPhase = (((int)currentPhase)+1)%Enum.GetNames(typeof(GamePhases)).Length;
         return (GamePhases)nextPhase;
     }
+
+    public static string GetLabel(this GamePhases phase)
+    {
+        string[] stringParts = phase.ToString().Split('_');
+        return stringParts[0] + " " + stringParts[1];
+    }
 }
