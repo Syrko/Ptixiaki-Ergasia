@@ -28,6 +28,6 @@ public class Building : Spawnable
 
     private void OnMouseDown()
     {
-        FindObjectOfType<UIManager>().UpdateCardInfo(this);
+        FindObjectOfType<MainUI>().UpdateCardInfo(this);
     }
 }

@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     const int manaPerRound = 2;
     // ================================
 
-    UIManager uiManager;
+    MainUI uiManager;
     BoardUI boardUI;
 
     HumanPlayer player;
@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        uiManager = FindObjectOfType<UIManager>();
+        uiManager = FindObjectOfType<MainUI>();
         boardUI = FindObjectOfType<BoardUI>();
     }
 

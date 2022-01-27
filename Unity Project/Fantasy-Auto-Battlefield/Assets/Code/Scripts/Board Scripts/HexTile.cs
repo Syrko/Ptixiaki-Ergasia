@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HexTile : MonoBehaviour
 {
-    UIManager uiManager;
+    MainUI uiManager;
 
     [SerializeField, Tooltip("The data of the hex according to its category (e.g forest)")]
     TileData tileData;
@@ -23,7 +23,7 @@ public class HexTile : MonoBehaviour
 
 	private void Start()
 	{
-        uiManager = FindObjectOfType<UIManager>();
+        uiManager = FindObjectOfType<MainUI>();
 	}
 
 	private void OnMouseDown()

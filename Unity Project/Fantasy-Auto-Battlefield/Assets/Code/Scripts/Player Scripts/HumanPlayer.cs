@@ -10,7 +10,7 @@ public class HumanPlayer : Player
     int mana;
     int maxMana;
 
-    UIManager ui;
+    MainUI ui;
 
     public HumanPlayer(List<string> deck, int maxHP, int maxHandSize, int maxMana) : base(deck, maxHP)
     {
@@ -21,7 +21,7 @@ public class HumanPlayer : Player
         this.maxMana = maxMana;
         this.mana = 0;
 
-        ui = GameObject.FindObjectOfType<UIManager>();
+        ui = GameObject.FindObjectOfType<MainUI>();
     }
 
     void PayMana(int amount)

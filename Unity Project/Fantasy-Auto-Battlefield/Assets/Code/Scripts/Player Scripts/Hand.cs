@@ -6,7 +6,7 @@ public class Hand
 {
     List<string> cards;
 
-    UIManager ui;
+    MainUI ui;
     CardTemplateUI[] cardsInHandUI;
 
     bool isHandShown;
@@ -15,7 +15,7 @@ public class Hand
     public Hand()
     {
         cards = new List<string>();
-        ui = GameObject.FindObjectOfType<UIManager>();
+        ui = GameObject.FindObjectOfType<MainUI>();
         cardsInHandUI = GameObject.FindObjectsOfType<CardTemplateUI>(true);
         isHandShown = true;
 

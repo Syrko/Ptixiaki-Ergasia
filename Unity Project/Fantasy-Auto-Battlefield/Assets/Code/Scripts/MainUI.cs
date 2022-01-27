@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class UIManager : MonoBehaviour
+public class MainUI : MonoBehaviour
 {
     [Header("Card Info")]
     [SerializeField]

@@ -35,6 +35,6 @@ public class Unit : Spawnable
     
     private void OnMouseDown()
     {
-        FindObjectOfType<UIManager>().UpdateCardInfo(this);
+        FindObjectOfType<MainUI>().UpdateCardInfo(this);
     }
 }
