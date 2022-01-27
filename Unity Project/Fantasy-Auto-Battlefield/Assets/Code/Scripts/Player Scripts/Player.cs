@@ -10,12 +10,14 @@ public class Player
     protected bool hasInitiative;
     protected int frontline;
 
+    public bool HasInitiative { get => hasInitiative; set => hasInitiative = value; }
+
     public Player(List<string> deck, int maxHP)
     {
         this.deck = new Deck(deck);
         this.maxHP = maxHP;
         this.hp = maxHP;
-        this.hasInitiative = false;
+        this.HasInitiative = false;
         this.frontline = 0;
     }
 

@@ -12,4 +12,9 @@ public class DiscardPile
     }
 
     public List<string> Cards { get => cards; }
+
+    public void AddCard(string card)
+    {
+        cards.Add(card);
+    }
 }

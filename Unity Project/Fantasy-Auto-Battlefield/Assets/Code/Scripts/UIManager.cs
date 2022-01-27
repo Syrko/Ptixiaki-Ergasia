@@ -44,7 +44,7 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     Text toggleCardsText;
     [SerializeField]
-    Button EndPhase;
+    Button endPhase;
     [SerializeField]
     Button Menu;
 
@@ -69,6 +69,7 @@ public class UIManager : MonoBehaviour
     public Button ToggleCards { get => toggleCards; }
     public Text ToggleCardsText { get => toggleCardsText; }
     public Image CardCover { get => cardCover; }
+    public Button EndPhase { get => endPhase; }
 
     private void Awake()
     {

@@ -19,18 +19,18 @@ public class Deck
 
     public string DrawCard()
     {
-        string drawnCard = cards[0];
-        cards.RemoveAt(0);
-
-        // Update the deck counter in the UI
+        // Update the deck counter in the UI and shuffle the discard pile if the deck is empty
         int newDeckCount = int.Parse(boardUI.PlayerDeckCounter.text) - 1;
-        if(newDeckCount == 0)
+        if (newDeckCount == 0)
         {
             ShuffleDiscardPileIntoDeck();
             newDeckCount = cards.Count;
         }
         boardUI.PlayerDeckCounter.text = newDeckCount.ToString();
         //---------------------------------
+
+        string drawnCard = cards[0];
+        cards.RemoveAt(0);
 
         return drawnCard;
     }

@@ -10,6 +10,7 @@ public class Hand
     CardTemplateUI[] cardsInHandUI;
 
     bool isHandShown;
+    public int CardCount { get { return cards.Count; } }
 
     public Hand()
     {
