@@ -952,7 +952,7 @@ GameObject:
   - component: {fileID: 399910029}
   - component: {fileID: 399910028}
   m_Layer: 0
-  m_Name: UIManager
+  m_Name: MainUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -982,7 +982,7 @@ MonoBehaviour:
   TileImage: {fileID: 1807922062}
   TileName: {fileID: 637327747}
   TileText: {fileID: 2052505271}
-  PlayCard: {fileID: 95474582}
+  playCard: {fileID: 95474582}
   toggleCards: {fileID: 389954831}
   toggleCardsText: {fileID: 1635934063}
   endPhase: {fileID: 812573900}
@@ -990,7 +990,7 @@ MonoBehaviour:
   mana: {fileID: 1104924720}
   phase: {fileID: 1673391611}
   hitPoints: {fileID: 1398438156}
-  CardTray:
+  cardTray:
   - {fileID: 2039246898}
   - {fileID: 1275444592}
   - {fileID: 40123280}

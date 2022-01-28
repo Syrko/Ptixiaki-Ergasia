@@ -38,7 +38,7 @@ public class MainUI : MonoBehaviour
 
     [Header("Buttons")]
     [SerializeField]
-    Button PlayCard;
+    Button playCard;
     [SerializeField]
     Button toggleCards;
     [SerializeField]
@@ -61,7 +61,7 @@ public class MainUI : MonoBehaviour
     [Space(10)]
 
     [SerializeField]
-    GameObject[] CardTray;
+    GameObject[] cardTray;
 
     public TextMeshProUGUI Mana { get => mana; }
     public TextMeshProUGUI Phase { get => phase; }
@@ -70,6 +70,8 @@ public class MainUI : MonoBehaviour
     public Text ToggleCardsText { get => toggleCardsText; }
     public Image CardCover { get => cardCover; }
     public Button EndPhase { get => endPhase; }
+    public GameObject[] CardTray { get => cardTray; }
+    public Button PlayCard { get => playCard; }
 
     private void Awake()
     {

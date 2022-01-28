@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Gate
   m_EditorClassIdentifier: 
   cardName: Gate
-  cardCost: 2
+  cardCost: 3
   cardText: Open Seasame
   cardType: 1
   attack: 1

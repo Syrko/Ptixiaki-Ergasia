@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 
-public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
 {
     private const float displacement = 120f;
 
@@ -26,9 +26,14 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     GameObject cardHitPoints;
     [SerializeField]
     Image cardHexPattern;
+    [SerializeField]
+    Image cardBorder;
 
     private int cardTrayIndex;
     private bool isCardFilled = false;
+    private bool isCardSelected = false;
+
+    private MainUI mainUI;
 
     public TextMeshProUGUI CardName { get => cardName.GetComponent<TextMeshProUGUI>(); }
     public TextMeshProUGUI CardCost { get => cardCost.GetComponent<TextMeshProUGUI>(); }
@@ -39,6 +44,11 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public TextMeshProUGUI CardHitPoints { get => cardHitPoints.GetComponent<TextMeshProUGUI>(); }
     public Image CardHexPattern { get => cardHexPattern; }
     public bool IsCardFilled { get => isCardFilled; set => isCardFilled = value; }
+
+    private void Awake()
+    {
+        mainUI = FindObjectOfType<MainUI>();
+    }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -51,5 +61,35 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     {
         transform.SetSiblingIndex(cardTrayIndex);
         transform.localPosition += Vector3.down * displacement;
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        // On right click deselect card
+        if(eventData.button == PointerEventData.InputButton.Right)
+        {
+            isCardSelected = false;
+            cardBorder.color = Color.black;
+            return;
+        }
+
+        // When selecting new card deselect all others...
+        foreach(GameObject cardTemplate in mainUI.CardTray)
+        {
+            CardTemplateUI temp = cardTemplate.GetComponent<CardTemplateUI>();
+            if (temp.isCardSelected)
+            {
+                temp.isCardSelected = false;
+                temp.cardBorder.color = Color.black;
+            }
+        }
+        // ...and then select the clicked card
+        isCardSelected = true;
+        int playerMana = int.Parse(mainUI.Mana.text);
+        int cardCost = int.Parse(CardCost.text);
+        if (playerMana >= cardCost)
+            cardBorder.color = Color.green;
+        else
+            cardBorder.color = Color.red;
     }
 }

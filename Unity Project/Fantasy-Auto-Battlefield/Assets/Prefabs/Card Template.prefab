@@ -1053,6 +1053,7 @@ MonoBehaviour:
   cardDefense: {fileID: 586709800822320953}
   cardHitPoints: {fileID: 586709802045561160}
   cardHexPattern: {fileID: 586709801128348378}
+  cardBorder: {fileID: 586709801608362048}
 --- !u!1 &586709801777140617
 GameObject:
   m_ObjectHideFlags: 0
