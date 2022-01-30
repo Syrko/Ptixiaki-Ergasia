@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
     bool hasInitiative;
 
     public bool HasInitiative { get => hasInitiative; set => hasInitiative = value; }
+    public int CurrentMana { get => currentMana; }
 
     private void Awake()
     {

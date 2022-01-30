@@ -29,16 +29,19 @@ public class CardInHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     [SerializeField]
     Image cardBorder;
 
+    Player player;
+    Hand hand;
+
     private int cardTrayIndex;
-    private CardType? cardType;
-    private bool isCardSelected;
+    private CardType? cardType; 
 
     public CardType? CardType { get => cardType; }
 
     private void Awake()
     {
+        player = FindObjectOfType<Player>();
+        hand = FindObjectOfType<Hand>();
         cardType = null;
-        isCardSelected = false;
         cardTrayIndex = transform.GetSiblingIndex();
         HideSelf();
     }
@@ -58,37 +61,10 @@ public class CardInHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     
     public void OnPointerDown(PointerEventData eventData)
     {
-        /*
-        // On right click deselect card
-        if(eventData.button == PointerEventData.InputButton.Right)
-        {
-            isCardSelected = false;
-            cardBorder.color = Color.black;
-            return;
-        }
-
-        // When selecting new card deselect all others...
-        foreach(GameObject cardTemplate in mainUI.CardTray)
-        {
-            CardInHand temp = cardTemplate.GetComponent<CardInHand>();
-            if (temp.isCardSelected)
-            {
-                temp.isCardSelected = false;
-                temp.cardBorder.color = Color.black;
-            }
-        }
-        // ...and then select the clicked card
-        isCardSelected = true;
-        int playerMana = int.Parse(mainUI.Mana.text);
-        int cardCost = int.Parse(CardCost.text);
-        if (playerMana >= cardCost)
-            cardBorder.color = Color.green;
-        else
-            cardBorder.color = Color.red;
-        */
+        hand.onCardSelection(cardTrayIndex);
     }
 
-    public void ShowUnit(UnitCardData unit)
+    public void DrawUnit(UnitCardData unit, bool showImmediately)
     {
         cardName.text = unit.CardName;
         cardCost.text = unit.CardCost.ToString();
@@ -100,10 +76,13 @@ public class CardInHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         cardHexPattern.sprite = HexPattern.getHexPatternSprite(unit.AttackPattern);
         cardType = unit.CardType;
 
-        ShowSelf();
+        if (showImmediately)
+        {
+            ShowSelf();
+        }
     }
 
-    public void ShowBuilding(BuildingCardData building)
+    public void DrawBuilding(BuildingCardData building, bool showImmediately)
     {
         cardName.text = building.CardName;
         cardCost.text = building.CardCost.ToString();
@@ -115,13 +94,19 @@ public class CardInHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         cardHexPattern.sprite = HexPattern.getHexPatternSprite(building.AttackPattern);
         cardType = building.CardType;
 
-        ShowSelf();
+        if (showImmediately)
+        {
+            ShowSelf();
+        }
     }
 
-    public void ShowSpell(SpellCardData spell)
+    public void DrawSpell(SpellCardData spell, bool showImmediately)
     {
         // TODO implement hand ui ShowSpell
-        //this.gameObject.SetActive(true);
+        if (showImmediately)
+        {
+            ShowSelf();
+        }
         throw new System.NotImplementedException();
     }
 
@@ -133,5 +118,24 @@ public class CardInHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public void ShowSelf()
     {
         gameObject.SetActive(true);
+    }
+
+    public void UpdateBorder(bool selected)
+    {
+        if (selected)
+        {
+            if(player.CurrentMana >= int.Parse(cardCost.text))
+            {
+                cardBorder.color = Color.green;
+            }
+            else
+            {
+                cardBorder.color = Color.red;
+            }
+        }
+        else
+        {
+            cardBorder.color = Color.black;
+        }
     }
 }
