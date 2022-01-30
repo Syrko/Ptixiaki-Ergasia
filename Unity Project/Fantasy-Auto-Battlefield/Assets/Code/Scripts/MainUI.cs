@@ -58,11 +58,6 @@ public class MainUI : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI hitPoints;
 
-    [Space(10)]
-
-    [SerializeField]
-    GameObject[] cardTray;
-
     public TextMeshProUGUI Mana { get => mana; }
     public TextMeshProUGUI Phase { get => phase; }
     public TextMeshProUGUI HitPoints { get => hitPoints; }
@@ -70,16 +65,7 @@ public class MainUI : MonoBehaviour
     public Text ToggleCardsText { get => toggleCardsText; }
     public Image CardCover { get => cardCover; }
     public Button EndPhase { get => endPhase; }
-    public GameObject[] CardTray { get => cardTray; }
     public Button PlayCard { get => playCard; }
-
-    private void Awake()
-    {
-        foreach (var card in CardTray)
-        {
-            card.gameObject.SetActive(false);
-        }
-    }
 
     public void UpdateTileInfo(TileData tileData)
 	{
@@ -160,7 +146,7 @@ public class MainUI : MonoBehaviour
         // TODO implement UpdateCardInfo for spells
         throw new NotImplementedException();
     }
-
+    /*
     public void ShowCardInHand(int index, string card)
     {
         switch (CardCatalog.GetType(card))
@@ -181,10 +167,11 @@ public class MainUI : MonoBehaviour
 
     }
 
+    
     private void ShowUnitInHand(int index, UnitCardData data)
     {
         CardTray[index].SetActive(true);
-        CardTemplateUI cardUI = CardTray[index].GetComponent<CardTemplateUI>();
+        CardInHand cardUI = CardTray[index].GetComponent<CardInHand>();
 
         cardUI.CardName.text = data.CardName;
         cardUI.CardCost.text = data.CardCost.ToString();
@@ -201,7 +188,7 @@ public class MainUI : MonoBehaviour
     private void ShowBuildingInHand(int index, BuildingCardData data)
     {
         CardTray[index].SetActive(true);
-        CardTemplateUI cardUI = CardTray[index].GetComponent<CardTemplateUI>();
+        CardInHand cardUI = CardTray[index].GetComponent<CardInHand>();
 
         cardUI.CardName.text = data.CardName;
         cardUI.CardCost.text = data.CardCost.ToString();
@@ -213,7 +200,7 @@ public class MainUI : MonoBehaviour
         cardUI.CardHexPattern.sprite = HexPattern.getHexPatternSprite(data.AttackPattern);
         
         cardUI.IsCardFilled = true;
-    }
+    }*/
 
     private void ShowSpellInHand(int index, SpellCardData data)
     {

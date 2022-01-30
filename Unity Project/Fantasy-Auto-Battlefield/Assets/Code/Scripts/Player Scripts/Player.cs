@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         deck = FindObjectOfType<Deck>();
-        deck.AssignDeckList(gameManager.testingDeck); // TODO change method to import deck
+        deck.AssignDeckList(gameManager.TestingDeck); // TODO change the method of deck importing
         maxHandSize = gameManager.MaxHandSize;
 
         maxHP = gameManager.MaxHP;
@@ -49,14 +49,14 @@ public class Player : MonoBehaviour
             currentMana = maxMana;
         }
 
-        // TODO ui update implement
+        // TODO change to update ui
         //ui.Mana.text = currentMana.ToString();
     }
 
     public void DrawCardFromDeck()
     {
         string cardName = deck.DrawCard();
-        if (hand.CardCount < maxHandSize)
+        if (hand.CardsInHandCount < maxHandSize)
         {
             hand.AddCard(cardName);
         }

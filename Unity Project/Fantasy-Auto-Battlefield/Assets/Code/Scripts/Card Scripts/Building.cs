@@ -5,7 +5,7 @@ public class Building : Spawnable
 {
     public void InitializeBuildingPawn(string buildingName)
     {
-        BuildingCardData data = Resources.Load<BuildingCardData>("Cards/Buildings/" + buildingName + "/" + buildingName);
+        BuildingCardData data = BuildingCardData.GetBuildingDataFromName(buildingName);
         cardName = data.CardName;
         cardCost = data.CardCost;
         originalCardCost = data.CardCost;

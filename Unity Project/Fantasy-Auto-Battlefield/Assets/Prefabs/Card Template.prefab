@@ -1045,13 +1045,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b2925cfd3d5eea499329e9a10af40d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: {fileID: 586709802343877906}
-  cardCost: {fileID: 586709800754626061}
+  cardName: {fileID: 586709802343877916}
+  cardCost: {fileID: 586709800754626063}
   cardImage: {fileID: 586709802400734466}
-  cardText: {fileID: 586709800711795088}
-  cardAttack: {fileID: 586709802311419455}
-  cardDefense: {fileID: 586709800822320953}
-  cardHitPoints: {fileID: 586709802045561160}
+  cardText: {fileID: 586709800711795090}
+  cardAttack: {fileID: 586709802311419449}
+  cardDefense: {fileID: 586709800822320955}
+  cardHitPoints: {fileID: 586709802045561162}
   cardHexPattern: {fileID: 586709801128348378}
   cardBorder: {fileID: 586709801608362048}
 --- !u!1 &586709801777140617

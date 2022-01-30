@@ -5,7 +5,7 @@ public class Unit : Spawnable
 {
     public void InitializeUnitPawn(string unitName)
     {
-        UnitCardData data = Resources.Load<UnitCardData>("Cards/Units/" + unitName + "/" + unitName);
+        UnitCardData data = UnitCardData.GetUnitDataFromName(unitName);
         cardName = data.CardName;
         cardCost = data.CardCost;
         originalCardCost = data.CardCost;

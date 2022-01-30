@@ -9,8 +9,9 @@ public class GameManager : MonoBehaviour
     // ================================
     // Testing Variables
     // --------------------------------
-    public List<string> testingDeck = new List<string> { CardCatalog.Soldier, CardCatalog.Soldier, CardCatalog.Gate, CardCatalog.Soldier, CardCatalog.Soldier, CardCatalog.Gate };
-    
+    List<string> testingDeck = new List<string> { CardCatalog.Soldier, CardCatalog.Soldier, CardCatalog.Soldier, CardCatalog.Soldier, CardCatalog.Soldier, CardCatalog.Gate, CardCatalog.Gate, CardCatalog.Gate, CardCatalog.Gate, CardCatalog.Gate};
+    public List<string> TestingDeck { get => testingDeck; }
+
     [Header("Game Parameters")]
     [SerializeField]
     int maxHP = 10;
@@ -67,10 +68,12 @@ public class GameManager : MonoBehaviour
             //opponent.HasInitiative = true;
         }
 
+        // Execute the first Upkeep Phase
         SetPhase(GamePhases.Upkeep_Phase);
-        ExecutePhaseProcess(currentPhase);
+        ExecutePhaseProcess(GamePhases.Upkeep_Phase);
 
         // Prepare the UI
+        // TODO change to update ui
         mainUI.HitPoints.text = MaxHP.ToString();
         ToggleButton(mainUI.PlayCard);
     }

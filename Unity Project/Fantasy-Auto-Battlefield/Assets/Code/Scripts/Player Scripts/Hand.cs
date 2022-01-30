@@ -4,31 +4,46 @@ using UnityEngine;
 
 public class Hand : MonoBehaviour
 {
-    List<string> cards;
+    [SerializeField]
+    CardInHand[] cardsInHand;
 
-    MainUI ui;
-    CardTemplateUI[] cardsInHandUI;
+    List<string> cards = new List<string>();
 
-    bool isHandShown;
-    public int CardCount { get { return cards.Count; } }
+    bool isHandShown = true;
+    public int CardsInHandCount { get { return cards.Count; } }
 
-    private void Awake()
+    public void AddCard(string card)
     {
-        cards = new List<string>();
-        ui = FindObjectOfType<MainUI>();
-        cardsInHandUI = FindObjectsOfType<CardTemplateUI>(true);
-        isHandShown = true;
-
-        ui.ToggleCards.onClick.AddListener(ToggleHand);
+        cards.Add(card);
+        UpdateHandUI();
     }
-
-    void ToggleHand()
+    
+    private void UpdateHandUI()
     {
-        foreach (var card in cardsInHandUI)
+        for (int cardIndex = 0; cardIndex < cards.Count; cardIndex++)
         {
-            if (card.IsCardFilled)
+            ShowCardInHand(cardIndex);
+        }
+    }
+    
+    public void ToggleHand()
+    {
+        MainUI ui = FindObjectOfType<MainUI>();
+        if (isHandShown)
+        {
+            foreach (CardInHand card in cardsInHand)
             {
-                card.gameObject.SetActive(!isHandShown);
+                card.HideSelf();
+            }
+        }
+        else
+        {
+            foreach (CardInHand card in cardsInHand)
+            {
+                if (card.CardType != null)
+                {
+                    card.ShowSelf();
+                }
             }
         }
         if (isHandShown)
@@ -42,17 +57,21 @@ public class Hand : MonoBehaviour
         isHandShown = !isHandShown;
     }
 
-    public void AddCard(string card)
+    private void ShowCardInHand(int cardIndex)
     {
-        cards.Add(card);
-        UpdateHandUI();
-    }
+        string card = cards[cardIndex];
 
-    private void UpdateHandUI()
-    {
-        for (int i = 0; i < cards.Count; i++)
+        switch (CardCatalog.GetType(card))
         {
-            ui.ShowCardInHand(i, cards[i]);
+            case CardType.Unit:
+                cardsInHand[cardIndex].ShowUnit(UnitCardData.GetUnitDataFromName(card));
+                break;
+            case CardType.Building:
+                cardsInHand[cardIndex].ShowBuilding(BuildingCardData.GetBuildingDataFromName(card));
+                break;
+            case CardType.Spell:
+                cardsInHand[cardIndex].ShowSpell(SpellCardData.GetSpellDataFromName(card));
+                break;
         }
     }
 }

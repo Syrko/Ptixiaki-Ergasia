@@ -5,40 +5,44 @@ using UnityEngine;
 
 public class Deck : MonoBehaviour
 {
+    [SerializeField]
+    DiscardPile discardPile;
+
     List<string> cards;
     BoardUI boardUI;
-    DiscardPile discardPile;
 
     private void Awake()
     {
-        boardUI = GameObject.FindObjectOfType<BoardUI>();
+        boardUI = FindObjectOfType<BoardUI>();
     }
 
     private void Start()
     {
-        boardUI.PlayerDeckCounter.text = cards.Count.ToString(); // TODO change update ui
+        boardUI.PlayerDeckCounter.text = cards.Count.ToString(); // TODO change to update ui
         ShuffleDeck();
     }
 
     public void AssignDeckList(List<string> deck)
     {
         cards = deck;
+        boardUI.PlayerDeckCounter.text = cards.Count.ToString(); // TODO change to update ui
     }
 
     public string DrawCard()
     {
-        // Update the deck counter in the UI and shuffle the discard pile if the deck is empty
-        int newDeckCount = int.Parse(boardUI.PlayerDeckCounter.text) - 1;
-        if (newDeckCount == 0)
+        // If the deck is empty shuffle the discard into it
+        if (cards.Count == 0)
         {
-            ShuffleDiscardPileIntoDeck();
-            newDeckCount = cards.Count;
+            ShuffleCardsIntoDeck(discardPile.Cards);
+            discardPile.EmptyDiscardPile();
         }
-        boardUI.PlayerDeckCounter.text = newDeckCount.ToString();
-        //---------------------------------
 
+        // Draw the card
         string drawnCard = cards[0];
         cards.RemoveAt(0);
+
+        // Update the UI
+        boardUI.PlayerDeckCounter.text = cards.Count.ToString(); // TODO change to update ui
 
         return drawnCard;
     }
@@ -55,10 +59,5 @@ public class Deck : MonoBehaviour
             cards.Add(card);
             ShuffleDeck();
         }
-    }
-
-    void ShuffleDiscardPileIntoDeck()
-    {
-        ShuffleCardsIntoDeck(discardPile.Cards);
     }
 }

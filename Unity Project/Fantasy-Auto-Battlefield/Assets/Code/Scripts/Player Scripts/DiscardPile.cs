@@ -17,4 +17,9 @@ public class DiscardPile : MonoBehaviour
     {
         cards.Add(card);
     }
+
+    public void EmptyDiscardPile()
+    {
+        cards.Clear();
+    }
 }

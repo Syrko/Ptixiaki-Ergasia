@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Spell : Card
 {
+    // TODO implement Spell class
     SpellCardData cardData;
 
     // Start is called before the first frame update

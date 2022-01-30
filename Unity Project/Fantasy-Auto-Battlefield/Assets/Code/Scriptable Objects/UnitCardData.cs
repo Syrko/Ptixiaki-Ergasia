@@ -5,6 +5,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "UnitCardData", menuName = "Unit Card Data", order = 52)]
 public class UnitCardData : ScriptableObject
 {
+    public static UnitCardData GetUnitDataFromName(string unitName)
+    {
+        UnitCardData data = Resources.Load<UnitCardData>("Cards/Units/" + unitName + "/" + unitName);
+        return data;
+    }
+
     [SerializeField] string cardName;
     [SerializeField] int cardCost;
     [SerializeField] string cardText;
