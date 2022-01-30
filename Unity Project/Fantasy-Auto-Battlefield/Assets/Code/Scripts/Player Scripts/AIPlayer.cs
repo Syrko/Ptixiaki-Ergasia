@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AIPlayer : Player
 {
-    public AIPlayer(List<string> deck, int maxHP) : base(deck, maxHP)
+    public AIPlayer(List<string> deck, int maxHP)
     {
         
     }

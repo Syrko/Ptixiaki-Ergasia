@@ -8,20 +8,16 @@ public class HexTile : MonoBehaviour
 
     [SerializeField, Tooltip("The data of the hex according to its category (e.g forest)")]
     TileData tileData;
+
+    GameObject occupiedBy = null;
     
     TileHeight tileHeight;
     int posX;
     int posY;
 
-    /// <summary>
-    /// Should be called immediately after instantiation
-    /// </summary>
-	public void Initialize()
-	{
-        
-	}
+    public GameObject OccupiedBy { get => occupiedBy; set => occupiedBy = value; }
 
-	private void Start()
+    private void Start()
 	{
         uiManager = FindObjectOfType<MainUI>();
 	}

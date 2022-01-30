@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DiscardPile
+public class DiscardPile : MonoBehaviour
 {
     List<string> cards;
 
-    public DiscardPile()
+    private void Awake()
     {
         cards = new List<string>();
     }

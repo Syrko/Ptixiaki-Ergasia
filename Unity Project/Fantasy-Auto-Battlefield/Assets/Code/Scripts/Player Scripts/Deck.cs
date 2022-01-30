@@ -3,18 +3,26 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Deck
+public class Deck : MonoBehaviour
 {
     List<string> cards;
     BoardUI boardUI;
     DiscardPile discardPile;
 
-    public Deck(List<string> deck)
+    private void Awake()
     {
         boardUI = GameObject.FindObjectOfType<BoardUI>();
-        cards = deck;
-        boardUI.PlayerDeckCounter.text = cards.Count.ToString();
+    }
+
+    private void Start()
+    {
+        boardUI.PlayerDeckCounter.text = cards.Count.ToString(); // TODO change update ui
         ShuffleDeck();
+    }
+
+    public void AssignDeckList(List<string> deck)
+    {
+        cards = deck;
     }
 
     public string DrawCard()
@@ -33,11 +41,6 @@ public class Deck
         cards.RemoveAt(0);
 
         return drawnCard;
-    }
-
-    public void AssignDiscardPile(DiscardPile discardPile)
-    {
-        this.discardPile = discardPile;
     }
 
     void ShuffleDeck()

@@ -2,40 +2,110 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player
+public class Player : MonoBehaviour
 {
-    protected Deck deck;
-    protected int maxHP;
-    protected int hp;
-    protected bool hasInitiative;
-    protected int frontline;
+    [SerializeField]
+    GameManager gameManager;
+    [SerializeField]
+    int maxFrontline = 3;
+    [SerializeField]
+    Hand hand;
+    [SerializeField]
+    DiscardPile discardPile;
+
+    Deck deck;
+    int maxHandSize;
+
+    int maxHP;
+    int currentHP;
+    int maxMana;
+    int currentMana;
+
+    int frontline;
+    bool hasInitiative;
 
     public bool HasInitiative { get => hasInitiative; set => hasInitiative = value; }
 
-    public Player(List<string> deck, int maxHP)
+    private void Awake()
     {
-        this.deck = new Deck(deck);
-        this.maxHP = maxHP;
-        this.hp = maxHP;
-        this.HasInitiative = false;
-        this.frontline = 0;
+        deck = FindObjectOfType<Deck>();
+        deck.AssignDeckList(gameManager.testingDeck); // TODO change method to import deck
+        maxHandSize = gameManager.MaxHandSize;
+
+        maxHP = gameManager.MaxHP;
+        currentHP = gameManager.MaxHP;
+        maxMana = gameManager.MaxMana;
+        currentMana = 0;
+
+        frontline = 0;
+        hasInitiative = false;
     }
 
-    protected void ToggleInitiative()
+    public void GainMana(int amount)
+    {
+        currentMana += amount;
+        if (currentMana > maxMana)
+        {
+            currentMana = maxMana;
+        }
+
+        // TODO ui update implement
+        //ui.Mana.text = currentMana.ToString();
+    }
+
+    public void DrawCardFromDeck()
+    {
+        string cardName = deck.DrawCard();
+        if (hand.CardCount < maxHandSize)
+        {
+            hand.AddCard(cardName);
+        }
+        else
+        {
+            discardPile.AddCard(cardName);
+        }
+    }
+
+    void ToggleInitiative()
     {
         // TODO implement ToggleInitiative
         throw new NotImplementedException();
     }
 
-    protected void TakeDamage(int amount)
+    void TakeDamage(int amount)
     {
         // TODO implement TakeDamage
         throw new NotImplementedException();
     }
 
-    protected void HealSelf(int amount)
+    void HealSelf(int amount)
     {
         // TODO implement HealSelf
         throw new NotImplementedException();
+    }
+
+    public void DetermineFrontLine(GameObject[,] board)
+    {
+        int tempFrontLine = 0;
+
+        // Checking every row for occupant nad check its owner
+        for (int depth = 0; depth < gameManager.BoardWidth; depth++)
+        {
+            for(int width = 0; width < gameManager.BoardDepth; width++)
+            {
+                GameObject occupant = board[width, depth].GetComponent<HexTile>().OccupiedBy;
+                if (occupant != null)
+                {
+                    if (occupant.GetComponent<Spawnable>().Owner == this)
+                    {
+                        if (depth > tempFrontLine)
+                        {
+                            tempFrontLine = Math.Min(depth, maxFrontline);
+                        }
+                    }
+                }
+            }
+        }
+        frontline = tempFrontLine;
     }
 }

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hand
+public class Hand : MonoBehaviour
 {
     List<string> cards;
 
@@ -12,11 +12,11 @@ public class Hand
     bool isHandShown;
     public int CardCount { get { return cards.Count; } }
 
-    public Hand()
+    private void Awake()
     {
         cards = new List<string>();
-        ui = GameObject.FindObjectOfType<MainUI>();
-        cardsInHandUI = GameObject.FindObjectsOfType<CardTemplateUI>(true);
+        ui = FindObjectOfType<MainUI>();
+        cardsInHandUI = FindObjectsOfType<CardTemplateUI>(true);
         isHandShown = true;
 
         ui.ToggleCards.onClick.AddListener(ToggleHand);

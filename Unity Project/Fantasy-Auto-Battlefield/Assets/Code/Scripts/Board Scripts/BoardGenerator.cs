@@ -35,6 +35,9 @@ public class BoardGenerator : MonoBehaviour
     [SerializeField] private GameObject lakeTile;
     [SerializeField] private GameObject plainsTile;
 
+    public int BoardWidth { get => boardWidth; }
+    public int BoardDepth { get => boardDepth; }
+
     private void Awake()
     {
         ConstructBoard();
@@ -42,7 +45,7 @@ public class BoardGenerator : MonoBehaviour
 
     private void ConstructBoard()
     {
-        board = new GameObject[boardDepth, boardWidth];
+        board = new GameObject[BoardDepth, BoardWidth];
         List<TileType> tileTypePool = PopulateRandomTilesPool();
         InstantiateHexTiles(tileTypePool);
     }
@@ -53,7 +56,7 @@ public class BoardGenerator : MonoBehaviour
 	/// </summary>
     private List<TileType> PopulateRandomTilesPool()
     {
-        int nonBaseTilesCount = boardDepth * boardWidth - boardWidth * 2;
+        int nonBaseTilesCount = BoardDepth * BoardWidth - BoardWidth * 2;
         List<TileType> tileTypePool = new List<TileType>(nonBaseTilesCount);
 
         // Determine the number of hexes for each type of terrain based on the given percentages
@@ -91,7 +94,7 @@ public class BoardGenerator : MonoBehaviour
     private List<TileType> RandomizeTilePool(List<TileType> tileTypePool)
     {
         List<TileType> tempPool = new List<TileType>();
-        for (int i = 0; i < boardWidth; i++)
+        for (int i = 0; i < BoardWidth; i++)
         {
             tempPool.Add(TileType.Base);
         }
@@ -103,7 +106,7 @@ public class BoardGenerator : MonoBehaviour
             tempPool.Add(type);
         }
 
-        for (int i = 0; i < boardWidth; i++)
+        for (int i = 0; i < BoardWidth; i++)
         {
             tempPool.Add(TileType.Base);
         }
@@ -113,9 +116,9 @@ public class BoardGenerator : MonoBehaviour
 
     private void InstantiateHexTiles(List<TileType> tileTypePool)
     {
-        for (int d = 0; d < boardDepth; d++)
+        for (int d = 0; d < BoardDepth; d++)
         {
-            for (int w = 0; w < boardWidth; w++)
+            for (int w = 0; w < BoardWidth; w++)
             {
                 // Determine the position of the next hex in the 3D Scene's grid
                 Vector3 nextHexPos = BoardManager.TranslateCoordinates(w, d, 0);
@@ -141,7 +144,7 @@ public class BoardGenerator : MonoBehaviour
                         board[d, w] = Instantiate(plainsTile, nextHexPos, Quaternion.identity);
                         break;
                 }
-                board[d, w].GetComponent<HexTile>().Initialize();
+                board[d, w].GetComponent<HexTile>();
                 tileTypePool.RemoveAt(0);
             }
         }
