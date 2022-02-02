@@ -18,14 +18,14 @@ public class Deck : MonoBehaviour
 
     private void Start()
     {
-        boardUI.PlayerDeckCounter.text = cards.Count.ToString(); // TODO change to update ui
+        SubjectUI.Notify(this.gameObject, new EventUI(EventUICodes.DECK_COUNTER_CHANGED, cards.Count.ToString()));
         ShuffleDeck();
     }
 
     public void AssignDeckList(List<string> deck)
     {
         cards = deck;
-        boardUI.PlayerDeckCounter.text = cards.Count.ToString(); // TODO change to update ui
+        SubjectUI.Notify(this.gameObject, new EventUI(EventUICodes.DECK_COUNTER_CHANGED, cards.Count.ToString()));
     }
 
     public string DrawCard()
@@ -42,7 +42,7 @@ public class Deck : MonoBehaviour
         cards.RemoveAt(0);
 
         // Update the UI
-        boardUI.PlayerDeckCounter.text = cards.Count.ToString(); // TODO change to update ui
+        SubjectUI.Notify(this.gameObject, new EventUI(EventUICodes.DECK_COUNTER_CHANGED, cards.Count.ToString()));
 
         return drawnCard;
     }

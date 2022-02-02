@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class BoardUI : MonoBehaviour
+public class BoardUI : MonoBehaviour, IObserverUI
 {
     [SerializeField]
     GameObject opponentHP;
@@ -22,7 +22,38 @@ public class BoardUI : MonoBehaviour
     public TextMeshPro PlayerDeckCounter { get => playerDeckCounter.GetComponent<TextMeshPro>(); }
     public GameObject InitiativeToken { get => initiativeToken; }
 
-    public void MoveInitiativeToPlayer(bool isHuman)
+    private void Awake()
+    {
+        SubjectUI.AddObserver(this);
+    }
+
+    public void onNotify(GameObject sender, EventUI eventData)
+    {
+        switch (eventData.Code)
+        {
+            case EventUICodes.PLAYER_HP_CHANGED:
+                PlayerHP.text = eventData.Value;
+                break;
+            case EventUICodes.OPPONENT_HP_CHANGED:
+                OpponentHP.text = eventData.Value;
+                break;
+            case EventUICodes.DECK_COUNTER_CHANGED:
+                PlayerDeckCounter.text = eventData.Value;
+                break;
+            case EventUICodes.INITIATIVE_TOKEN_SWAPPED:
+                if(sender.GetComponent<Player>() != null)
+                {
+                    MoveInitiativeToPlayer(true);
+                }
+                else
+                {
+                    MoveInitiativeToPlayer(false);
+                }
+                break;
+        }
+    }
+
+    private void MoveInitiativeToPlayer(bool isHuman)
     {
         StartCoroutine(SmoothLerp(2f, isHuman));
     }

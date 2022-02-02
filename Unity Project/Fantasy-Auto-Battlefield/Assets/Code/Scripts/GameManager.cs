@@ -92,13 +92,13 @@ public class GameManager : MonoBehaviour
         {
             player.HasInitiative = false;
             //opponent.HasInitiative = true;
-            boardUI.MoveInitiativeToPlayer(false);
+            SubjectUI.Notify(this.gameObject, new EventUI(EventUICodes.INITIATIVE_TOKEN_SWAPPED));
         }
         else
         {
             player.HasInitiative = true;
             //opponent.HasInitiative = false;
-            boardUI.MoveInitiativeToPlayer(true);
+            SubjectUI.Notify(this.gameObject, new EventUI(EventUICodes.INITIATIVE_TOKEN_SWAPPED));
         }
     }
 
