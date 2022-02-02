@@ -15,7 +15,7 @@ public class SubjectUI : MonoBehaviour
         observers.Remove(observer);
     }
 
-    public static void Notify(GameObject sender, EventUI eventData)
+    public static void Notify(GameObject sender, UIEvent eventData)
     {
         foreach (IObserverUI observer in observers)
         {
@@ -23,7 +23,7 @@ public class SubjectUI : MonoBehaviour
         }
     }
 
-    public static void Notify(ScriptableObject objectData, EventUI eventData)
+    public static void Notify(ScriptableObject objectData, UIEvent eventData)
     {
         foreach (IObserverUI observer in observers)
         {

@@ -72,7 +72,7 @@ public class MainUI : MonoBehaviour, IObserverUI
         SubjectUI.AddObserver(this);
     }
  
-    public void onNotify(GameObject sender, EventUI eventData)
+    public void onNotify(GameObject sender, UIEvent eventData)
     {
         switch (eventData.Code)
         {
@@ -103,7 +103,7 @@ public class MainUI : MonoBehaviour, IObserverUI
         }
     }
 
-    public void onNotify(ScriptableObject objectData, EventUI eventData)
+    public void onNotify(ScriptableObject objectData, UIEvent eventData)
     {
         switch (eventData.Code)
         {

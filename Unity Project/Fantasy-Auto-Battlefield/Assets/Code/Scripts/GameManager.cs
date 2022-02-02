@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            // TODO remove comment
             //opponent.HasInitiative = true;
         }
 
@@ -68,16 +69,16 @@ public class GameManager : MonoBehaviour
         ExecutePhaseProcess(GamePhases.Upkeep_Phase);
 
         // Prepare the UI
-        SubjectUI.Notify(this.gameObject, new EventUI(EventUICodes.PLAYER_HP_CHANGED, MaxHP.ToString()));
-        SubjectUI.Notify(this.gameObject, new EventUI(EventUICodes.TOGGLE_PLAY_BUTTON));
+        SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.PLAYER_HP_CHANGED, MaxHP.ToString()));
+        SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.TOGGLE_PLAY_BUTTON));
     }
 
     public void onNextPhaseClick()
     {
-        SubjectUI.Notify(this.gameObject, new EventUI(EventUICodes.TOGGLE_END_PHASE_BUTTON));
+        SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.TOGGLE_END_PHASE_BUTTON));
         SetPhase(currentPhase.NextPhase());
         ExecutePhaseProcess(currentPhase);
-        SubjectUI.Notify(this.gameObject, new EventUI(EventUICodes.TOGGLE_END_PHASE_BUTTON));
+        SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.TOGGLE_END_PHASE_BUTTON));
     }
 
     void SwapInitiative()
@@ -85,21 +86,23 @@ public class GameManager : MonoBehaviour
         if (player.HasInitiative)
         {
             player.HasInitiative = false;
-            //opponent.HasInitiative = true; // TODO remove comment
-            SubjectUI.Notify(this.gameObject, new EventUI(EventUICodes.INITIATIVE_TOKEN_SWAPPED));
+            // TODO remove comment
+            //opponent.HasInitiative = true;
+            SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.INITIATIVE_TOKEN_SWAPPED));
         }
         else
         {
             player.HasInitiative = true;
-            //opponent.HasInitiative = false; // TODO remove comment
-            SubjectUI.Notify(this.gameObject, new EventUI(EventUICodes.INITIATIVE_TOKEN_SWAPPED));
+            // TODO remove comment
+            //opponent.HasInitiative = false;
+            SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.INITIATIVE_TOKEN_SWAPPED));
         }
     }
 
     void SetPhase(GamePhases PhaseToSet)
     {
         currentPhase = PhaseToSet;
-        SubjectUI.Notify(this.gameObject, new EventUI(EventUICodes.PHASE_CHANGED, currentPhase.GetLabel()));
+        SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.PHASE_CHANGED, currentPhase.GetLabel()));
     }
 
     void ExecutePhaseProcess(GamePhases currentPhase)
@@ -131,12 +134,12 @@ public class GameManager : MonoBehaviour
 
     void ExecuteStandardPhase()
     {
-        SubjectUI.Notify(this.gameObject, new EventUI(EventUICodes.TOGGLE_PLAY_BUTTON));
+        SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.TOGGLE_PLAY_BUTTON));
         player.DetermineFrontLine(Board);
     }
     
     void ExecuteMovePhase()
     {
-        SubjectUI.Notify(this.gameObject, new EventUI(EventUICodes.TOGGLE_PLAY_BUTTON));
+        SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.TOGGLE_PLAY_BUTTON));
     }
 }

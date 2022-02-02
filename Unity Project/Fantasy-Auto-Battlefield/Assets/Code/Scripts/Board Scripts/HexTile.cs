@@ -17,6 +17,6 @@ public class HexTile : MonoBehaviour
 
 	private void OnMouseDown()
 	{
-        SubjectUI.Notify(tileData, new EventUI(EventUICodes.TILE_INFO_CHANGED));
+        SubjectUI.Notify(tileData, new UIEvent(EventUICodes.TILE_INFO_CHANGED));
 	}
 }

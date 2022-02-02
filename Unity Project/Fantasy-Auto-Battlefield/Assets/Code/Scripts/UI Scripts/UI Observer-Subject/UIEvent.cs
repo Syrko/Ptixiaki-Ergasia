@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EventUI
+public class UIEvent
 {
     EventUICodes code;
     string value;
@@ -10,13 +10,13 @@ public class EventUI
     public EventUICodes Code { get => code; }
     public string Value { get => value; }
 
-    public EventUI(EventUICodes code, string value)
+    public UIEvent(EventUICodes code, string value)
     {
         this.code = code;
         this.value = value;
     }
     
-    public EventUI(EventUICodes code)
+    public UIEvent(EventUICodes code)
     {
         this.code = code;
         value = string.Empty;

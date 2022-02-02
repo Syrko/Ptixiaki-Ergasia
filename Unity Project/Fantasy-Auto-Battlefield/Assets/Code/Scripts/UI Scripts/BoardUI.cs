@@ -27,7 +27,7 @@ public class BoardUI : MonoBehaviour, IObserverUI
         SubjectUI.AddObserver(this);
     }
 
-    public void onNotify(GameObject sender, EventUI eventData)
+    public void onNotify(GameObject sender, UIEvent eventData)
     {
         switch (eventData.Code)
         {
@@ -84,7 +84,7 @@ public class BoardUI : MonoBehaviour, IObserverUI
         }
     }
 
-    public void onNotify(ScriptableObject sender, EventUI eventData)
+    public void onNotify(ScriptableObject sender, UIEvent eventData)
     {
         // No need to do anything when receiving this message
         return;

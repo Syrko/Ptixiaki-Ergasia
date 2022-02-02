@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
         }
 
         // Update UI
-        SubjectUI.Notify(this.gameObject, new EventUI(EventUICodes.PLAYER_MANA_CHANGED, currentMana.ToString()));
+        SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.PLAYER_MANA_CHANGED, currentMana.ToString()));
     }
 
     public void DrawCardFromDeck()
