@@ -50,8 +50,8 @@ public class Player : MonoBehaviour
             currentMana = maxMana;
         }
 
-        // TODO change to update ui
-        //ui.Mana.text = currentMana.ToString();
+        // Update UI
+        SubjectUI.Notify(this.gameObject, new EventUI(EventUICodes.PLAYER_MANA_CHANGED, currentMana.ToString()));
     }
 
     public void DrawCardFromDeck()

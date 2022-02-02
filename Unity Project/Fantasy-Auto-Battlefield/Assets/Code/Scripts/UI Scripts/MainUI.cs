@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class MainUI : MonoBehaviour
+public class MainUI : MonoBehaviour, IObserverUI
 {
     [Header("Card Info")]
     [SerializeField]
@@ -67,55 +67,68 @@ public class MainUI : MonoBehaviour
     public Button EndPhase { get => endPhase; }
     public Button PlayCard { get => playCard; }
 
-    public void UpdateTileInfo(TileData tileData)
-	{
+    private void Awake()
+    {
+        SubjectUI.AddObserver(this);
+    }
+ 
+    public void onNotify(GameObject sender, EventUI eventData)
+    {
+        switch (eventData.Code)
+        {
+            case EventUICodes.CARD_INFO_CHANGED:
+                UpdateCardInfo(sender);
+                break;
+            case EventUICodes.PLAYER_MANA_CHANGED:
+                Mana.text = eventData.Value;
+                break;
+            case EventUICodes.PLAYER_HP_CHANGED:
+                HitPoints.text = eventData.Value;
+                break;
+            case EventUICodes.PHASE_CHANGED:
+                break;
+
+        }
+    }
+
+    public void onNotify(ScriptableObject objectData, EventUI eventData)
+    {
+        switch (eventData.Code)
+        {
+            case EventUICodes.TILE_INFO_CHANGED:
+                if (objectData is TileData)
+                {
+                    UpdateTileInfo(objectData as TileData);
+                }
+                break;
+        }
+    }
+
+    private void UpdateTileInfo(TileData tileData)
+    {
         TileImage.sprite = tileData.TileImage;
         TileName.text = tileData.TileType.ToString();
         TileText.text = tileData.TileDescription;
-	}
+    }
 
-    private Color DetermineValueColor(int originalValue, int currentCalue)
+    private void UpdateCardInfo(GameObject sender)
     {
-        if (originalValue > currentCalue)
+        Component component;
+        if (sender.TryGetComponent(typeof(Unit), out component))
         {
-            return Color.red;
-        } 
-        else if (originalValue < currentCalue) 
-        {
-            return Color.green;
+            UpdateCardInfo(component as Unit);
         }
-        else
+        else if (sender.TryGetComponent(typeof(Building), out component))
         {
-            return Color.white;
+            UpdateCardInfo(component as Building);
+        }
+        else if (sender.TryGetComponent(typeof(Spell), out component))
+        {
+            UpdateCardInfo(component as Spell);
         }
     }
 
-    public void UpdateCardInfo(Unit data)
-    {
-        cardCover.gameObject.SetActive(false);
-
-        CardName.text = data.CardName;
-        
-        CardCost.text = data.CardCost.ToString();
-        CardCost.color = DetermineValueColor(data.OriginalCardCost, data.CardCost);
-
-        CardImage.sprite = data.CardImage;
-
-        CardText.text = data.CardText;
-
-        CardAttack.text = data.AttackValue.ToString();
-        CardAttack.color = DetermineValueColor(data.OriginalAttackValue, data.AttackValue);
-
-        CardDefense.text = data.Defense.ToString();
-        CardDefense.color = DetermineValueColor(data.OriginalDefense, data.Defense);
-
-        CardHitPoints.text = data.CurrentHP.ToString();
-        CardHitPoints.color = DetermineValueColor(data.MaxHitPoints, data.CurrentHP);
-
-        CardHexPattern.sprite = HexPattern.getHexPatternSprite(data.AttackPattern); 
-    }
-    
-    public void UpdateCardInfo(Building data)
+    private void UpdateCardInfo(Unit data)
     {
         cardCover.gameObject.SetActive(false);
 
@@ -139,72 +152,52 @@ public class MainUI : MonoBehaviour
 
         CardHexPattern.sprite = HexPattern.getHexPatternSprite(data.AttackPattern);
     }
-    
-    private void UpdateCardInfo(SpellCardData data)
+
+    private void UpdateCardInfo(Building data)
+    {
+        cardCover.gameObject.SetActive(false);
+
+        CardName.text = data.CardName;
+
+        CardCost.text = data.CardCost.ToString();
+        CardCost.color = DetermineValueColor(data.OriginalCardCost, data.CardCost);
+
+        CardImage.sprite = data.CardImage;
+
+        CardText.text = data.CardText;
+
+        CardAttack.text = data.AttackValue.ToString();
+        CardAttack.color = DetermineValueColor(data.OriginalAttackValue, data.AttackValue);
+
+        CardDefense.text = data.Defense.ToString();
+        CardDefense.color = DetermineValueColor(data.OriginalDefense, data.Defense);
+
+        CardHitPoints.text = data.CurrentHP.ToString();
+        CardHitPoints.color = DetermineValueColor(data.MaxHitPoints, data.CurrentHP);
+
+        CardHexPattern.sprite = HexPattern.getHexPatternSprite(data.AttackPattern);
+    }
+
+    private void UpdateCardInfo(Spell data)
     {
         cardCover.gameObject.SetActive(false);
         // TODO implement UpdateCardInfo for spells
         throw new NotImplementedException();
     }
-    /*
-    public void ShowCardInHand(int index, string card)
+
+    private Color DetermineValueColor(int originalValue, int currentCalue)
     {
-        switch (CardCatalog.GetType(card))
+        if (originalValue > currentCalue)
         {
-            case CardType.Unit:
-                ShowUnitInHand(index, Resources.Load<UnitCardData>("Cards/Units/" + card + "/" + card));
-                break;
-            case CardType.Building:
-                ShowBuildingInHand(index, Resources.Load<BuildingCardData>("Cards/Buildings/" + card + "/" + card));
-                break;
-            case CardType.Spell:
-                ShowSpellInHand(index, Resources.Load<SpellCardData>("Cards/Spells/" + card + "/" + card));
-                break;
-            case null:
-                // TODO implement handling of null value
-                throw new NotImplementedException();
+            return Color.red;
         }
-
-    }
-
-    
-    private void ShowUnitInHand(int index, UnitCardData data)
-    {
-        CardTray[index].SetActive(true);
-        CardInHand cardUI = CardTray[index].GetComponent<CardInHand>();
-
-        cardUI.CardName.text = data.CardName;
-        cardUI.CardCost.text = data.CardCost.ToString();
-        cardUI.CardImage.sprite = data.CardImage;
-        cardUI.CardText.text = data.CardText;
-        cardUI.CardAttack.text = data.Attack.ToString();
-        cardUI.CardDefense.text = data.Defense.ToString();
-        cardUI.CardHitPoints.text = data.MaxHitPoints.ToString();
-        cardUI.CardHexPattern.sprite = HexPattern.getHexPatternSprite(data.AttackPattern);
-
-        cardUI.IsCardFilled = true;
-    }
-    
-    private void ShowBuildingInHand(int index, BuildingCardData data)
-    {
-        CardTray[index].SetActive(true);
-        CardInHand cardUI = CardTray[index].GetComponent<CardInHand>();
-
-        cardUI.CardName.text = data.CardName;
-        cardUI.CardCost.text = data.CardCost.ToString();
-        cardUI.CardImage.sprite = data.CardImage;
-        cardUI.CardText.text = data.CardText;
-        cardUI.CardAttack.text = data.Attack.ToString();
-        cardUI.CardDefense.text = data.Defense.ToString();
-        cardUI.CardHitPoints.text = data.MaxHitPoints.ToString();
-        cardUI.CardHexPattern.sprite = HexPattern.getHexPatternSprite(data.AttackPattern);
-        
-        cardUI.IsCardFilled = true;
-    }*/
-
-    private void ShowSpellInHand(int index, SpellCardData data)
-    {
-        // TODO implement ShowSpellInHand
-        throw new NotImplementedException();
+        else if (originalValue < currentCalue)
+        {
+            return Color.green;
+        }
+        else
+        {
+            return Color.white;
+        }
     }
 }

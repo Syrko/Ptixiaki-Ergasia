@@ -83,4 +83,10 @@ public class BoardUI : MonoBehaviour, IObserverUI
             yield return null;
         }
     }
+
+    public void onNotify(ScriptableObject sender, EventUI eventData)
+    {
+        // No need to do anything when receiving this message
+        return;
+    }
 }

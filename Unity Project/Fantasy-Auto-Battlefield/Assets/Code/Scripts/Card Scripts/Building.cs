@@ -28,6 +28,6 @@ public class Building : Spawnable
 
     private void OnMouseDown()
     {
-        FindObjectOfType<MainUI>().UpdateCardInfo(this);
+        SubjectUI.Notify(this.gameObject, new EventUI(EventUICodes.CARD_INFO_CHANGED));
     }
 }

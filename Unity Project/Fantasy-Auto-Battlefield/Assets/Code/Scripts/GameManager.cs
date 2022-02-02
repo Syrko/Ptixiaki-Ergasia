@@ -73,8 +73,7 @@ public class GameManager : MonoBehaviour
         ExecutePhaseProcess(GamePhases.Upkeep_Phase);
 
         // Prepare the UI
-        // TODO change to update ui
-        mainUI.HitPoints.text = MaxHP.ToString();
+        SubjectUI.Notify(this.gameObject, new EventUI(EventUICodes.PLAYER_HP_CHANGED, MaxHP.ToString()));
         ToggleButton(mainUI.PlayCard);
     }
 

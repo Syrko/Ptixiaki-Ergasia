@@ -5,4 +5,5 @@ using UnityEngine;
 public interface IObserverUI
 {
     abstract void onNotify(GameObject sender, EventUI eventData);
+    abstract void onNotify(ScriptableObject sender, EventUI eventData);
 }

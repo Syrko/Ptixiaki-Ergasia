@@ -22,4 +22,12 @@ public class SubjectUI : MonoBehaviour
             observer.onNotify(sender, eventData);
         }
     }
+
+    public static void Notify(ScriptableObject objectData, EventUI eventData)
+    {
+        foreach (IObserverUI observer in observers)
+        {
+            observer.onNotify(objectData, eventData);
+        }
+    }
 }
