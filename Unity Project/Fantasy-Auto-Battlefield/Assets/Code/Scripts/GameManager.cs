@@ -27,10 +27,7 @@ public class GameManager : MonoBehaviour
     Player player;
     //AIPlayer opponent; // TODO serialize it
 
-    MainUI mainUI;
-    BoardUI boardUI;
     BoardGenerator boardGenerator;
-
     GamePhases currentPhase;
 
     public int MaxHP { get => maxHP; }
@@ -42,8 +39,6 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        mainUI = FindObjectOfType<MainUI>();
-        boardUI = FindObjectOfType<BoardUI>();
         boardGenerator = FindObjectOfType<BoardGenerator>();
     }
 
@@ -74,15 +69,15 @@ public class GameManager : MonoBehaviour
 
         // Prepare the UI
         SubjectUI.Notify(this.gameObject, new EventUI(EventUICodes.PLAYER_HP_CHANGED, MaxHP.ToString()));
-        ToggleButton(mainUI.PlayCard);
+        SubjectUI.Notify(this.gameObject, new EventUI(EventUICodes.TOGGLE_PLAY_BUTTON));
     }
 
     public void onNextPhaseClick()
     {
-        ToggleButton(mainUI.EndPhase);
+        SubjectUI.Notify(this.gameObject, new EventUI(EventUICodes.TOGGLE_END_PHASE_BUTTON));
         SetPhase(currentPhase.NextPhase());
         ExecutePhaseProcess(currentPhase);
-        ToggleButton(mainUI.EndPhase);
+        SubjectUI.Notify(this.gameObject, new EventUI(EventUICodes.TOGGLE_END_PHASE_BUTTON));
     }
 
     void SwapInitiative()
@@ -90,13 +85,13 @@ public class GameManager : MonoBehaviour
         if (player.HasInitiative)
         {
             player.HasInitiative = false;
-            //opponent.HasInitiative = true;
+            //opponent.HasInitiative = true; // TODO remove comment
             SubjectUI.Notify(this.gameObject, new EventUI(EventUICodes.INITIATIVE_TOKEN_SWAPPED));
         }
         else
         {
             player.HasInitiative = true;
-            //opponent.HasInitiative = false;
+            //opponent.HasInitiative = false; // TODO remove comment
             SubjectUI.Notify(this.gameObject, new EventUI(EventUICodes.INITIATIVE_TOKEN_SWAPPED));
         }
     }
@@ -104,7 +99,7 @@ public class GameManager : MonoBehaviour
     void SetPhase(GamePhases PhaseToSet)
     {
         currentPhase = PhaseToSet;
-        mainUI.Phase.text = currentPhase.GetLabel();
+        SubjectUI.Notify(this.gameObject, new EventUI(EventUICodes.PHASE_CHANGED, currentPhase.GetLabel()));
     }
 
     void ExecutePhaseProcess(GamePhases currentPhase)
@@ -136,26 +131,12 @@ public class GameManager : MonoBehaviour
 
     void ExecuteStandardPhase()
     {
-        ToggleButton(mainUI.PlayCard);
+        SubjectUI.Notify(this.gameObject, new EventUI(EventUICodes.TOGGLE_PLAY_BUTTON));
         player.DetermineFrontLine(Board);
     }
     
     void ExecuteMovePhase()
     {
-        ToggleButton(mainUI.PlayCard);
-    }
-
-    void ToggleButton(Button button)
-    {
-        if (button.enabled)
-        {
-            button.enabled = false;
-            button.GetComponent<Image>().color = Color.gray;
-        }
-        else
-        {
-            button.enabled = true;
-            button.GetComponent<Image>().color = Color.white;
-        }
+        SubjectUI.Notify(this.gameObject, new EventUI(EventUICodes.TOGGLE_PLAY_BUTTON));
     }
 }

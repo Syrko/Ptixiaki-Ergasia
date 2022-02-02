@@ -86,8 +86,20 @@ public class MainUI : MonoBehaviour, IObserverUI
                 HitPoints.text = eventData.Value;
                 break;
             case EventUICodes.PHASE_CHANGED:
+                Phase.text = eventData.Value;
                 break;
-
+            case EventUICodes.TOGGLE_PLAY_BUTTON:
+                ToggleButton(PlayCard);
+                break;
+            case EventUICodes.TOGGLE_HAND_BUTTON:
+                ToggleButton(toggleCards);
+                break;
+            case EventUICodes.TOGGLE_MENU_BUTTON:
+                ToggleButton(Menu);
+                break;
+            case EventUICodes.TOGGLE_END_PHASE_BUTTON:
+                ToggleButton(endPhase);
+                break;
         }
     }
 
@@ -198,6 +210,20 @@ public class MainUI : MonoBehaviour, IObserverUI
         else
         {
             return Color.white;
+        }
+    }
+
+    private void ToggleButton(Button button)
+    {
+        if (button.enabled)
+        {
+            button.enabled = false;
+            button.GetComponent<Image>().color = Color.gray;
+        }
+        else
+        {
+            button.enabled = true;
+            button.GetComponent<Image>().color = Color.white;
         }
     }
 }

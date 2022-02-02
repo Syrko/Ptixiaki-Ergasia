@@ -9,12 +9,6 @@ public class Deck : MonoBehaviour
     DiscardPile discardPile;
 
     List<string> cards;
-    BoardUI boardUI;
-
-    private void Awake()
-    {
-        boardUI = FindObjectOfType<BoardUI>();
-    }
 
     private void Start()
     {
