@@ -320,7 +320,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 95474583}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 723003147}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: onPlayCardClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &95474583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3226,12 +3238,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad311a57e6859fc46b206b6432da1ee8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 723003147}
   cardsInHand:
   - {fileID: 2039246899}
   - {fileID: 1275444593}
   - {fileID: 40123281}
   - {fileID: 141882968}
   - {fileID: 1284257873}
+  player: {fileID: 1620924511}
 --- !u!1 &1398438154
 GameObject:
   m_ObjectHideFlags: 0

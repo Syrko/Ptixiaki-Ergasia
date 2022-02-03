@@ -9,6 +9,8 @@ public class Hand : MonoBehaviour
     GameManager gameManager;
     [SerializeField]
     CardInHand[] cardsInHand;
+    [SerializeField]
+    Player player;
 
     List<string> cards = new List<string>();
 
@@ -99,7 +101,7 @@ public class Hand : MonoBehaviour
             selectedCardIndex = selectionIndex;
             if(gameManager.CurrentPhase == GamePhases.Standard_Phase)
             {
-                if (cardsInHand[selectedCardIndex].IsPlayable)
+                if (cardsInHand[selectedCardIndex].CardCost <= player.CurrentMana)
                 {
                     SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.ENABLE_PLAY_BUTTON));
                 }

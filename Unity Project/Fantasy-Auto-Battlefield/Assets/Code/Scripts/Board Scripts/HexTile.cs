@@ -8,6 +8,7 @@ public class HexTile : MonoBehaviour
     TileData tileData;
 
     GameObject occupiedBy = null;
+    GameObject highlightHex;
     
     TileHeight tileHeight;
     int posX;
@@ -15,8 +16,19 @@ public class HexTile : MonoBehaviour
 
     public GameObject OccupiedBy { get => occupiedBy; set => occupiedBy = value; }
 
-	private void OnMouseDown()
+    private void Awake()
+    {
+        highlightHex = transform.Find("Highlight").gameObject;
+        Highlight(false);
+    }
+
+    private void OnMouseDown()
 	{
         SubjectUI.Notify(tileData, new UIEvent(EventUICodes.TILE_INFO_CHANGED));
 	}
+
+    public void Highlight(bool highlightON)
+    {
+        highlightHex.SetActive(highlightON);
+    }
 }

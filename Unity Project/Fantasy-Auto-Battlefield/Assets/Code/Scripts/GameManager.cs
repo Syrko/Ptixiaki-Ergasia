@@ -84,6 +84,10 @@ public class GameManager : MonoBehaviour
 
     public void onPlayCardClick()
     {
+        foreach(GameObject tile in Board)
+        {
+            tile.GetComponent<HexTile>().Highlight(true);
+        }
         // TODO choose target
         // TODO pay cost
         // TODO remove card from hand
