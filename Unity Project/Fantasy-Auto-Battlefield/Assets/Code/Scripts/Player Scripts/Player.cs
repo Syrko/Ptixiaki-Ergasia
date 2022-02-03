@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     int frontline;
     bool hasInitiative;
 
+    public Hand Hand { get { return hand; } }
     public bool HasInitiative { get => hasInitiative; set => hasInitiative = value; }
     public int CurrentMana { get => currentMana; }
 

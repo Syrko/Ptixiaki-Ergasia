@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     public GameObject[,] Board { get => boardGenerator.Board; }
     public int BoardWidth { get=> boardGenerator.BoardWidth; }
     public int BoardDepth { get=> boardGenerator.BoardDepth; }
+    public GamePhases CurrentPhase { get => currentPhase; }
 
     private void Awake()
     {
@@ -70,15 +71,22 @@ public class GameManager : MonoBehaviour
 
         // Prepare the UI
         SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.PLAYER_HP_CHANGED, MaxHP.ToString()));
-        SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.TOGGLE_PLAY_BUTTON));
+        SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.DISABLE_PLAY_BUTTON));
     }
 
     public void onNextPhaseClick()
     {
-        SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.TOGGLE_END_PHASE_BUTTON));
+        SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.DISABLE_END_PHASE_BUTTON));
         SetPhase(currentPhase.NextPhase());
         ExecutePhaseProcess(currentPhase);
-        SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.TOGGLE_END_PHASE_BUTTON));
+        SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.ENABLE_END_PHASE_BUTTON));
+    }
+
+    public void onPlayCardClick()
+    {
+        // TODO choose target
+        // TODO pay cost
+        // TODO remove card from hand
     }
 
     void SwapInitiative()
@@ -134,12 +142,15 @@ public class GameManager : MonoBehaviour
 
     void ExecuteStandardPhase()
     {
-        SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.TOGGLE_PLAY_BUTTON));
         player.DetermineFrontLine(Board);
+        if (player.Hand.SelectedCardIndex != Hand.NO_CARD_SELECTED)
+        {
+            SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.ENABLE_PLAY_BUTTON));
+        }
     }
     
     void ExecuteMovePhase()
     {
-        SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.TOGGLE_PLAY_BUTTON));
+        SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.DISABLE_PLAY_BUTTON));
     }
 }

@@ -33,15 +33,18 @@ public class CardInHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     Hand hand;
 
     private int cardTrayIndex;
-    private CardType? cardType; 
+    private CardType? cardType;
+    private bool isPlayable;
 
     public CardType? CardType { get => cardType; }
+    public bool IsPlayable { get => isPlayable; }
 
     private void Awake()
     {
         player = FindObjectOfType<Player>();
         hand = FindObjectOfType<Hand>();
         cardType = null;
+        isPlayable = false;
         cardTrayIndex = transform.GetSiblingIndex();
         HideSelf();
     }
@@ -127,15 +130,18 @@ public class CardInHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             if(player.CurrentMana >= int.Parse(cardCost.text))
             {
                 cardBorder.color = Color.green;
+                isPlayable = true;
             }
             else
             {
                 cardBorder.color = Color.red;
+                isPlayable = false;
             }
         }
         else
         {
             cardBorder.color = Color.black;
+            isPlayable = false;
         }
     }
 }

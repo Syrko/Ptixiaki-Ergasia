@@ -88,17 +88,17 @@ public class MainUI : MonoBehaviour, IObserverUI
             case EventUICodes.PHASE_CHANGED:
                 Phase.text = eventData.Value;
                 break;
-            case EventUICodes.TOGGLE_PLAY_BUTTON:
-                ToggleButton(PlayCard);
+            case EventUICodes.ENABLE_PLAY_BUTTON:
+                EnableButton(playCard);
                 break;
-            case EventUICodes.TOGGLE_HAND_BUTTON:
-                ToggleButton(toggleCards);
+            case EventUICodes.DISABLE_PLAY_BUTTON:
+                DisableButton(playCard);
                 break;
-            case EventUICodes.TOGGLE_MENU_BUTTON:
-                ToggleButton(Menu);
+            case EventUICodes.ENABLE_END_PHASE_BUTTON:
+                EnableButton(endPhase);
                 break;
-            case EventUICodes.TOGGLE_END_PHASE_BUTTON:
-                ToggleButton(endPhase);
+            case EventUICodes.DISABLE_END_PHASE_BUTTON:
+                DisableButton(endPhase);
                 break;
         }
     }
@@ -213,17 +213,15 @@ public class MainUI : MonoBehaviour, IObserverUI
         }
     }
 
-    private void ToggleButton(Button button)
+    private void EnableButton(Button button)
     {
-        if (button.enabled)
-        {
-            button.enabled = false;
-            button.GetComponent<Image>().color = Color.gray;
-        }
-        else
-        {
-            button.enabled = true;
-            button.GetComponent<Image>().color = Color.white;
-        }
+        button.enabled = true;
+        button.GetComponent<Image>().color = Color.white;
+    }
+
+    private void DisableButton(Button button)
+    {
+        button.enabled = false;
+        button.GetComponent<Image>().color = Color.gray;
     }
 }

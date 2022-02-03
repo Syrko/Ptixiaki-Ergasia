@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Hand : MonoBehaviour
 {
-    const int NO_CARD_SELECTED = -1;
-
+    public static readonly int NO_CARD_SELECTED = -1;
+    [SerializeField]
+    GameManager gameManager;
     [SerializeField]
     CardInHand[] cardsInHand;
 
@@ -14,6 +15,7 @@ public class Hand : MonoBehaviour
     bool isHandShown = true;
     int selectedCardIndex = NO_CARD_SELECTED;
 
+    public int SelectedCardIndex { get => selectedCardIndex; }
     public int CardsInHandCount { get { return cards.Count; } }
 
     public void AddCard(string card)
@@ -87,10 +89,21 @@ public class Hand : MonoBehaviour
         if(selectedCardIndex == selectionIndex)
         {
             selectedCardIndex = NO_CARD_SELECTED;
+            if (gameManager.CurrentPhase == GamePhases.Standard_Phase)
+            {
+                SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.DISABLE_PLAY_BUTTON));
+            }
         }
         else
         {
             selectedCardIndex = selectionIndex;
+            if(gameManager.CurrentPhase == GamePhases.Standard_Phase)
+            {
+                if (cardsInHand[selectedCardIndex].IsPlayable)
+                {
+                    SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.ENABLE_PLAY_BUTTON));
+                }
+            }
         }
         UpdateHandUI();
     }
