@@ -14,13 +14,10 @@ public partial class GameManager
 
     public void onPlayCardClick()
     {
-        foreach (GameObject tile in Board)
-        {
-            tile.GetComponent<HexTile>().Highlight(true);
-        }
-        // TODO choose target
-        // TODO pay cost
-        // TODO remove card from hand
+        SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.DISABLE_END_PHASE_BUTTON));
+        SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.DISABLE_PLAY_BUTTON));
+        player.Hand.HideUnselectedCards();
+        HighlightFrontline();
     }
 
     void SwapInitiative()
@@ -45,5 +42,63 @@ public partial class GameManager
     {
         currentPhase = PhaseToSet;
         SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.PHASE_CHANGED, currentPhase.GetLabel()));
+    }
+
+    void HighlightFrontline()
+    {
+        for (int depth = 0; depth <= player.Frontline; depth++)
+        {
+            for(int width = 0; width < BoardWidth; width++)
+            {
+                Board[depth, width].GetComponent<HexTile>().Highlight(true);
+            }
+        }
+    }
+
+    public GameObject GetSelectedCard()
+    {
+        return player.Hand.GetSelectedCardGameObject();
+    }
+
+    public void DeHighlightFrontline()
+    {
+        for (int depth = 0; depth <= player.Frontline; depth++)
+        {
+            for (int width = 0; width < BoardWidth; width++)
+            {
+                Board[depth, width].GetComponent<HexTile>().Highlight(false);
+            }
+        }
+    }
+
+    private void SpawnPawn(string cardName, int x, int y, bool forPlayer)
+    {
+        CardType? cardType = CardCatalog.GetType(cardName);
+
+        switch (cardType)
+        {
+            case CardType.Unit:
+                UnitFactory.CreateUnitPawn(cardName, x, y, forPlayer);
+                break;
+            case CardType.Building:
+                BuildingFactory.CreateBuildingPawn(cardName, x, y, forPlayer);
+                break;
+            case CardType.Spell:
+                break;
+            default:
+                // TODO handle null
+                break;
+        }
+    }
+
+    public void PlayCard(CardInHand card, int x, int y, bool forPlayer)
+    {
+        player.PayMana(card.CardCost);
+        SpawnPawn(card.CardName, x, y, forPlayer);
+        SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.ENABLE_END_PHASE_BUTTON));
+
+        // Remove card from hand
+        player.Hand.RemoveCardFromHand(card);
+        CardInHand.cardIsBeingPlayed = false;
     }
 }

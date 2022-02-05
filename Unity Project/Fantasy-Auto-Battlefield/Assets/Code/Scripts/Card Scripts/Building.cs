@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Building : Spawnable
 {
-    public void InitializeBuildingPawn(string buildingName)
+    public void InitializeBuildingPawn(string buildingName, bool forPlayer)
     {
         BuildingCardData data = BuildingCardData.GetBuildingDataFromName(buildingName);
         cardName = data.CardName;
@@ -20,10 +20,16 @@ public class Building : Spawnable
         attackPattern = data.AttackPattern;
         cardImage = data.CardImage;
 
+        if (forPlayer)
+            originalOwner = FindObjectOfType<Player>();
+        else
+            originalOwner = null; // TODO change ai owner from null
+        owner = originalOwner;
+
         cardMaterial = Resources.Load<Material>("Cards/Buildings/" + buildingName + "/" + buildingName);
         transform.Find("Image").GetComponent<MeshRenderer>().material = cardMaterial;
 
-        UpdatePawnUI();
+        InitializePawnUI();
     }
 
     private void OnMouseDown()

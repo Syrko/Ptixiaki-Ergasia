@@ -39,30 +39,29 @@ public class Hand : MonoBehaviour
         MainUI ui = FindObjectOfType<MainUI>();
         if (isHandShown)
         {
-            foreach (CardInHand card in cardsInHand)
-            {
-                card.HideSelf();
-            }
-        }
-        else
-        {
-            foreach (CardInHand card in cardsInHand)
-            {
-                if (card.CardType != null)
-                {
-                    card.ShowSelf();
-                }
-            }
-        }
-        if (isHandShown)
-        {
             ui.ToggleCardsText.text = "Show Hand";
         }
         else
         {
             ui.ToggleCardsText.text = "Hide Hand";
         }
-        isHandShown = !isHandShown;
+
+        if (isHandShown)
+        {
+            foreach (CardInHand card in cardsInHand)
+            {
+                card.HideSelf();
+                isHandShown = !isHandShown;
+            }
+        }
+        else
+        {
+            foreach (CardInHand card in cardsInHand)
+            {
+                UpdateHandUI();
+                isHandShown = !isHandShown;
+            }
+        }
     }
 
     private void ShowCardInHand(int cardIndex)
@@ -94,6 +93,8 @@ public class Hand : MonoBehaviour
             if (gameManager.CurrentPhase == GamePhases.Standard_Phase)
             {
                 SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.DISABLE_PLAY_BUTTON));
+                gameManager.DeHighlightFrontline();
+                SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.ENABLE_END_PHASE_BUTTON));
             }
         }
         else
@@ -107,6 +108,39 @@ public class Hand : MonoBehaviour
                 }
             }
         }
+        UpdateHandUI();
+    }
+
+    public void HideUnselectedCards()
+    {
+        for (int index = 0; index < cardsInHand.Length; index++)
+        {
+            if(index == selectedCardIndex)
+            {
+                continue;
+            }
+            cardsInHand[index].HideSelf();
+        }
+    }
+
+    public GameObject GetSelectedCardGameObject()
+    {
+        try
+        {
+            return cardsInHand[selectedCardIndex].gameObject;
+        }
+        catch (IndexOutOfRangeException e)
+        {
+            Debug.LogException(e);
+            return null;
+        }
+    }
+
+    public void RemoveCardFromHand(CardInHand card)
+    {
+        card.EmptyCardType();
+        cards.Remove(card.CardName);
+        selectedCardIndex = NO_CARD_SELECTED;
         UpdateHandUI();
     }
 }

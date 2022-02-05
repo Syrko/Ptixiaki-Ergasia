@@ -8,6 +8,7 @@ public partial class GameManager : MonoBehaviour
 {
     // ================================
     // Testing Variables
+    // TODO remove
     // --------------------------------
     List<string> testingDeck = new List<string> { CardCatalog.Soldier, CardCatalog.Soldier, CardCatalog.Soldier, CardCatalog.Soldier, CardCatalog.Soldier, CardCatalog.Gate, CardCatalog.Gate, CardCatalog.Gate, CardCatalog.Gate, CardCatalog.Gate};
     public List<string> TestingDeck { get => testingDeck; }

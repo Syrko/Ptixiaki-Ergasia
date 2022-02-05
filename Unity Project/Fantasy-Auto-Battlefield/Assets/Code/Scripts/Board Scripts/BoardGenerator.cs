@@ -144,7 +144,7 @@ public class BoardGenerator : MonoBehaviour
                         board[d, w] = Instantiate(plainsTile, nextHexPos, Quaternion.identity);
                         break;
                 }
-                board[d, w].GetComponent<HexTile>();
+                board[d, w].GetComponent<HexTile>().InitializeCoords(d, w);
                 tileTypePool.RemoveAt(0);
             }
         }

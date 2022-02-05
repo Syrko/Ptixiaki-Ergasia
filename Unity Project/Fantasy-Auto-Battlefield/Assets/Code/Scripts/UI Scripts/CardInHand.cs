@@ -7,6 +7,8 @@ using TMPro;
 
 public class CardInHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
 {
+    public static bool cardIsBeingPlayed;
+
     private const float displacement = 120f;
 
     [Header("Card Info")]
@@ -37,6 +39,7 @@ public class CardInHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     public CardType? CardType { get => cardType; }
     public int CardCost { get => int.Parse(cardCost.text); }
+    public string CardName { get => cardName.text; }
 
     private void Awake()
     {
@@ -49,6 +52,8 @@ public class CardInHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (cardIsBeingPlayed)
+            return;
         cardTrayIndex = transform.GetSiblingIndex();
         transform.SetAsLastSibling();
         transform.localPosition += Vector3.up * displacement;
@@ -56,12 +61,16 @@ public class CardInHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        if (cardIsBeingPlayed)
+            return;
         transform.SetSiblingIndex(cardTrayIndex);
         transform.localPosition += Vector3.down * displacement;
     }
     
     public void OnPointerDown(PointerEventData eventData)
     {
+        if (cardIsBeingPlayed)
+            return;
         hand.onCardSelection(cardTrayIndex);
     }
 
@@ -138,5 +147,10 @@ public class CardInHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         {
             cardBorder.color = Color.black;
         }
+    }
+
+    public void EmptyCardType()
+    {
+        cardType = null;
     }
 }

@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
     public Hand Hand { get { return hand; } }
     public bool HasInitiative { get => hasInitiative; set => hasInitiative = value; }
     public int CurrentMana { get => currentMana; }
+    public int Frontline { get => frontline; }
 
     private void Awake()
     {
@@ -49,6 +50,19 @@ public class Player : MonoBehaviour
         if (currentMana > maxMana)
         {
             currentMana = maxMana;
+        }
+
+        // Update UI
+        SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.PLAYER_MANA_CHANGED, currentMana.ToString()));
+    }
+
+    public void PayMana(int amount)
+    {
+        currentMana -= amount;
+        if (currentMana < 0)
+        {
+            currentMana += amount;
+            throw new Exception("Not enough mana!");
         }
 
         // Update UI

@@ -38,12 +38,14 @@ public class Spawnable : Card
     public Sprite CardImage { get => cardImage; set => cardImage = value; }
     public Material CardMaterial { get => cardMaterial; set => cardMaterial = value; }
 
-    protected void UpdatePawnUI()
+    protected void InitializePawnUI()
     {
         PawnStats ui = transform.GetComponentInParent<PawnStats>();
         ui.AttackText.text = attack.ToString();
         ui.DefenseText.text = defense.ToString();
         ui.HitpointsText.text = CurrentHP.ToString();
+
+        ColorPawn();
     }
 
     void Attack()
@@ -56,5 +58,21 @@ public class Spawnable : Card
     {
         // TODO implement Die of spawnable
         throw new NotImplementedException();
+    }
+
+    private void ColorPawn()
+    {
+        Component[] borders = transform.Find("Border").gameObject.GetComponentsInChildren(typeof(Renderer));
+        foreach (Component renderer in borders)
+        {
+            if (owner == FindObjectOfType<Player>())
+            {
+                ((Renderer)renderer).material.color = Color.blue;
+            }
+            else
+            {
+                ((Renderer)renderer).material.color = Color.red;
+            }
+        }
     }
 }

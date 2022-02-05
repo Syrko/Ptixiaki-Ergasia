@@ -18,6 +18,7 @@ public class TestingManager : MonoBehaviour
 
     void SpawnUnit()
     {
+        /*
         UnitFactory.CreateUnitPawn(CardCatalog.Soldier, 0, 0);
         UnitFactory.CreateUnitPawn(CardCatalog.Soldier, 3, 4);
         UnitFactory.CreateUnitPawn(CardCatalog.Soldier, 1, 3);
@@ -27,5 +28,6 @@ public class TestingManager : MonoBehaviour
         BuildingFactory.CreateBuildingPawn(CardCatalog.Gate, 2, 3);
         BuildingFactory.CreateBuildingPawn(CardCatalog.Gate, 2, 4);
         BuildingFactory.CreateBuildingPawn(CardCatalog.Gate, 3, 2);
+        */
     }
 }
