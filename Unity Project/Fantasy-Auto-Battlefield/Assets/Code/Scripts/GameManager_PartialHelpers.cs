@@ -74,7 +74,7 @@ public partial class GameManager
         }
     }
 
-    private void SpawnPawn(string cardName, int width, int depth, bool forPlayer)
+    public void SpawnPawn(string cardName, int width, int depth, bool forPlayer)
     {
         CardType? cardType = CardCatalog.GetType(cardName);
 

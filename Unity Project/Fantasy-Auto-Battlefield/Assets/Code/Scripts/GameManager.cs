@@ -8,7 +8,7 @@ public partial class GameManager : MonoBehaviour
 {
     // ================================
     // Testing Variables
-    // TODO remove
+    // TODO remove testing variables
     // --------------------------------
     List<string> testingDeck = new List<string> { CardCatalog.Soldier, CardCatalog.Soldier, CardCatalog.Soldier, CardCatalog.Soldier, CardCatalog.Soldier, CardCatalog.Gate, CardCatalog.Gate, CardCatalog.Gate, CardCatalog.Gate, CardCatalog.Gate};
     public List<string> TestingDeck { get => testingDeck; }
@@ -26,7 +26,8 @@ public partial class GameManager : MonoBehaviour
     // ================================
     [SerializeField]
     Player player;
-    //AIPlayer opponent; // TODO serialize it
+    [SerializeField]
+    AIPlayer opponent;
 
     BoardGenerator boardGenerator;
     GamePhases currentPhase;
@@ -59,11 +60,12 @@ public partial class GameManager : MonoBehaviour
         if (Random.value < 0.5f)
         {
             player.HasInitiative = true;
+            opponent.HasInitiative = false;
         }
         else
         {
-            // TODO remove comment
-            //opponent.HasInitiative = true;
+            opponent.HasInitiative = true;
+            player.HasInitiative = false;
         }
 
         // Execute the first Upkeep Phase
@@ -114,5 +116,7 @@ public partial class GameManager : MonoBehaviour
     void ExecuteMovePhase()
     {
         SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.DISABLE_PLAY_BUTTON));
+        SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.DISABLE_END_PHASE_BUTTON));
+
     }
 }
