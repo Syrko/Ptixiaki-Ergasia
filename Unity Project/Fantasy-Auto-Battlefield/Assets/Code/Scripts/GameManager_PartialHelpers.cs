@@ -25,16 +25,16 @@ public partial class GameManager
         if (player.HasInitiative)
         {
             player.HasInitiative = false;
-            // TODO remove comment
-            //opponent.HasInitiative = true;
-            SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.INITIATIVE_TOKEN_SWAPPED));
+            opponent.HasInitiative = true;
+            // Send the game object that has the initiative
+            SubjectUI.Notify(opponent.gameObject, new UIEvent(EventUICodes.INITIATIVE_TOKEN_SWAPPED));
         }
         else
         {
             player.HasInitiative = true;
-            // TODO remove comment
-            //opponent.HasInitiative = false;
-            SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.INITIATIVE_TOKEN_SWAPPED));
+            opponent.HasInitiative = false;
+            // Send the game object that has the initiative
+            SubjectUI.Notify(player.gameObject, new UIEvent(EventUICodes.INITIATIVE_TOKEN_SWAPPED));
         }
     }
 
