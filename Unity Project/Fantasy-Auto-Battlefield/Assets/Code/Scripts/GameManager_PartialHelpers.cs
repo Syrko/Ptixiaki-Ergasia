@@ -48,9 +48,12 @@ public partial class GameManager
     {
         for (int depth = 0; depth <= player.Frontline; depth++)
         {
-            for(int width = 0; width < BoardWidth; width++)
+            for (int width = 0; width < BoardWidth; width++)
             {
-                Board[depth, width].GetComponent<HexTile>().Highlight(true);
+                if (Board[depth, width].GetComponent<HexTile>().OccupiedBy == null)
+                {
+                    Board[depth, width].GetComponent<HexTile>().Highlight(true);
+                }
             }
         }
     }
@@ -71,17 +74,17 @@ public partial class GameManager
         }
     }
 
-    private void SpawnPawn(string cardName, int x, int y, bool forPlayer)
+    private void SpawnPawn(string cardName, int width, int depth, bool forPlayer)
     {
         CardType? cardType = CardCatalog.GetType(cardName);
 
         switch (cardType)
         {
             case CardType.Unit:
-                UnitFactory.CreateUnitPawn(cardName, x, y, forPlayer);
+                Board[depth, width].GetComponent<HexTile>().OccupiedBy = UnitFactory.CreateUnitPawn(cardName, width, depth, forPlayer);
                 break;
             case CardType.Building:
-                BuildingFactory.CreateBuildingPawn(cardName, x, y, forPlayer);
+                Board[depth, width].GetComponent<HexTile>().OccupiedBy = BuildingFactory.CreateBuildingPawn(cardName, width, depth, forPlayer);
                 break;
             case CardType.Spell:
                 break;

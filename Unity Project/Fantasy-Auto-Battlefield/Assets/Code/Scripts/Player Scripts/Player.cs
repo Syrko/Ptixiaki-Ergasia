@@ -105,11 +105,11 @@ public class Player : MonoBehaviour
         int tempFrontLine = 0;
 
         // Checking every row for occupant nad check its owner
-        for (int depth = 0; depth < gameManager.BoardWidth; depth++)
+        for (int depth = 0; depth < gameManager.BoardDepth; depth++)
         {
-            for(int width = 0; width < gameManager.BoardDepth; width++)
+            for(int width = 0; width < gameManager.BoardWidth; width++)
             {
-                GameObject occupant = board[width, depth].GetComponent<HexTile>().OccupiedBy;
+                GameObject occupant = board[depth, width].GetComponent<HexTile>().OccupiedBy;
                 if (occupant != null)
                 {
                     if (occupant.GetComponent<Spawnable>().Owner == this)

@@ -46,10 +46,10 @@ public class HexTile : MonoBehaviour
         }
         else
         {
-            targetFlag = true;
-            CardInHand.cardIsBeingPlayed = true;
             if (highlightHex.activeSelf)
             {
+                CardInHand.cardIsBeingPlayed = true;
+                targetFlag = true;
                 StartCoroutine(PlaySpawnableCardSequence());
             }
         }
