@@ -31,7 +31,7 @@ public class CardInHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     [SerializeField]
     Image cardBorder;
 
-    Player player;
+    HumanPlayer player;
     Hand hand;
 
     private int cardTrayIndex;
@@ -43,7 +43,7 @@ public class CardInHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     private void Awake()
     {
-        player = FindObjectOfType<Player>();
+        player = FindObjectOfType<HumanPlayer>();
         hand = FindObjectOfType<Hand>();
         cardType = null;
         cardTrayIndex = transform.GetSiblingIndex();

@@ -111,6 +111,9 @@ public partial class GameManager
         foreach (GameObject tile in Board)
         {
             GameObject occupant = tile.GetComponent<HexTile>().OccupiedBy;
+            if(occupant == null)
+                continue;
+
             Unit possibleUnit;
             if(occupant.TryGetComponent<Unit>(out possibleUnit))
             {
@@ -122,7 +125,7 @@ public partial class GameManager
         {
             if (unit.Owner.HasInitiative)
             {
-                unit.Move();
+                //unit.Move();
             }
         }
 
@@ -130,7 +133,7 @@ public partial class GameManager
         {
             if (!unit.Owner.HasInitiative)
             {
-                unit.Move();
+                //unit.Move();
             }
         }
     }

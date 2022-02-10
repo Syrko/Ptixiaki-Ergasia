@@ -65,11 +65,11 @@ public class Spawnable : Card
         Component[] borders = transform.Find("Border").gameObject.GetComponentsInChildren(typeof(Renderer));
         foreach (Component renderer in borders)
         {
-            if (owner == FindObjectOfType<Player>())
+            if (owner is HumanPlayer)
             {
                 ((Renderer)renderer).material.color = Color.blue;
             }
-            else
+            else if (owner is AIPlayer)
             {
                 ((Renderer)renderer).material.color = Color.red;
             }

@@ -41,7 +41,7 @@ public class BoardUI : MonoBehaviour, IObserverUI
                 PlayerDeckCounter.text = eventData.Value;
                 break;
             case EventUICodes.INITIATIVE_TOKEN_SWAPPED:
-                if(sender.GetComponent<Player>() != null)
+                if(sender.GetComponent<HumanPlayer>() != null)
                 {
                     MoveInitiativeToPlayer(true);
                 }

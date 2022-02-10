@@ -21,9 +21,9 @@ public class Unit : Spawnable
         cardImage = data.CardImage;
 
         if (forPlayer)
-            originalOwner = FindObjectOfType<Player>();
+            originalOwner = FindObjectOfType<HumanPlayer>();
         else
-            originalOwner = null; // TODO change ai owner from null
+            originalOwner = FindObjectOfType<AIPlayer>();
         owner = originalOwner;
 
         cardMaterial = Resources.Load<Material>("Cards/Units/" + unitName + "/" + unitName);

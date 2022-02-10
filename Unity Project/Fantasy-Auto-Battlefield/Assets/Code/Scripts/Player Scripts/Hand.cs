@@ -10,7 +10,7 @@ public class Hand : MonoBehaviour
     [SerializeField]
     CardInHand[] cardsInHand;
     [SerializeField]
-    Player player;
+    HumanPlayer player;
 
     List<string> cards = new List<string>();
 

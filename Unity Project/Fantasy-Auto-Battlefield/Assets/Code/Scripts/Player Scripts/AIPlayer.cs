@@ -2,7 +2,7 @@ using System.Collections;
 using System;
 using UnityEngine;
 
-public class AIPlayer : MonoBehaviour
+public class AIPlayer : Player
 {
     [SerializeField]
     GameManager gameManager;
@@ -11,12 +11,6 @@ public class AIPlayer : MonoBehaviour
 
     int maxHP;
     int currentHP;
-
-    int frontline;
-    bool hasInitiative;
-
-    public bool HasInitiative { get => hasInitiative; set => hasInitiative = value; }
-    public int Frontline { get => frontline; }
 
     private void Awake()
     {
@@ -40,7 +34,7 @@ public class AIPlayer : MonoBehaviour
                 GameObject occupant = board[depth, width].GetComponent<HexTile>().OccupiedBy;
                 if (occupant != null)
                 {
-                    if (occupant.GetComponent<Spawnable>().Owner == this)
+                    if (occupant.GetComponent<Spawnable>().Owner is AIPlayer)
                     {
                         if (depth < tempFrontLine && depth >= maxFrontline)
                         {

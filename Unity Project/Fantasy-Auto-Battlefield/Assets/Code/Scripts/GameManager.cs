@@ -25,7 +25,7 @@ public partial class GameManager : MonoBehaviour
     [Space(10f)]
     // ================================
     [SerializeField]
-    Player player;
+    HumanPlayer player;
     [SerializeField]
     AIPlayer opponent;
 
@@ -120,5 +120,6 @@ public partial class GameManager : MonoBehaviour
         SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.DISABLE_PLAY_BUTTON));
         SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.DISABLE_END_PHASE_BUTTON));
         MoveAllUnits();
+        SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.ENABLE_END_PHASE_BUTTON));
     }
 }

@@ -21,9 +21,9 @@ public class Building : Spawnable
         cardImage = data.CardImage;
 
         if (forPlayer)
-            originalOwner = FindObjectOfType<Player>();
+            originalOwner = FindObjectOfType<HumanPlayer>();
         else
-            originalOwner = null; // TODO change ai owner from null
+            originalOwner = FindObjectOfType<AIPlayer>();
         owner = originalOwner;
 
         cardMaterial = Resources.Load<Material>("Cards/Buildings/" + buildingName + "/" + buildingName);
