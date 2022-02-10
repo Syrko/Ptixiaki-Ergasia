@@ -1,8 +1,11 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class Unit : Spawnable
 {
+    public static readonly float MOVE_DURATION = 1f;
+
     public void InitializeUnitPawn(string unitName, bool forPlayer)
     {
         UnitCardData data = UnitCardData.GetUnitDataFromName(unitName);
@@ -32,15 +35,51 @@ public class Unit : Spawnable
         InitializePawnUI();
     }
 
-    public void Move()
+    public void Move(Vector2 currentPos)
     {
-        // TODO implement Move of units
-        throw new NotImplementedException();
+        if (owner is HumanPlayer)
+        {
+            StartCoroutine(MovePlayerPawn(MOVE_DURATION, currentPos));
+        }
+        else if (owner is AIPlayer)
+        {
+            StartCoroutine(MoveAIPawn(MOVE_DURATION, currentPos));
+        }
     }
 
     
     private void OnMouseDown()
     {
         SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.CARD_INFO_CHANGED));
+    }
+
+    private IEnumerator MovePlayerPawn(float time, Vector2 currentPos)
+    {
+        Vector3 startingPos = transform.position;
+        Vector3 finalPos = BoardManager.TranslateCoordinates((int)currentPos.y, (int)currentPos.x + 1, transform.position.y);
+
+        float elapsedTime = 0;
+
+        while (elapsedTime < time)
+        {
+            transform.position = Vector3.Lerp(startingPos, finalPos, (elapsedTime / time));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+    }
+
+    private IEnumerator MoveAIPawn(float time, Vector2 currentPos)
+    {
+        Vector3 startingPos = transform.position;
+        Vector3 finalPos = BoardManager.TranslateCoordinates((int)currentPos.y, (int)currentPos.x - 1, transform.position.y);
+
+        float elapsedTime = 0;
+
+        while (elapsedTime < time)
+        {
+            transform.position = Vector3.Lerp(startingPos, finalPos, (elapsedTime / time));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
     }
 }

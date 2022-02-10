@@ -107,34 +107,85 @@ public partial class GameManager
 
     private void MoveAllUnits()
     {
-        List<Unit> unitPawns = new List<Unit>();
-        foreach (GameObject tile in Board)
+        if (player.HasInitiative)
         {
-            GameObject occupant = tile.GetComponent<HexTile>().OccupiedBy;
-            if(occupant == null)
-                continue;
+            MovePlayerUnits();
+            MoveAIUnits();
+        }
+        else if (opponent.HasInitiative)
+        {
+            MoveAIUnits();
+            MovePlayerUnits();
+        }
+    }
 
-            Unit possibleUnit;
-            if(occupant.TryGetComponent<Unit>(out possibleUnit))
+    private void MovePlayerUnits()
+    {
+        for (int depth = BoardDepth - 1; depth >= 0; depth--)
+        {
+            for (int width = 0; width < BoardWidth; width++)
             {
-                unitPawns.Add(possibleUnit);
+                GameObject occupant = Board[depth, width].GetComponent<HexTile>().OccupiedBy;
+                if (occupant != null)
+                {
+                    Unit possibleUnit;
+                    if (occupant.TryGetComponent<Unit>(out possibleUnit))
+                    {
+                        if (possibleUnit.Owner is HumanPlayer)
+                        {
+                            if (depth + 1 > 0) // i.e if the forward hex is before the base of the opponent
+                            {
+                                if (Board[depth + 1, width].GetComponent<HexTile>().OccupiedBy == null)
+                                {
+                                    MovePlayerUnit(depth, width, possibleUnit);
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
+    }
 
-        foreach(Unit unit in unitPawns)
+    private void MoveAIUnits()
+    {
+        for (int depth = 0; depth < BoardDepth; depth++)
         {
-            if (unit.Owner.HasInitiative)
+            for (int width = 0; width < BoardWidth; width++)
             {
-                //unit.Move();
+                GameObject occupant = Board[depth, width].GetComponent<HexTile>().OccupiedBy;
+                if (occupant != null)
+                {
+                    Unit possibleUnit;
+                    if (occupant.TryGetComponent<Unit>(out possibleUnit))
+                    {
+                        if (possibleUnit.Owner is AIPlayer)
+                        {
+                            if (depth - 1 > 0) // i.e if the forward hex is before the base of the opponent
+                            {
+                                if (Board[depth - 1, width].GetComponent<HexTile>().OccupiedBy == null)
+                                {
+                                    MoveAIUnit(depth, width, possibleUnit);
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
+    }
 
-        foreach (Unit unit in unitPawns)
-        {
-            if (!unit.Owner.HasInitiative)
-            {
-                //unit.Move();
-            }
-        }
+    private void MovePlayerUnit(int depth, int width, Unit possibleUnit)
+    {
+        possibleUnit.Move(new Vector2(depth, width));
+        Board[depth, width].GetComponent<HexTile>().OccupiedBy = null;
+        Board[depth + 1, width].GetComponent<HexTile>().OccupiedBy = possibleUnit.gameObject;
+    }
+
+    private void MoveAIUnit(int depth, int width, Unit possibleUnit)
+    {
+        possibleUnit.Move(new Vector2(depth, width));
+        Board[depth, width].GetComponent<HexTile>().OccupiedBy = null;
+        Board[depth - 1, width].GetComponent<HexTile>().OccupiedBy = possibleUnit.gameObject;
     }
 }
