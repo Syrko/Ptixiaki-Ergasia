@@ -32,7 +32,7 @@ public class Unit : Spawnable
         InitializePawnUI();
     }
 
-    void Move()
+    public void Move()
     {
         // TODO implement Move of units
         throw new NotImplementedException();

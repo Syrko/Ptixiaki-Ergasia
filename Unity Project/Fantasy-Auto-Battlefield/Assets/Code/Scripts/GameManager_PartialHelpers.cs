@@ -104,4 +104,34 @@ public partial class GameManager
         player.Hand.RemoveCardFromHand(card);
         CardInHand.cardIsBeingPlayed = false;
     }
+
+    private void MoveAllUnits()
+    {
+        List<Unit> unitPawns = new List<Unit>();
+        foreach (GameObject tile in Board)
+        {
+            GameObject occupant = tile.GetComponent<HexTile>().OccupiedBy;
+            Unit possibleUnit;
+            if(occupant.TryGetComponent<Unit>(out possibleUnit))
+            {
+                unitPawns.Add(possibleUnit);
+            }
+        }
+
+        foreach(Unit unit in unitPawns)
+        {
+            if (unit.Owner.HasInitiative)
+            {
+                unit.Move();
+            }
+        }
+
+        foreach (Unit unit in unitPawns)
+        {
+            if (!unit.Owner.HasInitiative)
+            {
+                unit.Move();
+            }
+        }
+    }
 }

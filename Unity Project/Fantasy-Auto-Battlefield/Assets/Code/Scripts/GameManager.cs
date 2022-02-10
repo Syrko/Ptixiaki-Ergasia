@@ -86,6 +86,8 @@ public partial class GameManager : MonoBehaviour
                 break;
             case GamePhases.Standard_Phase:
                 ExecuteStandardPhase();
+                opponent.PlaySpawnableCard();
+                opponent.PlaySpawnableCard();
                 break;
             case GamePhases.Move_Phase:
                 ExecuteMovePhase();
@@ -117,6 +119,6 @@ public partial class GameManager : MonoBehaviour
     {
         SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.DISABLE_PLAY_BUTTON));
         SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.DISABLE_END_PHASE_BUTTON));
-
+        MoveAllUnits();
     }
 }
