@@ -9,9 +9,6 @@ public class AIPlayer : Player
     [SerializeField]
     int maxFrontline = 3;
 
-    int maxHP;
-    int currentHP;
-
     private void Awake()
     {
         maxHP = gameManager.MaxHP;

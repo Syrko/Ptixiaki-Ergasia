@@ -16,8 +16,6 @@ public class HumanPlayer : Player
     Deck deck;
     int maxHandSize;
 
-    int maxHP;
-    int currentHP;
     int maxMana;
     int currentMana;
 
@@ -75,24 +73,6 @@ public class HumanPlayer : Player
         {
             discardPile.AddCard(cardName);
         }
-    }
-
-    void ToggleInitiative()
-    {
-        // TODO implement ToggleInitiative
-        throw new NotImplementedException();
-    }
-
-    void TakeDamage(int amount)
-    {
-        // TODO implement TakeDamage
-        throw new NotImplementedException();
-    }
-
-    void HealSelf(int amount)
-    {
-        // TODO implement HealSelf
-        throw new NotImplementedException();
     }
 
     public void DetermineFrontLine(GameObject[,] board)
