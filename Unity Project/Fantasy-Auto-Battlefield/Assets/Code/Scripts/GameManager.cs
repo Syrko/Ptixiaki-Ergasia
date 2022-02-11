@@ -75,6 +75,8 @@ public partial class GameManager : MonoBehaviour
         // Prepare the UI
         SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.PLAYER_HP_CHANGED, MaxHP.ToString()));
         SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.DISABLE_PLAY_BUTTON));
+
+        opponent.PlaySpawnableCard(); // TODO remove
     }
 
     void ExecutePhaseProcess(GamePhases currentPhase)
@@ -86,8 +88,9 @@ public partial class GameManager : MonoBehaviour
                 break;
             case GamePhases.Standard_Phase:
                 ExecuteStandardPhase();
-                opponent.PlaySpawnableCard(); // TODO wrap in method
-                opponent.PlaySpawnableCard();
+                // TODO wrap in method
+                // opponent.PlaySpawnableCard();
+                // opponent.PlaySpawnableCard();
                 break;
             case GamePhases.Move_Phase:
                 ExecuteMovePhase();
@@ -127,7 +130,7 @@ public partial class GameManager : MonoBehaviour
     void ExecuteCombatPhase()
     {
         SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.DISABLE_END_PHASE_BUTTON));
-        
+        AllUnitsAttack();
         SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.ENABLE_END_PHASE_BUTTON));
     }
 }
