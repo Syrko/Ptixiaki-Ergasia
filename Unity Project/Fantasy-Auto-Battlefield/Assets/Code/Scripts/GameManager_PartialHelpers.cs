@@ -177,15 +177,17 @@ public partial class GameManager
 
     private void MovePlayerUnit(int depth, int width, Unit possibleUnit)
     {
-        possibleUnit.Move(new Vector2(depth, width));
+        possibleUnit.Move(new Vector2Int(depth, width));
         Board[depth, width].GetComponent<HexTile>().OccupiedBy = null;
         Board[depth + 1, width].GetComponent<HexTile>().OccupiedBy = possibleUnit.gameObject;
     }
 
     private void MoveAIUnit(int depth, int width, Unit possibleUnit)
     {
-        possibleUnit.Move(new Vector2(depth, width));
+        possibleUnit.Move(new Vector2Int(depth, width));
         Board[depth, width].GetComponent<HexTile>().OccupiedBy = null;
         Board[depth - 1, width].GetComponent<HexTile>().OccupiedBy = possibleUnit.gameObject;
     }
+
+    
 }

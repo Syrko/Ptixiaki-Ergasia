@@ -35,7 +35,7 @@ public class Unit : Spawnable
         InitializePawnUI();
     }
 
-    public void Move(Vector2 currentPos)
+    public void Move(Vector2Int currentPos)
     {
         if (owner is HumanPlayer)
         {
@@ -53,10 +53,10 @@ public class Unit : Spawnable
         SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.CARD_INFO_CHANGED));
     }
 
-    private IEnumerator MovePlayerPawn(float time, Vector2 currentPos)
+    private IEnumerator MovePlayerPawn(float time, Vector2Int currentPos)
     {
         Vector3 startingPos = transform.position;
-        Vector3 finalPos = BoardManager.TranslateCoordinates((int)currentPos.y, (int)currentPos.x + 1, transform.position.y);
+        Vector3 finalPos = BoardManager.TranslateCoordinates(currentPos.y, currentPos.x + 1, transform.position.y);
 
         float elapsedTime = 0;
 
@@ -68,10 +68,10 @@ public class Unit : Spawnable
         }
     }
 
-    private IEnumerator MoveAIPawn(float time, Vector2 currentPos)
+    private IEnumerator MoveAIPawn(float time, Vector2Int currentPos)
     {
         Vector3 startingPos = transform.position;
-        Vector3 finalPos = BoardManager.TranslateCoordinates((int)currentPos.y, (int)currentPos.x - 1, transform.position.y);
+        Vector3 finalPos = BoardManager.TranslateCoordinates(currentPos.y, currentPos.x - 1, transform.position.y);
 
         float elapsedTime = 0;
 

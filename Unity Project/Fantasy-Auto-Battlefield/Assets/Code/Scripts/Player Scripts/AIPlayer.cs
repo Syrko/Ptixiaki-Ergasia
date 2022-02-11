@@ -50,7 +50,7 @@ public class AIPlayer : Player
         return CardCatalog.Soldier;
     }
 
-    private Vector2 DecidePosition()
+    private Vector2Int DecidePosition()
     {
         DetermineFrontLine(gameManager.Board);
         int depth;
@@ -62,19 +62,19 @@ public class AIPlayer : Player
             triesToFindPos--;
             if (triesToFindPos == 0)
             {
-                return new Vector2(-1 , -1);
+                return new Vector2Int(-1 , -1);
             }
             depth = UnityEngine.Random.Range(frontline, gameManager.BoardDepth);
             width = UnityEngine.Random.Range(0, gameManager.BoardWidth);
         } while (gameManager.Board[depth, width].GetComponent<HexTile>().OccupiedBy != null);
 
-        return new Vector2(depth, width);
+        return new Vector2Int(depth, width);
     }
 
     public void PlaySpawnableCard()
     {
         string cardToPlay = DecideOnSpawnableCardToPlay();
-        Vector2 depthWidth = DecidePosition();
+        Vector2Int depthWidth = DecidePosition();
         if(depthWidth.x == -1) // In case DecidePosition didn't find an empty hex in 10 tries
         {
             return;
