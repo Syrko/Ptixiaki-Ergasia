@@ -22,6 +22,16 @@ public class HexPattern
         return hexPatternInstance.hexPatternSprites[code];
     }
 
+    public static string[] GetHexPatternInStrings(HexPatternCodes code)
+    {
+        if(code == HexPatternCodes.EMPTY)
+        {
+            return null;
+        }
+
+        return code.ToString().Split('_');
+    }
+
     private Dictionary<HexPatternCodes, Sprite> hexPatternSprites = new Dictionary<HexPatternCodes, Sprite>();
     HexPattern()
     {

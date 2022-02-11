@@ -86,13 +86,14 @@ public partial class GameManager : MonoBehaviour
                 break;
             case GamePhases.Standard_Phase:
                 ExecuteStandardPhase();
-                opponent.PlaySpawnableCard();
+                opponent.PlaySpawnableCard(); // TODO wrap in method
                 opponent.PlaySpawnableCard();
                 break;
             case GamePhases.Move_Phase:
                 ExecuteMovePhase();
                 break;
             case GamePhases.Combat_Phase:
+                ExecuteCombatPhase();
                 break;
             case GamePhases.End_Phase:
                 break;
@@ -120,6 +121,13 @@ public partial class GameManager : MonoBehaviour
         SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.DISABLE_PLAY_BUTTON));
         SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.DISABLE_END_PHASE_BUTTON));
         MoveAllUnits();
+        SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.ENABLE_END_PHASE_BUTTON));
+    }
+
+    void ExecuteCombatPhase()
+    {
+        SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.DISABLE_END_PHASE_BUTTON));
+        
         SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.ENABLE_END_PHASE_BUTTON));
     }
 }

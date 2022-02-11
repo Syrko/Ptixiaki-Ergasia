@@ -189,5 +189,19 @@ public partial class GameManager
         Board[depth - 1, width].GetComponent<HexTile>().OccupiedBy = possibleUnit.gameObject;
     }
 
-    
+    private void AllUnitsAttack()
+    {
+        for (int depth = 0; depth < BoardDepth; depth++)
+        {
+            for (int width = 0; width < BoardWidth; width++)
+            {
+                GameObject occupant = Board[depth, width].GetComponent<HexTile>().OccupiedBy;
+                if (occupant != null)
+                {
+                    Vector2Int attackerPos = new Vector2Int(depth, width);
+                    occupant.GetComponent<Spawnable>().Attack(Board, attackerPos);
+                }
+            }
+        }
+    }
 }

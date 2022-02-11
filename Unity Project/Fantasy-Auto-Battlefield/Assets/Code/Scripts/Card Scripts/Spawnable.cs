@@ -48,16 +48,53 @@ public class Spawnable : Card
         ColorPawn();
     }
 
-    void Attack()
+    protected void TakeDamage(int amount)
     {
-        // TODO implement Attack of spawnable
+        currentHP -= amount;
+        if (currentHP < 0)
+        {
+            currentHP = 0;
+        }
+        SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.SPAWNABLE_HP_CHANGE, currentHP.ToString()));
+    }
+
+    protected void HealDamage(int amount)
+    {
         throw new NotImplementedException();
+    }
+
+    public void Attack(GameObject[,] board, Vector2Int attackerPos)
+    {
+        List<Vector2Int> targets = DetermineTargets(board, attackerPos);
+        foreach (var target in targets)
+        {
+            HexTile hex = board[target.y, target.x].GetComponent<HexTile>();
+            if (hex.OccupiedBy != null)
+            {
+                Spawnable targetPawn = hex.OccupiedBy.GetComponent<Spawnable>();
+                if (targetPawn.owner != this.owner)
+                {
+                    int damage = CalculateDamage(this, targetPawn);
+                    targetPawn.TakeDamage(damage);
+                }
+            }
+        }
     }
 
     void Die()
     {
         // TODO implement Die of spawnable
         throw new NotImplementedException();
+    }
+
+    private int CalculateDamage(Spawnable attacker, Spawnable target)
+    {
+        int attack = attacker.attack - target.defense;
+        if (attack <= 0)
+        {
+            attack = 1;
+        }
+        return attack;
     }
 
     private void ColorPawn()
@@ -74,5 +111,76 @@ public class Spawnable : Card
                 ((Renderer)renderer).material.color = Color.red;
             }
         }
+    }
+
+
+    private bool areCoordsInsideOfBounds(GameObject[,] board, Vector2Int depthWidth)
+    {
+        if (depthWidth.x >= 0 && depthWidth.x < board.GetLength(0))
+        {
+            if (depthWidth.y >= 0 && depthWidth.y < board.GetLength(1))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private List<Vector2Int> DetermineTargets(GameObject[,] board, Vector2Int attackerPos)
+    {
+        List<Vector2Int> targets = new List<Vector2Int>();
+
+        string[] hexPatternTargets = HexPattern.GetHexPatternInStrings(attackPattern);
+
+        foreach (string hexPatternTarget in hexPatternTargets)
+        {
+            Vector2Int possibleTarget;
+            switch (hexPatternTarget)
+            {
+                case "FL":
+                    possibleTarget = new Vector2Int(attackerPos.x + 1, attackerPos.y - 1);
+                    if (areCoordsInsideOfBounds(board, possibleTarget))
+                    {
+                        targets.Add(possibleTarget);
+                    }
+                    break;
+                case "FF":
+                    possibleTarget = new Vector2Int(attackerPos.x + 1, attackerPos.y);
+                    if (areCoordsInsideOfBounds(board, possibleTarget))
+                    {
+                        targets.Add(possibleTarget);
+                    }
+                    break;
+                case "FR":
+                    possibleTarget = new Vector2Int(attackerPos.x + 1, attackerPos.y + 1);
+                    if (areCoordsInsideOfBounds(board, possibleTarget))
+                    {
+                        targets.Add(possibleTarget);
+                    }
+                    break;
+                case "BL":
+                    possibleTarget = new Vector2Int(attackerPos.x, attackerPos.y - 1);
+                    if (areCoordsInsideOfBounds(board, possibleTarget))
+                    {
+                        targets.Add(possibleTarget);
+                    }
+                    break;
+                case "BB":
+                    possibleTarget = new Vector2Int(attackerPos.x - 1, attackerPos.y);
+                    if (areCoordsInsideOfBounds(board, possibleTarget))
+                    {
+                        targets.Add(possibleTarget);
+                    }
+                    break;
+                case "BR":
+                    possibleTarget = new Vector2Int(attackerPos.x, attackerPos.y + 1);
+                    if (areCoordsInsideOfBounds(board, possibleTarget))
+                    {
+                        targets.Add(possibleTarget);
+                    }
+                    break;
+            }
+        }
+        return targets;
     }
 }
