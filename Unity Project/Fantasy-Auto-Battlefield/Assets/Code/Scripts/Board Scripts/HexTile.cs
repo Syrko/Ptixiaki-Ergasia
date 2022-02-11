@@ -31,10 +31,10 @@ public class HexTile : MonoBehaviour
         Highlight(false);
     }
 
-    public void InitializeCoords(int x, int y)
+    public void InitializeCoords(int d, int w)
     {
-        posX = x;
-        posX = y;
+        posX = w;
+        posY = d;
     }
 
     private void OnMouseDown()
