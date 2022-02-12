@@ -133,7 +133,7 @@ public partial class GameManager
                     {
                         if (possibleUnit.Owner is HumanPlayer)
                         {
-                            if (depth + 1 > 0) // i.e if the forward hex is before the base of the opponent
+                            if (depth + 1 < BoardDepth - 1) // i.e if the forward hex is before the base of the opponent
                             {
                                 if (Board[depth + 1, width].GetComponent<HexTile>().OccupiedBy == null)
                                 {
