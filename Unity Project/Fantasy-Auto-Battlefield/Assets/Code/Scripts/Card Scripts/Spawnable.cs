@@ -71,15 +71,34 @@ public class Spawnable : Card
         List<Vector2Int> targets = DetermineTargets(board, attackerPos);
         foreach (var target in targets)
         {
-            HexTile hex = board[target.x, target.y].GetComponent<HexTile>();
-            if (hex.OccupiedBy != null)
+            HexTile targetHex = board[target.x, target.y].GetComponent<HexTile>();
+            
+            if (targetHex.OccupiedBy != null)
             {
-                Spawnable targetPawn = hex.OccupiedBy.GetComponent<Spawnable>();
+                // Attack a pawn, if there is one
+                Spawnable targetPawn = targetHex.OccupiedBy.GetComponent<Spawnable>();
                 if (targetPawn.owner != this.owner)
                 {
                     AttackFX(target.x, target.y);
                     int damage = CalculateDamage(this, targetPawn);
                     targetPawn.TakeDamage(damage);
+                }
+            }
+
+            // And attack the base if this pawn is in front of one
+            if (targetHex.TileType == TileType.Base)
+            {
+                // If a human controlled pawn is in front of the AI base
+                if (this.owner is HumanPlayer && target.x == board.GetLength(0) - 1)
+                {
+                    FindObjectOfType<AIPlayer>().TakeDamage(1);
+                    AttackFX(target.x, target.y);
+                }
+                // If an AI controlled pawn is in front of the human base
+                else if (this.owner is AIPlayer && target.x == 0)
+                {
+                    FindObjectOfType<HumanPlayer>().TakeDamage(1);
+                    AttackFX(target.x, target.y);
                 }
             }
         }
