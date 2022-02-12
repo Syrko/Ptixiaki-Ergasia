@@ -43,6 +43,7 @@ public partial class GameManager : MonoBehaviour
     private void Awake()
     {
         boardGenerator = FindObjectOfType<BoardGenerator>();
+        Spawnable.explosionFX = Resources.Load<GameObject>("Explosion"); // Initialize the explosion effects for the attacks of the spawnables
     }
 
     private void Start()

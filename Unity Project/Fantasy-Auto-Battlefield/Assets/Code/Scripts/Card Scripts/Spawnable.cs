@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Spawnable : Card
 {
+    public static GameObject explosionFX;
+
     protected string cardName;
     protected int cardCost;
     protected int originalCardCost;
@@ -75,6 +77,7 @@ public class Spawnable : Card
                 Spawnable targetPawn = hex.OccupiedBy.GetComponent<Spawnable>();
                 if (targetPawn.owner != this.owner)
                 {
+                    AttackFX(target.x, target.y);
                     int damage = CalculateDamage(this, targetPawn);
                     targetPawn.TakeDamage(damage);
                 }
@@ -235,5 +238,11 @@ public class Spawnable : Card
             }
         }
         return targets;
+    }
+
+    private void AttackFX(int x, int y)
+    {
+        Vector3 pos = BoardManager.TranslateCoordinates(y, x, transform.position.y);
+        GameObject temp = Instantiate(explosionFX, pos, Quaternion.identity);
     }
 }
