@@ -16,7 +16,16 @@ public partial class GameManager
         SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.DISABLE_PLAY_BUTTON));
         SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.DISABLE_TOGGLE_HAND_BUTTON));
         player.Hand.HideUnselectedCards();
-        HighlightFrontline();
+
+        CardInHand playedCard = player.Hand.GetSelectedCardGameObject().GetComponent<CardInHand>();
+        if (playedCard.CardType == CardType.Spell)
+        {
+            HighlightPawns();
+        }
+        else
+        {
+            HighlightFrontline();
+        }
     }
 
     void SwapInitiative()
@@ -57,14 +66,28 @@ public partial class GameManager
         }
     }
 
+    void HighlightPawns()
+    {
+        for (int depth = 0; depth < BoardDepth; depth++)
+        {
+            for (int width = 0; width < BoardWidth; width++)
+            {
+                if (Board[depth, width].GetComponent<HexTile>().OccupiedBy != null)
+                {
+                    Board[depth, width].GetComponent<HexTile>().Highlight(true);
+                }
+            }
+        }
+    }
+
     public GameObject GetSelectedCard()
     {
         return player.Hand.GetSelectedCardGameObject();
     }
 
-    public void DeHighlightFrontline()
+    public void DeHighlightBoard()
     {
-        for (int depth = 0; depth <= player.Frontline; depth++)
+        for (int depth = 0; depth < BoardDepth; depth++)
         {
             for (int width = 0; width < BoardWidth; width++)
             {
@@ -96,10 +119,21 @@ public partial class GameManager
         }
     }
 
-    public void PlayCard(CardInHand card, int x, int y, bool forPlayer)
+    public void PlaySpawnableCard(CardInHand card, int x, int y, bool forPlayer)
     {
         player.PayMana(card.CardCost);
         SpawnPawn(card.CardName, x, y, forPlayer);
+        SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.ENABLE_END_PHASE_BUTTON));
+
+        // Remove card from hand
+        player.Hand.RemoveCardFromHandAndSendToDiscard(card);
+        CardInHand.cardIsBeingPlayed = false;
+    }
+
+    public void PlaySpellCard(CardInHand card, int x, int y)
+    {
+        player.PayMana(card.CardCost);
+        SpellFactory.ActivateSpell(card.CardName, x, y);
         SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.ENABLE_END_PHASE_BUTTON));
 
         // Remove card from hand

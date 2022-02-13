@@ -12,8 +12,18 @@ public class BuildingFactory : MonoBehaviour
 
         GameObject building = GameObject.Instantiate(pawnTemplate, spawnPos, Quaternion.identity);
         building.AddComponent<Building>().InitializeBuildingPawn(buildingName, forPlayer);
-        building.AddComponent(Type.GetType(buildingName));
+        Component specificBuilding = building.AddComponent(Type.GetType(buildingName));
         building.name = buildingName;
+
+        if (specificBuilding is IEffect)
+        {
+            ((IEffect)specificBuilding).ExecuteEffect();
+        }
+        else if (specificBuilding is IEffectWithTarget)
+        {
+            ((IEffectWithTarget)specificBuilding).ExecuteEffect(y, x);
+        }
+
         return building;
     }
 }

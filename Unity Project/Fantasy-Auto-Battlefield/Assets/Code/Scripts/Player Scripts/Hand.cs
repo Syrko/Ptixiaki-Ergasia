@@ -93,7 +93,7 @@ public class Hand : MonoBehaviour
             if (gameManager.CurrentPhase == GamePhases.Standard_Phase)
             {
                 SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.DISABLE_PLAY_BUTTON));
-                gameManager.DeHighlightFrontline();
+                gameManager.DeHighlightBoard();
                 SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.ENABLE_END_PHASE_BUTTON));
             }
         }

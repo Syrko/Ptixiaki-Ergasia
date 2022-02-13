@@ -12,8 +12,18 @@ public class UnitFactory
 
         GameObject unit = GameObject.Instantiate(pawnTemplate, spawnPos, Quaternion.identity);
         unit.AddComponent<Unit>().InitializeUnitPawn(unitName, forPlayer);
-        unit.AddComponent(Type.GetType(unitName));
+        Component specificUnit = unit.AddComponent(Type.GetType(unitName));
         unit.name = unitName;
+
+        if (specificUnit is IEffect)
+        {
+            ((IEffect)specificUnit).ExecuteEffect();
+        }
+        else if (specificUnit is IEffectWithTarget)
+        {
+            ((IEffectWithTarget)specificUnit).ExecuteEffect(y, x);
+        }
+
         return unit;
     }
 }

@@ -54,7 +54,7 @@ public class HexTile : MonoBehaviour
             {
                 CardInHand.cardIsBeingPlayed = true;
                 targetFlag = true;
-                StartCoroutine(PlaySpawnableCardSequence());
+                StartCoroutine(PlayCardSequence());
             }
         }
 	}
@@ -64,7 +64,7 @@ public class HexTile : MonoBehaviour
         highlightHex.SetActive(highlightON);
     }
 
-    IEnumerator PlaySpawnableCardSequence()
+    IEnumerator PlayCardSequence()
     {
         highlightHex.GetComponent<Renderer>().material.color = targetedHighlightColor;
         yield return new WaitForSecondsRealtime(0.2f);
@@ -73,12 +73,12 @@ public class HexTile : MonoBehaviour
         {
             StartCoroutine(FloatCard(selectedCard));
             highlightHex.GetComponent<Renderer>().material.color = originalHighlightColor;
-            gameManager.DeHighlightFrontline();
+            gameManager.DeHighlightBoard();
         }
         else
         {
             highlightHex.GetComponent<Renderer>().material.color = originalHighlightColor;
-            gameManager.DeHighlightFrontline();
+            gameManager.DeHighlightBoard();
         }
     }
 
@@ -96,7 +96,14 @@ public class HexTile : MonoBehaviour
         }
         card.SetActive(false);
         card.transform.position = startingPos;
-        gameManager.PlayCard(card.GetComponent<CardInHand>(), posX, posY, true);
+        if (card.GetComponent<CardInHand>().CardType == CardType.Spell)
+        {
+            gameManager.PlaySpellCard(card.GetComponent<CardInHand>(), posX, posY);
+        }
+        else
+        {
+            gameManager.PlaySpawnableCard(card.GetComponent<CardInHand>(), posX, posY, true);
+        }
 
         targetFlag = false;
     }

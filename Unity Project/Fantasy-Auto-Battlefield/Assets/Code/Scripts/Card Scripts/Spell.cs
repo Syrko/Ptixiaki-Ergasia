@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Spell : Card
 {
-    // TODO implement Spell class
-    SpellCardData cardData;
-
     string cardName;
     int cardCost;
     int originalCardCost;
@@ -20,4 +17,15 @@ public class Spell : Card
     public string CardText { get => cardText; set => cardText = value; }
     public CardType CardType { get => cardType; set => cardType = value; }
     public Sprite CardImage { get => cardImage; set => cardImage = value; }
+
+    public void InitializeSpell(string spellName)
+    {
+        SpellCardData data = SpellCardData.GetSpellDataFromName(spellName);
+        cardName = data.CardName;
+        cardCost = data.CardCost;
+        originalCardCost = data.CardCost;
+        cardText = data.CardText;
+        cardType = data.CardType;
+        cardImage = data.CardImage;
+    }
 }
