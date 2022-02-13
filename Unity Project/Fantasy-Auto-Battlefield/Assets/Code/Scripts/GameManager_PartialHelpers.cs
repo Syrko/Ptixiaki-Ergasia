@@ -94,7 +94,8 @@ public partial class GameManager
                 Board[depth, width].GetComponent<HexTile>().Highlight(false);
             }
         }
-        SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.ENABLE_TOGGLE_HAND_BUTTON));
+        if (!CardInHand.cardIsBeingPlayed)
+            SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.ENABLE_TOGGLE_HAND_BUTTON));
     }
 
     public void SpawnPawn(string cardName, int width, int depth, bool forPlayer)
@@ -127,6 +128,7 @@ public partial class GameManager
 
         // Remove card from hand
         player.Hand.RemoveCardFromHandAndSendToDiscard(card);
+        SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.ENABLE_TOGGLE_HAND_BUTTON));
         CardInHand.cardIsBeingPlayed = false;
     }
 
@@ -138,6 +140,7 @@ public partial class GameManager
 
         // Remove card from hand
         player.Hand.RemoveCardFromHandAndSendToDiscard(card);
+        SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.ENABLE_TOGGLE_HAND_BUTTON));
         CardInHand.cardIsBeingPlayed = false;
     }
 
