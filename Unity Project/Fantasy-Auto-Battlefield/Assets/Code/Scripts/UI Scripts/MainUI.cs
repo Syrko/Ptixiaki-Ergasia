@@ -100,6 +100,12 @@ public class MainUI : MonoBehaviour, IObserverUI
             case EventUICodes.DISABLE_END_PHASE_BUTTON:
                 DisableButton(endPhase);
                 break;
+            case EventUICodes.ENABLE_TOGGLE_HAND_BUTTON:
+                EnableButton(toggleCards);
+                break;
+            case EventUICodes.DISABLE_TOGGLE_HAND_BUTTON:
+                DisableButton(toggleCards);
+                break;
         }
     }
 

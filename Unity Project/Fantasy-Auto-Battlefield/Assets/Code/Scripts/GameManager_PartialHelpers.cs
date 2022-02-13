@@ -14,6 +14,7 @@ public partial class GameManager
     {
         SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.DISABLE_END_PHASE_BUTTON));
         SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.DISABLE_PLAY_BUTTON));
+        SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.DISABLE_TOGGLE_HAND_BUTTON));
         player.Hand.HideUnselectedCards();
         HighlightFrontline();
     }
@@ -70,6 +71,7 @@ public partial class GameManager
                 Board[depth, width].GetComponent<HexTile>().Highlight(false);
             }
         }
+        SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.ENABLE_TOGGLE_HAND_BUTTON));
     }
 
     public void SpawnPawn(string cardName, int width, int depth, bool forPlayer)
