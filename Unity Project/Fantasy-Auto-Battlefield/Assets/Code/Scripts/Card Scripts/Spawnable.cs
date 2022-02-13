@@ -76,7 +76,7 @@ public class Spawnable : Card
         pawnUI.HitpointsText.color = DetermineValueColor(maxHitPoints, currentHP);
     }
 
-    protected void TakeDamage(int amount)
+    public void TakeDamage(int amount)
     {
         currentHP -= amount;
         if (currentHP <= 0)
@@ -88,7 +88,7 @@ public class Spawnable : Card
         UpdatePawnUI();
     }
 
-    protected void HealDamage(int amount)
+    public void HealDamage(int amount)
     {
         currentHP += amount;
         if (currentHP > maxHitPoints)

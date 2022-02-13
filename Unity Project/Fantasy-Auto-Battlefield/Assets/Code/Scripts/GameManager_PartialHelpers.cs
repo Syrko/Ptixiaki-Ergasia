@@ -201,4 +201,28 @@ public partial class GameManager
             }
         }
     }
+
+    private void ExecuteTerrainEffects()
+    {
+        for (int depth = 0; depth < BoardDepth; depth++)
+        {
+            for (int width = 0; width < BoardWidth; width++)
+            {
+                HexTile hex = Board[depth, width].GetComponent<HexTile>();
+                GameObject occupant = hex.OccupiedBy;
+                if (occupant != null)
+                {
+                    switch (hex.TileType)
+                    {
+                        case TileType.Lake:
+                            occupant.GetComponent<Spawnable>().HealDamage(HexTile.TerrainEffectMagnitude);
+                            break;
+                        case TileType.Desert:
+                            occupant.GetComponent<Spawnable>().TakeDamage(HexTile.TerrainEffectMagnitude);
+                            break;
+                    }
+                }
+            }
+        }
+    }
 }

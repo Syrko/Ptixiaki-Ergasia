@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class HexTile : MonoBehaviour
 {
+    public static int TerrainEffectMagnitude = 1; // e.g how much will a unit heal on a lake
+
     static bool targetFlag = false;
     static readonly float displacement = 100f;
     static readonly float duration = 1f;

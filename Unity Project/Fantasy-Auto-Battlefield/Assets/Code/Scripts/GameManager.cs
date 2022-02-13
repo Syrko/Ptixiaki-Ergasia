@@ -100,6 +100,7 @@ public partial class GameManager : MonoBehaviour
                 ExecuteCombatPhase();
                 break;
             case GamePhases.End_Phase:
+                ExecuteEndPhase();
                 break;
         }
     }
@@ -131,5 +132,10 @@ public partial class GameManager : MonoBehaviour
     void ExecuteCombatPhase()
     {
         AllUnitsAttack();
+    }
+
+    void ExecuteEndPhase()
+    {
+        ExecuteTerrainEffects();
     }
 }
