@@ -136,11 +136,13 @@ public class Hand : MonoBehaviour
         }
     }
 
-    public void RemoveCardFromHand(CardInHand card)
+    public void RemoveCardFromHandAndSendToDiscard(CardInHand card)
     {
         card.EmptyCardType();
         cards.Remove(card.CardName);
         selectedCardIndex = NO_CARD_SELECTED;
         UpdateHandUI();
+
+        player.DiscardPile.AddCard(card.CardName);
     }
 }

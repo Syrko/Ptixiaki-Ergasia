@@ -99,7 +99,7 @@ public partial class GameManager
         SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.ENABLE_END_PHASE_BUTTON));
 
         // Remove card from hand
-        player.Hand.RemoveCardFromHand(card);
+        player.Hand.RemoveCardFromHandAndSendToDiscard(card);
         CardInHand.cardIsBeingPlayed = false;
     }
 

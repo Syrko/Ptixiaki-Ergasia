@@ -51,7 +51,7 @@ public class Deck : MonoBehaviour
         foreach(string card in newCards)
         {
             cards.Add(card);
-            ShuffleDeck();
         }
+        ShuffleDeck();
     }
 }

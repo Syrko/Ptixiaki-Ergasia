@@ -20,6 +20,7 @@ public class HumanPlayer : Player
     int currentMana;
 
     public Hand Hand { get { return hand; } }
+    public DiscardPile DiscardPile { get { return discardPile; } }
     public int CurrentMana { get => currentMana; }
 
     private void Awake()
