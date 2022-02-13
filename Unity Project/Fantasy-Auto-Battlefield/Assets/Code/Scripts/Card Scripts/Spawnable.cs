@@ -6,6 +6,8 @@ public class Spawnable : Card
 {
     public static GameObject explosionFX;
 
+    PawnStats pawnUI;
+
     protected string cardName;
     protected int cardCost;
     protected int originalCardCost;
@@ -40,14 +42,30 @@ public class Spawnable : Card
     public Sprite CardImage { get => cardImage; set => cardImage = value; }
     public Material CardMaterial { get => cardMaterial; set => cardMaterial = value; }
 
+    private void Awake()
+    {
+        pawnUI = transform.GetComponentInParent<PawnStats>();
+    }
+
     protected void InitializePawnUI()
     {
-        PawnStats ui = transform.GetComponentInParent<PawnStats>();
-        ui.AttackText.text = attack.ToString();
-        ui.DefenseText.text = defense.ToString();
-        ui.HitpointsText.text = CurrentHP.ToString();
+        pawnUI.AttackText.text = attack.ToString();
+        pawnUI.DefenseText.text = defense.ToString();
+        pawnUI.HitpointsText.text = CurrentHP.ToString();
 
         ColorPawn();
+    }
+
+    protected void UpdatePawnUI()
+    {
+        pawnUI.AttackText.text = attack.ToString();
+        pawnUI.AttackText.color = DetermineValueColor(originalAttack, attack);
+
+        pawnUI.DefenseText.text = defense.ToString();
+        pawnUI.DefenseText.color = DetermineValueColor(originalDefense, defense);
+
+        pawnUI.HitpointsText.text = CurrentHP.ToString();
+        pawnUI.HitpointsText.color = DetermineValueColor(maxHitPoints, currentHP);
     }
 
     protected void TakeDamage(int amount)
@@ -56,14 +74,51 @@ public class Spawnable : Card
         if (currentHP <= 0)
         {
             currentHP = 0;
-            Debug.Log("Death"); // TODO remove
+            Debug.Log("Death"); // TODO handle spawnable death
         }
-        SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.SPAWNABLE_HP_CHANGE, currentHP.ToString()));
+        UpdatePawnUI();
     }
 
     protected void HealDamage(int amount)
     {
-        throw new NotImplementedException();
+        currentHP += amount;
+        if (currentHP > maxHitPoints)
+        {
+            currentHP = maxHitPoints;
+        }
+        UpdatePawnUI();
+    }
+
+    protected void IncreaseAttack(int amount)
+    {
+        attack += amount;
+        UpdatePawnUI();
+    }
+
+    protected void DecreaseAttack(int amount)
+    {
+        attack -= amount;
+        if (attack < 0)
+        {
+            attack = 0;
+        }
+        UpdatePawnUI();
+    }
+
+    protected void IncreaseDefense(int amount)
+    {
+        defense += amount;
+        UpdatePawnUI();
+    }
+
+    protected void DecreaseDefense(int amount)
+    {
+        defense -= amount;
+        if (defense < 0)
+        {
+            defense = 0;
+        }
+        UpdatePawnUI();
     }
 
     public void Attack(GameObject[,] board, Vector2Int attackerPos)
@@ -263,5 +318,21 @@ public class Spawnable : Card
     {
         Vector3 pos = BoardManager.TranslateCoordinates(y, x, transform.position.y);
         GameObject temp = Instantiate(explosionFX, pos, Quaternion.identity);
+    }
+
+    private Color DetermineValueColor(int originalValue, int currentValue)
+    {
+        if (originalValue > currentValue)
+        {
+            return Color.red;
+        }
+        else if (originalValue < currentValue)
+        {
+            return Color.green;
+        }
+        else
+        {
+            return Color.white;
+        }
     }
 }

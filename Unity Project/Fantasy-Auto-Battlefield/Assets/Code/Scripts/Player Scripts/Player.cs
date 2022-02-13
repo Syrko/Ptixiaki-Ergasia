@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
         currentHP -= amount;
         if (currentHP < 0)
         {
+            // TODO handle player death
             currentHP = 0;
         }
 
