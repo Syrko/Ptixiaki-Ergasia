@@ -17,10 +17,10 @@ public class Player : MonoBehaviour
     public void TakeDamage(int amount)
     {
         currentHP -= amount;
-        if (currentHP < 0)
+        if (currentHP <= 0)
         {
-            // TODO handle player death
             currentHP = 0;
+            FindObjectOfType<GameManager>().EndGame();
         }
 
         // Update UI

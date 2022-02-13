@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 // TODO GENERAL: Write many many comments
 public partial class GameManager : MonoBehaviour
@@ -24,10 +25,20 @@ public partial class GameManager : MonoBehaviour
     int manaPerRound = 2;
     [Space(10f)]
     // ================================
+    [Header("Players")]
     [SerializeField]
     HumanPlayer player;
     [SerializeField]
     AIPlayer opponent;
+    [Space(10f)]
+
+    [Header("Result UI")]
+    [SerializeField]
+    TextMeshProUGUI resultLabel;
+    [SerializeField]
+    GameObject resultPanel;
+    [SerializeField]
+    Button exitButton;
 
     BoardGenerator boardGenerator;
     GamePhases currentPhase;
@@ -138,5 +149,42 @@ public partial class GameManager : MonoBehaviour
     void ExecuteEndPhase()
     {
         ExecuteTerrainEffects();
+    }
+
+    public void EndGame()
+    {
+        if (player.CurrentHP == 0 && opponent.CurrentHP == 0)
+        {
+            // Draw
+            resultLabel.text = "Draw";
+            resultLabel.color = Color.white;
+            resultLabel.gameObject.SetActive(true);
+            resultPanel.SetActive(true);
+            exitButton.gameObject.SetActive(true);
+        }
+        else if (opponent.CurrentHP == 0)
+        {
+            // Player victory
+            resultLabel.text = "Victory";
+            resultLabel.color = Color.green;
+            resultLabel.gameObject.SetActive(true);
+            resultPanel.SetActive(true);
+            exitButton.gameObject.SetActive(true);
+        }
+        else if (player.CurrentHP == 0)
+        {
+            // AI victory
+            resultLabel.text = "Defeat";
+            resultLabel.color = Color.red;
+            resultLabel.gameObject.SetActive(true);
+            resultPanel.SetActive(true);
+            exitButton.gameObject.SetActive(true);
+        }
+    }
+
+    public void onExitClick()
+    {
+        Debug.Log("Exiting...");
+        // TODO exit to main menu
     }
 }
