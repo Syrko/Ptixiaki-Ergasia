@@ -1066,6 +1066,7 @@ MonoBehaviour:
   CardDefense: {fileID: 462331495}
   CardHitPoints: {fileID: 462331494}
   CardHexPattern: {fileID: 462331493}
+  cardTypeText: {fileID: 1440103585}
   TileImage: {fileID: 1807922062}
   TileName: {fileID: 637327747}
   TileText: {fileID: 2052505271}
@@ -3532,6 +3533,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1436526965}
   m_CullTransparentMesh: 1
+--- !u!114 &1440103585 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7344898115071069542, guid: ee6f4e90ec50d2c43b6ed14a656d9095, type: 3}
+  m_PrefabInstance: {fileID: 462331492}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1544181369 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4010414909479502, guid: 12e9b7c885d5efd4f8a9ce049c557867, type: 3}

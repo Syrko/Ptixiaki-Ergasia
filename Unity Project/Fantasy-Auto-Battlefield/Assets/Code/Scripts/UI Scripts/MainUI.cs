@@ -25,6 +25,8 @@ public class MainUI : MonoBehaviour, IObserverUI
     TextMeshProUGUI CardHitPoints;
     [SerializeField]
     Image CardHexPattern;
+    [SerializeField]
+    TextMeshProUGUI cardTypeText;
     [Space(10)]
     
     [Header("Tile Info")]
@@ -169,6 +171,8 @@ public class MainUI : MonoBehaviour, IObserverUI
         CardHitPoints.color = DetermineValueColor(data.MaxHitPoints, data.CurrentHP);
 
         CardHexPattern.sprite = HexPattern.getHexPatternSprite(data.AttackPattern);
+
+        cardTypeText.text = data.CardType.ToString();
     }
 
     private void UpdateCardInfo(Building data)
@@ -194,6 +198,8 @@ public class MainUI : MonoBehaviour, IObserverUI
         CardHitPoints.color = DetermineValueColor(data.MaxHitPoints, data.CurrentHP);
 
         CardHexPattern.sprite = HexPattern.getHexPatternSprite(data.AttackPattern);
+
+        cardTypeText.text = data.CardType.ToString();
     }
 
     private void UpdateCardInfo(Spell data)

@@ -30,6 +30,8 @@ public class CardInHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     Image cardHexPattern;
     [SerializeField]
     Image cardBorder;
+    [SerializeField]
+    TextMeshProUGUI cardTypeText;
 
     HumanPlayer player;
     Hand hand;
@@ -85,6 +87,7 @@ public class CardInHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         cardHitPoints.text = unit.MaxHitPoints.ToString();
         cardHexPattern.sprite = HexPattern.getHexPatternSprite(unit.AttackPattern);
         cardType = unit.CardType;
+        cardTypeText.text = cardType.ToString();
 
         if (showImmediately)
         {
@@ -103,6 +106,7 @@ public class CardInHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         cardHitPoints.text = building.MaxHitPoints.ToString();
         cardHexPattern.sprite = HexPattern.getHexPatternSprite(building.AttackPattern);
         cardType = building.CardType;
+        cardTypeText.text = cardType.ToString();
 
         if (showImmediately)
         {
