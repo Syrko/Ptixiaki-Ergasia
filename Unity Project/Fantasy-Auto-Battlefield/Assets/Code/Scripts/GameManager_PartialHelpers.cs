@@ -216,9 +216,11 @@ public partial class GameManager
                     {
                         case TileType.Lake:
                             occupant.GetComponent<Spawnable>().HealDamage(HexTile.TerrainEffectMagnitude);
+                            Instantiate(HexTile.TerrainEffectFX, occupant.transform);
                             break;
                         case TileType.Desert:
                             occupant.GetComponent<Spawnable>().TakeDamage(HexTile.TerrainEffectMagnitude);
+                            Instantiate(HexTile.TerrainEffectFX, occupant.transform);
                             break;
                     }
                 }
