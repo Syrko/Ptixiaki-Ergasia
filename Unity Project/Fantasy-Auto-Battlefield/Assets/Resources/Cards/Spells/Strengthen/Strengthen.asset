@@ -16,4 +16,4 @@ MonoBehaviour:
   cardCost: 1
   cardText: Icrease the attack of a unit or building by 1.
   cardType: 2
-  cardImage: {fileID: 0}
+  cardImage: {fileID: 21300000, guid: b0617320b2a830f4e87a2af3750036d1, type: 3}
