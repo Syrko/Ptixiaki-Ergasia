@@ -1,10 +1,13 @@
-using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Spawnable : Card
 {
     public static GameObject explosionFX;
+    public static int DamageAmountForBase = 1;
+    public static float spawnDespawnTime = 1f;
+    public static float spawnDespawnDisplacement = 0.75f;
 
     PawnStats pawnUI;
 
@@ -47,6 +50,11 @@ public class Spawnable : Card
         pawnUI = transform.GetComponentInParent<PawnStats>();
     }
 
+    private void Start()
+    {
+        StartCoroutine(Spawn(spawnDespawnTime, transform.position));
+    }
+
     protected void InitializePawnUI()
     {
         pawnUI.AttackText.text = attack.ToString();
@@ -74,7 +82,8 @@ public class Spawnable : Card
         if (currentHP <= 0)
         {
             currentHP = 0;
-            Debug.Log("Death"); // TODO handle spawnable death
+            UpdatePawnUI();
+            this.Die();
         }
         UpdatePawnUI();
     }
@@ -146,13 +155,13 @@ public class Spawnable : Card
                 // If a human controlled pawn is in front of the AI base
                 if (this.owner is HumanPlayer && target.x == board.GetLength(0) - 1)
                 {
-                    FindObjectOfType<AIPlayer>().TakeDamage(1);
+                    FindObjectOfType<AIPlayer>().TakeDamage(DamageAmountForBase);
                     AttackFX(target.x, target.y);
                 }
                 // If an AI controlled pawn is in front of the human base
                 else if (this.owner is AIPlayer && target.x == 0)
                 {
-                    FindObjectOfType<HumanPlayer>().TakeDamage(1);
+                    FindObjectOfType<HumanPlayer>().TakeDamage(DamageAmountForBase);
                     AttackFX(target.x, target.y);
                 }
             }
@@ -161,8 +170,11 @@ public class Spawnable : Card
 
     void Die()
     {
-        // TODO implement Die of spawnable
-        throw new NotImplementedException();
+        foreach (Renderer renderer in this.transform.GetComponentsInChildren<Renderer>())
+        {
+            renderer.material.color = Color.gray;
+        }
+        StartCoroutine(Despawn(spawnDespawnTime, transform.position));
     }
 
     private int CalculateDamage(Spawnable attacker, Spawnable target)
@@ -334,5 +346,45 @@ public class Spawnable : Card
         {
             return Color.white;
         }
+    }
+
+    private IEnumerator Despawn(float time, Vector3 currentPos)
+    {
+        SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.DISABLE_END_PHASE_BUTTON));
+        yield return new WaitForSeconds(2f);
+
+        Vector3 startingPos = currentPos;
+        Vector3 finalPos = new Vector3(currentPos.x, currentPos.y - spawnDespawnDisplacement, currentPos.z);
+
+        
+        float elapsedTime = 0;
+
+        while (elapsedTime < time)
+        {
+            transform.position = Vector3.Lerp(startingPos, finalPos, (elapsedTime / time));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.ENABLE_END_PHASE_BUTTON));
+        Destroy(this.gameObject);
+    }
+
+    private IEnumerator Spawn(float time, Vector3 currentPos)
+    {
+        SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.DISABLE_END_PHASE_BUTTON));
+        Vector3 startingPos = new Vector3(currentPos.x, currentPos.y - spawnDespawnDisplacement, currentPos.z);
+        Vector3 finalPos = currentPos;
+
+
+        float elapsedTime = 0;
+
+        while (elapsedTime < time)
+        {
+            transform.position = Vector3.Lerp(startingPos, finalPos, (elapsedTime / time));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.ENABLE_END_PHASE_BUTTON));
     }
 }

@@ -6,10 +6,8 @@ public partial class GameManager
 {
     public void onNextPhaseClick()
     {
-        SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.DISABLE_END_PHASE_BUTTON));
         SetPhase(currentPhase.NextPhase());
         ExecutePhaseProcess(currentPhase);
-        SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.ENABLE_END_PHASE_BUTTON));
     }
 
     public void onPlayCardClick()

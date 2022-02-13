@@ -130,8 +130,6 @@ public partial class GameManager : MonoBehaviour
 
     void ExecuteCombatPhase()
     {
-        SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.DISABLE_END_PHASE_BUTTON));
         AllUnitsAttack();
-        SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.ENABLE_END_PHASE_BUTTON));
     }
 }
