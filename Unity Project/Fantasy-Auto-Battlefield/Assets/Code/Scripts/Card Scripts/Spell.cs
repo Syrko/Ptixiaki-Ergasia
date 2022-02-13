@@ -7,15 +7,17 @@ public class Spell : Card
     // TODO implement Spell class
     SpellCardData cardData;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    string cardName;
+    int cardCost;
+    int originalCardCost;
+    string cardText;
+    protected CardType cardType;
+    protected Sprite cardImage;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public string CardName { get => cardName; set => cardName = value; }
+    public int CardCost { get => cardCost; set => cardCost = value; }
+    public int OriginalCardCost { get => originalCardCost; set => originalCardCost = value; }
+    public string CardText { get => cardText; set => cardText = value; }
+    public CardType CardType { get => cardType; set => cardType = value; }
+    public Sprite CardImage { get => cardImage; set => cardImage = value; }
 }

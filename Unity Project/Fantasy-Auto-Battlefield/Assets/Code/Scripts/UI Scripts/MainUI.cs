@@ -28,7 +28,7 @@ public class MainUI : MonoBehaviour, IObserverUI
     [SerializeField]
     TextMeshProUGUI cardTypeText;
     [Space(10)]
-    
+
     [Header("Tile Info")]
     [SerializeField]
     Image TileImage;
@@ -142,10 +142,6 @@ public class MainUI : MonoBehaviour, IObserverUI
         {
             UpdateCardInfo(component as Building);
         }
-        else if (sender.TryGetComponent(typeof(Spell), out component))
-        {
-            UpdateCardInfo(component as Spell);
-        }
     }
 
     private void UpdateCardInfo(Unit data)
@@ -200,13 +196,6 @@ public class MainUI : MonoBehaviour, IObserverUI
         CardHexPattern.sprite = HexPattern.getHexPatternSprite(data.AttackPattern);
 
         cardTypeText.text = data.CardType.ToString();
-    }
-
-    private void UpdateCardInfo(Spell data)
-    {
-        cardCover.gameObject.SetActive(false);
-        // TODO implement UpdateCardInfo for spells
-        throw new NotImplementedException();
     }
 
     private Color DetermineValueColor(int originalValue, int currentCalue)

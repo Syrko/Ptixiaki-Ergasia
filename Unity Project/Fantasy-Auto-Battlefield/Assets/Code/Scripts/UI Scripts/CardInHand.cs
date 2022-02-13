@@ -32,6 +32,12 @@ public class CardInHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     Image cardBorder;
     [SerializeField]
     TextMeshProUGUI cardTypeText;
+    [SerializeField]
+    Image attackIcon;
+    [SerializeField]
+    Image defenseIcon;
+    [SerializeField]
+    Image hitpointsIcon;
 
     HumanPlayer player;
     Hand hand;
@@ -78,6 +84,8 @@ public class CardInHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     public void DrawUnit(UnitCardData unit, bool showImmediately)
     {
+        DisableSpellMode();
+
         cardName.text = unit.CardName;
         cardCost.text = unit.CardCost.ToString();
         cardImage.sprite = unit.CardImage;
@@ -97,6 +105,8 @@ public class CardInHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     public void DrawBuilding(BuildingCardData building, bool showImmediately)
     {
+        DisableSpellMode();
+
         cardName.text = building.CardName;
         cardCost.text = building.CardCost.ToString();
         cardImage.sprite = building.CardImage;
@@ -116,12 +126,19 @@ public class CardInHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     public void DrawSpell(SpellCardData spell, bool showImmediately)
     {
-        // TODO implement hand ui ShowSpell
+        EnableSpellMode();
+
+        cardName.text = spell.CardName;
+        cardCost.text = spell.CardCost.ToString();
+        cardImage.sprite = spell.CardImage;
+        cardText.text = spell.CardText;
+        cardType = spell.CardType;
+        cardTypeText.text = cardType.ToString();
+
         if (showImmediately)
         {
             ShowSelf();
         }
-        throw new System.NotImplementedException();
     }
 
     public void HideSelf()
@@ -156,5 +173,27 @@ public class CardInHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public void EmptyCardType()
     {
         cardType = null;
+    }
+
+    private void EnableSpellMode()
+    {
+        attackIcon.gameObject.SetActive(false);
+        defenseIcon.gameObject.SetActive(false);
+        hitpointsIcon.gameObject.SetActive(false);
+        cardAttack.gameObject.SetActive(false);
+        cardDefense.gameObject.SetActive(false);
+        cardHitPoints.gameObject.SetActive(false);
+        cardHexPattern.gameObject.SetActive(false);
+    }
+
+    private void DisableSpellMode()
+    {
+        attackIcon.gameObject.SetActive(true);
+        defenseIcon.gameObject.SetActive(true);
+        hitpointsIcon.gameObject.SetActive(true);
+        cardAttack.gameObject.SetActive(true);
+        cardDefense.gameObject.SetActive(true);
+        cardHitPoints.gameObject.SetActive(true);
+        cardHexPattern.gameObject.SetActive(true);
     }
 }
