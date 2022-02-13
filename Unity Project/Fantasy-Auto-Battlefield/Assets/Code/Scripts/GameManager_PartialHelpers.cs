@@ -77,14 +77,19 @@ public partial class GameManager
     public void SpawnPawn(string cardName, int width, int depth, bool forPlayer)
     {
         CardType? cardType = CardCatalog.GetType(cardName);
+        GameObject pawn;
 
         switch (cardType)
         {
             case CardType.Unit:
-                Board[depth, width].GetComponent<HexTile>().OccupiedBy = UnitFactory.CreateUnitPawn(cardName, width, depth, forPlayer);
+                pawn = UnitFactory.CreateUnitPawn(cardName, width, depth, forPlayer);
+                Board[depth, width].GetComponent<HexTile>().OccupiedBy = pawn;
+                ExecuteTerrainEffects(depth, width, pawn ,true);
                 break;
             case CardType.Building:
-                Board[depth, width].GetComponent<HexTile>().OccupiedBy = BuildingFactory.CreateBuildingPawn(cardName, width, depth, forPlayer);
+                pawn = BuildingFactory.CreateBuildingPawn(cardName, width, depth, forPlayer);
+                Board[depth, width].GetComponent<HexTile>().OccupiedBy = pawn;
+                ExecuteTerrainEffects(depth, width, pawn, true);
                 break;
             case CardType.Spell:
                 break;
@@ -135,6 +140,8 @@ public partial class GameManager
                                 if (Board[depth + 1, width].GetComponent<HexTile>().OccupiedBy == null)
                                 {
                                     MovePlayerUnit(depth, width, possibleUnit);
+                                    ExecuteTerrainEffects(depth, width, possibleUnit.gameObject, false);    // Execute terrain effect for leaving the old tile 
+                                    ExecuteTerrainEffects(depth + 1, width, possibleUnit.gameObject, true); // Execute terrain effect for entering the new tile
                                 }
                             }
                         }
@@ -163,6 +170,8 @@ public partial class GameManager
                                 if (Board[depth - 1, width].GetComponent<HexTile>().OccupiedBy == null)
                                 {
                                     MoveAIUnit(depth, width, possibleUnit);
+                                    ExecuteTerrainEffects(depth, width, possibleUnit.gameObject, false);    // Execute terrain effect for leaving the old tile 
+                                    ExecuteTerrainEffects(depth - 1, width, possibleUnit.gameObject, true); // Execute terrain effect for entering the new tile
                                 }
                             }
                         }
@@ -225,6 +234,27 @@ public partial class GameManager
                     }
                 }
             }
+        }
+    }
+
+    private void ExecuteTerrainEffects(int depth, int width, GameObject pawn, bool isPawnEntering)
+    {
+        HexTile hex = Board[depth, width].GetComponent<HexTile>();
+
+        switch (hex.TileType)
+        {
+            case TileType.Forest:
+                if(isPawnEntering)
+                    pawn.GetComponent<Spawnable>().IncreaseDefense(HexTile.TerrainEffectMagnitude);
+                else
+                    pawn.GetComponent<Spawnable>().DecreaseDefense(HexTile.TerrainEffectMagnitude);
+                break;
+            case TileType.Hills:
+                if (isPawnEntering)
+                    pawn.GetComponent<Spawnable>().IncreaseAttack(HexTile.TerrainEffectMagnitude);
+                else
+                    pawn.GetComponent<Spawnable>().DecreaseAttack(HexTile.TerrainEffectMagnitude);
+                break;
         }
     }
 }

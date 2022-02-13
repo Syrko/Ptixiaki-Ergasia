@@ -98,13 +98,13 @@ public class Spawnable : Card
         UpdatePawnUI();
     }
 
-    protected void IncreaseAttack(int amount)
+    public void IncreaseAttack(int amount)
     {
         attack += amount;
         UpdatePawnUI();
     }
 
-    protected void DecreaseAttack(int amount)
+    public void DecreaseAttack(int amount)
     {
         attack -= amount;
         if (attack < 0)
@@ -114,13 +114,13 @@ public class Spawnable : Card
         UpdatePawnUI();
     }
 
-    protected void IncreaseDefense(int amount)
+    public void IncreaseDefense(int amount)
     {
         defense += amount;
         UpdatePawnUI();
     }
 
-    protected void DecreaseDefense(int amount)
+    public void DecreaseDefense(int amount)
     {
         defense -= amount;
         if (defense < 0)
