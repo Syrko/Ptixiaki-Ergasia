@@ -77,7 +77,7 @@ public partial class GameManager : MonoBehaviour
         SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.PLAYER_HP_CHANGED, MaxHP.ToString()));
         SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.DISABLE_PLAY_BUTTON));
 
-        opponent.PlaySpawnableCard(); // TODO remove
+        opponent.PlaySpawnableCard(); // TODO remove PlaySpawnableCards for testing purposes
     }
 
     void ExecutePhaseProcess(GamePhases currentPhase)

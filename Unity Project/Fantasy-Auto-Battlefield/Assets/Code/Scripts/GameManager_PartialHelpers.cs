@@ -88,9 +88,6 @@ public partial class GameManager
                 break;
             case CardType.Spell:
                 break;
-            default:
-                // TODO handle null
-                break;
         }
     }
 
