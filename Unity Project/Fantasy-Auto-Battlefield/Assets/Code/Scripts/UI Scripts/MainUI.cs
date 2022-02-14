@@ -60,6 +60,14 @@ public class MainUI : MonoBehaviour, IObserverUI
     [SerializeField]
     TextMeshProUGUI hitPoints;
 
+    [Space(10)]
+
+    [Header("Menu")]
+    [SerializeField]
+    GameObject helpPanel;
+    [SerializeField]
+    GameObject menuPanel;
+
     public TextMeshProUGUI Mana { get => mana; }
     public TextMeshProUGUI Phase { get => phase; }
     public TextMeshProUGUI HitPoints { get => hitPoints; }
@@ -224,5 +232,26 @@ public class MainUI : MonoBehaviour, IObserverUI
     {
         button.enabled = false;
         button.GetComponent<Image>().color = Color.gray;
+    }
+
+    public void onMenuButtonClick()
+    {
+        menuPanel.SetActive(true);
+    }
+
+    public void onContinueClick()
+    {
+        menuPanel.SetActive(false);
+    }
+
+    public void onHelpClick()
+    {
+        helpPanel.SetActive(true);
+    }
+
+    public void onExitClick()
+    {
+        Debug.Log("exiting...");
+        // TODO exit to main menu
     }
 }
