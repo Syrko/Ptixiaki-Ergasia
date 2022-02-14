@@ -20,4 +20,4 @@ MonoBehaviour:
   defense: 2
   maxHitPoints: 10
   attackPattern: 4
-  cardImage: {fileID: 21300000, guid: 756857c686c41294586d08dd1ab38383, type: 3}
+  cardImage: {fileID: 21300000, guid: 769871e02ca960f409ef4161220ce850, type: 3}
