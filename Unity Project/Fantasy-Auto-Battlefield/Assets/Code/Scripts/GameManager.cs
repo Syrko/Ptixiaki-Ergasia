@@ -94,6 +94,7 @@ public partial class GameManager : MonoBehaviour
 
     void ExecutePhaseProcess(GamePhases currentPhase)
     {
+        GameLog.Log(this.gameObject, new LogEvent(LogEventCode.PhaseChanged, currentPhase.GetLabel()));
         switch (currentPhase)
         {
             case GamePhases.Upkeep_Phase:

@@ -69,10 +69,12 @@ public class HumanPlayer : Player
         if (hand.CardsInHandCount < maxHandSize)
         {
             hand.AddCard(cardName);
+            GameLog.Log(this.gameObject, new LogEvent(LogEventCode.CardDrawnHand, cardName));
         }
         else
         {
             discardPile.AddCard(cardName);
+            GameLog.Log(this.gameObject, new LogEvent(LogEventCode.CardDrawnDiscard, cardName));
         }
     }
 

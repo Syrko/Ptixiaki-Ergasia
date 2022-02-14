@@ -71,6 +71,8 @@ public class HexTile : MonoBehaviour
         GameObject selectedCard = gameManager.GetSelectedCard();
         if (selectedCard != null)
         {
+            GameLog.Log(FindObjectOfType<HumanPlayer>().gameObject, new LogEvent(LogEventCode.CardPlayed, selectedCard.GetComponent<CardInHand>().CardName));
+
             StartCoroutine(FloatCard(selectedCard));
             highlightHex.GetComponent<Renderer>().material.color = originalHighlightColor;
             gameManager.DeHighlightBoard();
