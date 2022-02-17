@@ -1,7 +1,8 @@
 using UnityEngine;
 using System;
+using System.Reflection;
 
-public class CardCatalogue : MonoBehaviour
+public class CardCatalogue
 {
     // ============ Units ============
     public static CardCatalogueEntry Soldier = new CardCatalogueEntry("Soldier", CardType.Unit);
@@ -13,16 +14,10 @@ public class CardCatalogue : MonoBehaviour
     // =========== SPELLS ============
     public static CardCatalogueEntry Strengthen = new CardCatalogueEntry("Strengthen", CardType.Spell);
 
-    private void Awake()
-    {
-        instance = this;
-    }
-
-    private static CardCatalogue instance;
     public static CardType? GetType(string cardName)
     {
-        CardCatalogueEntry entry = instance.GetType().GetProperty(cardName).GetValue(instance) as CardCatalogueEntry;
-        if(entry.CardName == cardName)
+        CardCatalogueEntry entry = typeof(CardCatalogue).GetField(cardName).GetValue(null) as CardCatalogueEntry;
+        if (entry.CardName == cardName)
         {
             return entry.CardType;
         }
