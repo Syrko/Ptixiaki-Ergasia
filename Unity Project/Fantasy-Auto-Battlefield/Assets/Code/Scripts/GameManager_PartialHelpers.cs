@@ -100,7 +100,7 @@ public partial class GameManager
 
     public void SpawnPawn(string cardName, int width, int depth, bool forPlayer)
     {
-        CardType? cardType = CardCatalog.GetType(cardName);
+        CardType? cardType = CardCatalogue.GetType(cardName);
         GameObject pawn;
 
         switch (cardType)

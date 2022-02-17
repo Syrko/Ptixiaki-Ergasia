@@ -11,7 +11,7 @@ public partial class GameManager : MonoBehaviour
     // Testing Variables
     // TODO remove testing variables
     // --------------------------------
-    List<string> testingDeck = new List<string> { CardCatalog.Soldier, CardCatalog.Soldier, CardCatalog.Soldier, CardCatalog.Soldier, CardCatalog.Soldier, CardCatalog.Gate, CardCatalog.Gate, CardCatalog.Gate, CardCatalog.Gate, CardCatalog.Gate, CardCatalog.Strengthen, CardCatalog.Strengthen, CardCatalog.Strengthen, CardCatalog.Strengthen };
+    List<string> testingDeck = new List<string> { CardCatalogue.Soldier.CardName, CardCatalogue.Soldier.CardName, CardCatalogue.Soldier.CardName, CardCatalogue.Soldier.CardName, CardCatalogue.Soldier.CardName, CardCatalogue.Gate.CardName, CardCatalogue.Gate.CardName, CardCatalogue.Gate.CardName, CardCatalogue.Gate.CardName, CardCatalogue.Gate.CardName, CardCatalogue.Strengthen.CardName, CardCatalogue.Strengthen.CardName, CardCatalogue.Strengthen.CardName, CardCatalogue.Strengthen.CardName };
     public List<string> TestingDeck { get => testingDeck; }
 
     [Header("Game Parameters")]

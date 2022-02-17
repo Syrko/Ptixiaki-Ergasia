@@ -47,7 +47,7 @@ public class AIPlayer : Player
     private string DecideOnSpawnableCardToPlay()
     {
         // TODO implement DecideOnCardToPlay() for the AI
-        return CardCatalog.Soldier;
+        return CardCatalogue.Soldier.CardName;
     }
 
     private Vector2Int DecidePosition()

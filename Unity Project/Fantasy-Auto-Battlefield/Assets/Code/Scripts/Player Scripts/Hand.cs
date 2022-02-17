@@ -68,7 +68,7 @@ public class Hand : MonoBehaviour
     {
         string card = cards[cardIndex];
 
-        switch (CardCatalog.GetType(card))
+        switch (CardCatalogue.GetType(card))
         {
             case CardType.Unit:
                 cardsInHand[cardIndex].DrawUnit(UnitCardData.GetUnitDataFromName(card), isHandShown);
