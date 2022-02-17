@@ -1,0 +1,17 @@
+How to create a new card:
+
+1. Create a new 'folder' in the Resources/Cards/{Units||Buildings||Spells}/ path with the name of the new card
+
+2. Inside the 'folder' right-click and create a new ScriptableObject of the suitable type (e.g UnitCardData) with the name of the new card
+
+3. Inside the 'folder' create a C# script with the name of the new card
+
+	3.1 If you want the card to have an effect, the script can implement the IEffect or IEffectWithTarget interfaces
+	     Notes: IEffectWithTarget currently can only target the hex chosen for the deployment of the card; and
+		    if you are creating a spell remember to call "Destroy(this.gameObject);" at the end of the effect
+
+4. If you are creating a unit or a building, you will need to create a material with the name of the new card in the 'folder'.
+   Add as albedo texture the same sprite used in the Scritable object of step 2.
+
+5. Finally, add the card to the catalogue by opening the CardCatalogue file and adding the line:
+	public static CardCatalogueEntry DesiredCardName = new CardCatalogueEntry("DesiredCardName", CardType.DesiredCardType); 
