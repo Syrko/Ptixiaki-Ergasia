@@ -133,6 +133,8 @@ public class Spawnable : Card
     public void Attack(GameObject[,] board, Vector2Int attackerPos)
     {
         List<Vector2Int> targets = DetermineTargets(board, attackerPos);
+        bool attackedBaseThisTurn = false; // flag so multi-hex targeting attacks do not attack the base multiple times
+
         foreach (var target in targets)
         {
             HexTile targetHex = board[target.x, target.y].GetComponent<HexTile>();
@@ -152,6 +154,15 @@ public class Spawnable : Card
             // And attack the base if this pawn is in front of one
             if (targetHex.TileType == TileType.Base)
             {
+                if (attackedBaseThisTurn)
+                {
+                    break;
+                }
+                else
+                {
+                    attackedBaseThisTurn = true;
+                }
+
                 // If a human controlled pawn is in front of the AI base
                 if (this.owner is HumanPlayer && target.x == board.GetLength(0) - 1)
                 {
