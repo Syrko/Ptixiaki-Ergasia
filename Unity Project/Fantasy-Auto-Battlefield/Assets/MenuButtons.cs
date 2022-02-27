@@ -8,6 +8,9 @@ public class MenuButtons : MonoBehaviour
     [SerializeField]
     GameObject helpPage;
 
+    [SerializeField]
+    GameObject creditsPage;
+
     public void onExitClick()
     {
         Debug.Log("Exiting...");
@@ -21,7 +24,7 @@ public class MenuButtons : MonoBehaviour
 
     public void onCreditClick()
     {
-
+        creditsPage.SetActive(true);
     }
 
     public void onHelpClick()
