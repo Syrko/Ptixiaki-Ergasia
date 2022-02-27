@@ -11,8 +11,22 @@ public partial class GameManager : MonoBehaviour
     // Testing Variables
     // TODO remove testing variables
     // --------------------------------
-    List<string> testingDeck = new List<string> { CardCatalogue.Soldier.CardName, CardCatalogue.Soldier.CardName, CardCatalogue.Gate.CardName, CardCatalogue.Honey_Strength.CardName, CardCatalogue.Crabby.CardName, CardCatalogue.Soldier.CardName, CardCatalogue.Soldier.CardName, CardCatalogue.Gate.CardName, CardCatalogue.Honey_Strength.CardName, CardCatalogue.Crabby.CardName, CardCatalogue.Soldier.CardName, CardCatalogue.Soldier.CardName, CardCatalogue.Gate.CardName, CardCatalogue.Honey_Strength.CardName, CardCatalogue.Crabby.CardName };
+    List<string> testingDeck = new List<string> 
+    { CardCatalogue.Soldier.CardName, CardCatalogue.Crabby.CardName, 
+        CardCatalogue.Mad_Slug.CardName, CardCatalogue.Yeti.CardName, 
+        CardCatalogue.Egg_Thief.CardName, CardCatalogue.Summoner.CardName, 
+        CardCatalogue.The_Seventh_Demon.CardName, CardCatalogue.Ghoul.CardName, 
+        CardCatalogue.Egg.CardName, CardCatalogue.Healing_Sheep.CardName, 
+        CardCatalogue.Little_Imp.CardName, CardCatalogue.Attack_Bot.CardName, 
+        CardCatalogue.Fishercat.CardName, CardCatalogue.Gate.CardName, 
+        CardCatalogue.Magical_Well.CardName, CardCatalogue.Guard_Tower.CardName,
+        CardCatalogue.Cursed_Ruins.CardName, CardCatalogue.Honey_Strength.CardName,
+        CardCatalogue.Magical_Conduit.CardName, CardCatalogue.Disintegrate.CardName,
+        CardCatalogue.Cataclysm.CardName, CardCatalogue.Revitalize.CardName,
+        CardCatalogue.Intoxicate.CardName, CardCatalogue.Mask_Of_Control.CardName,
+        CardCatalogue.Knowledge_Is_Power.CardName };
     public List<string> TestingDeck { get => testingDeck; }
+    // ================================
 
     [Header("Game Parameters")]
     [SerializeField]
