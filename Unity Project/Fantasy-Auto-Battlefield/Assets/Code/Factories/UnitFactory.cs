@@ -15,13 +15,13 @@ public class UnitFactory
         Component specificUnit = unit.AddComponent(Type.GetType(unitName));
         unit.name = unitName;
 
-        if (specificUnit is IEffect)
+        if (specificUnit is IEffectWhenSpawning)
         {
-            ((IEffect)specificUnit).ExecuteEffect();
+            ((IEffectWhenSpawning)specificUnit).ExecuteEffect();
         }
-        else if (specificUnit is IEffectWithTarget)
+        else if (specificUnit is IEffectWithTargetWhenSpawning)
         {
-            ((IEffectWithTarget)specificUnit).ExecuteEffect(y, x);
+            ((IEffectWithTargetWhenSpawning)specificUnit).ExecuteEffect(y, x);
         }
 
         return unit;

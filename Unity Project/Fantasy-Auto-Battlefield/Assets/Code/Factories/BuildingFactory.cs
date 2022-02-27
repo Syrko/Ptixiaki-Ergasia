@@ -15,13 +15,13 @@ public class BuildingFactory : MonoBehaviour
         Component specificBuilding = building.AddComponent(Type.GetType(buildingName));
         building.name = buildingName;
 
-        if (specificBuilding is IEffect)
+        if (specificBuilding is IEffectWhenSpawning)
         {
-            ((IEffect)specificBuilding).ExecuteEffect();
+            ((IEffectWhenSpawning)specificBuilding).ExecuteEffect();
         }
-        else if (specificBuilding is IEffectWithTarget)
+        else if (specificBuilding is IEffectWithTargetWhenSpawning)
         {
-            ((IEffectWithTarget)specificBuilding).ExecuteEffect(y, x);
+            ((IEffectWithTargetWhenSpawning)specificBuilding).ExecuteEffect(y, x);
         }
 
         return building;

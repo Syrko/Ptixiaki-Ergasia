@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a5111333ec6c18a4e8e955c53d2f473f, type: 3}
-  m_Name: Soldier
+  m_Name: The_Seventh_Demon
   m_EditorClassIdentifier: 
-  cardName: Soldier
-  cardCost: 1
-  cardText: '"Be brave young soldiers!"'
+  cardName: The_Seventh_Demon
+  cardCost: 7
+  cardText: Guess the magic Number!
   cardType: 0
-  attack: 1
-  defense: 0
-  maxHitPoints: 3
-  attackPattern: 1
-  cardImage: {fileID: 21300000, guid: 2677f82a836f67d4aaefe5980520d692, type: 3}
+  attack: 7
+  defense: 7
+  maxHitPoints: 7
+  attackPattern: 5
+  cardImage: {fileID: 21300000, guid: 0990fae945363ae49b4c75744aca1ad1, type: 3}

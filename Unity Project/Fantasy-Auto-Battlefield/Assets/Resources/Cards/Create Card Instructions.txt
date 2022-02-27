@@ -1,3 +1,5 @@
+Important: use underscores instead of spaces in the names that you create
+
 How to create a new card:
 
 1. Create a new 'folder' in the Resources/Cards/{Units||Buildings||Spells}/ path with the name of the new card
@@ -6,7 +8,7 @@ How to create a new card:
 
 3. Inside the 'folder' create a C# script with the name of the new card
 
-	3.1 If you want the card to have an effect, the script can implement the IEffect or IEffectWithTarget interfaces
+	3.1 If you want the card to have an effect, the script can implement the IEffectWhenSpawning or IEffectWithTargetWhenSpawning interfaces
 	     Notes: IEffectWithTarget currently can only target the hex chosen for the deployment of the card; and
 		    if you are creating a spell remember to call "Destroy(this.gameObject);" at the end of the effect
 

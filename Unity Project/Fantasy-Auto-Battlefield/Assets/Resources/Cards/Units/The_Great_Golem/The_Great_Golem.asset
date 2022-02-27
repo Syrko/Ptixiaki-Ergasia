@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a5111333ec6c18a4e8e955c53d2f473f, type: 3}
-  m_Name: Soldier
+  m_Name: The_Great_Golem
   m_EditorClassIdentifier: 
-  cardName: Soldier
-  cardCost: 1
-  cardText: '"Be brave young soldiers!"'
+  cardName: The_Great_Golem
+  cardCost: 10
+  cardText: Hard as a rock!
   cardType: 0
-  attack: 1
-  defense: 0
-  maxHitPoints: 3
-  attackPattern: 1
-  cardImage: {fileID: 21300000, guid: 2677f82a836f67d4aaefe5980520d692, type: 3}
+  attack: 5
+  defense: 20
+  maxHitPoints: 10
+  attackPattern: 5
+  cardImage: {fileID: 21300000, guid: 884f05ce70c4da347bf1889bdc09b24a, type: 3}

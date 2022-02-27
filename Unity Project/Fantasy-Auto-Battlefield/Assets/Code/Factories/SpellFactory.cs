@@ -12,13 +12,13 @@ public class SpellFactory
         spell.AddComponent<Spell>().InitializeSpell(spellName);
         Component specificSpell = spell.AddComponent(Type.GetType(spellName));
 
-        if (specificSpell is IEffect)
+        if (specificSpell is IEffectWhenSpawning)
         {
-            ((IEffect)specificSpell).ExecuteEffect();
+            ((IEffectWhenSpawning)specificSpell).ExecuteEffect();
         }
-        else if (specificSpell is IEffectWithTarget)
+        else if (specificSpell is IEffectWithTargetWhenSpawning)
         {
-            ((IEffectWithTarget)specificSpell).ExecuteEffect(y, x);
+            ((IEffectWithTargetWhenSpawning)specificSpell).ExecuteEffect(y, x);
         }
     }
 }

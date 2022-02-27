@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IEffect
+public interface IEffectOnDeath
 {
-    public void ExecuteEffect();
+    public void ExecuteDeathEffect();
 }

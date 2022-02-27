@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Strengthen : MonoBehaviour, IEffectWithTarget
+public class Strengthen : MonoBehaviour, IEffectWithTargetWhenSpawning
 {
     public void ExecuteEffect(int depth, int width)
     {
