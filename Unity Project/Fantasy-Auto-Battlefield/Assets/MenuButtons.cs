@@ -1,11 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MenuButtons : MonoBehaviour
 {
+    [SerializeField]
+    GameObject helpPage;
+
     public void onExitClick()
     {
+        Debug.Log("Exiting...");
         Application.Quit();
     }
 
@@ -21,6 +26,6 @@ public class MenuButtons : MonoBehaviour
 
     public void onHelpClick()
     {
-
+        helpPage.SetActive(true);
     }
 }

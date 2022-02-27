@@ -251,7 +251,7 @@ public class MainUI : MonoBehaviour, IObserverUI
 
     public void onExitClick()
     {
-        Debug.Log("exiting...");
-        // TODO exit to main menu
+        Debug.Log("Exiting...");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
     }
 }
