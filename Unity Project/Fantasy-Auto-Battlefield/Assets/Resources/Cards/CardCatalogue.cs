@@ -19,6 +19,7 @@ public class CardCatalogue
     public static CardCatalogueEntry Little_Imp = new CardCatalogueEntry("Little_Imp", CardType.Unit);
     public static CardCatalogueEntry Attack_Bot = new CardCatalogueEntry("Attack_Bot", CardType.Unit);
     public static CardCatalogueEntry Fishercat = new CardCatalogueEntry("Fishercat", CardType.Unit);
+    public static CardCatalogueEntry The_Great_Golem = new CardCatalogueEntry("The_Great_Golem", CardType.Unit);
 
     // ========== Buildings ==========
     public static CardCatalogueEntry Gate = new CardCatalogueEntry("Gate", CardType.Building);

@@ -24,7 +24,7 @@ public partial class GameManager : MonoBehaviour
         CardCatalogue.Magical_Conduit.CardName, CardCatalogue.Disintegrate.CardName,
         CardCatalogue.Cataclysm.CardName, CardCatalogue.Revitalize.CardName,
         CardCatalogue.Intoxicate.CardName, CardCatalogue.Mask_Of_Control.CardName,
-        CardCatalogue.Knowledge_Is_Power.CardName };
+        CardCatalogue.Knowledge_Is_Power.CardName, CardCatalogue.The_Great_Golem.CardName };
     public List<string> TestingDeck { get => testingDeck; }
     // ================================
 
