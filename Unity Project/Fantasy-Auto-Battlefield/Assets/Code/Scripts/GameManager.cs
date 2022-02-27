@@ -200,6 +200,6 @@ public partial class GameManager : MonoBehaviour
     public void onExitClick()
     {
         Debug.Log("Exiting...");
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
+        Application.Quit();
     }
 }
