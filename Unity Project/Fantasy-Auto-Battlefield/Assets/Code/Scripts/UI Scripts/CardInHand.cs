@@ -86,7 +86,7 @@ public class CardInHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     {
         DisableSpellMode();
 
-        cardName.text = unit.CardName;
+        cardName.text = unit.CardName.Replace('_', ' ');
         cardCost.text = unit.CardCost.ToString();
         cardImage.sprite = unit.CardImage;
         cardText.text = unit.CardText;
@@ -107,7 +107,7 @@ public class CardInHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     {
         DisableSpellMode();
 
-        cardName.text = building.CardName;
+        cardName.text = building.CardName.Replace('_', ' ');
         cardCost.text = building.CardCost.ToString();
         cardImage.sprite = building.CardImage;
         cardText.text = building.CardText;
@@ -128,7 +128,7 @@ public class CardInHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     {
         EnableSpellMode();
 
-        cardName.text = spell.CardName;
+        cardName.text = spell.CardName.Replace('_', ' ');
         cardCost.text = spell.CardCost.ToString();
         cardImage.sprite = spell.CardImage;
         cardText.text = spell.CardText;

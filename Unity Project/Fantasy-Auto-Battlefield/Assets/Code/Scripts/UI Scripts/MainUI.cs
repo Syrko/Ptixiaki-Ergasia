@@ -156,7 +156,7 @@ public class MainUI : MonoBehaviour, IObserverUI
     {
         cardCover.gameObject.SetActive(false);
 
-        CardName.text = data.CardName;
+        CardName.text = data.CardName.Replace('_', ' ');
 
         CardCost.text = data.CardCost.ToString();
         CardCost.color = DetermineValueColor(data.OriginalCardCost, data.CardCost);
@@ -183,7 +183,7 @@ public class MainUI : MonoBehaviour, IObserverUI
     {
         cardCover.gameObject.SetActive(false);
 
-        CardName.text = data.CardName;
+        CardName.text = data.CardName.Replace('_', ' ');
 
         CardCost.text = data.CardCost.ToString();
         CardCost.color = DetermineValueColor(data.OriginalCardCost, data.CardCost);
