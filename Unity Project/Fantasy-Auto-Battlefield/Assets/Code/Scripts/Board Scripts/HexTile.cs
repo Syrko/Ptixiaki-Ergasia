@@ -27,6 +27,8 @@ public class HexTile : MonoBehaviour
 
     public GameObject OccupiedBy { get => occupiedBy; set => occupiedBy = value; }
     public TileType TileType { get => tileData.TileType; }
+    public int PosX { get => posX; }
+    public int PosY { get => posY; }
 
     private void Awake()
     {

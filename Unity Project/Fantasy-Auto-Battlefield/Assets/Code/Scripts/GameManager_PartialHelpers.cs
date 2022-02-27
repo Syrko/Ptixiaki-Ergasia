@@ -248,7 +248,7 @@ public partial class GameManager
         }
     }
 
-    private void ExecuteTerrainEffects()
+    public void ExecuteTerrainEffects()
     {
         for (int depth = 0; depth < BoardDepth; depth++)
         {
@@ -274,7 +274,7 @@ public partial class GameManager
         }
     }
 
-    private void ExecuteTerrainEffects(int depth, int width, GameObject pawn, bool isPawnEntering)
+    public void ExecuteTerrainEffects(int depth, int width, GameObject pawn, bool isPawnEntering)
     {
         HexTile hex = Board[depth, width].GetComponent<HexTile>();
 

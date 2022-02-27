@@ -18,6 +18,6 @@ MonoBehaviour:
   cardType: 0
   attack: 10
   defense: 0
-  maxHitPoints: 2
+  maxHitPoints: 1
   attackPattern: 5
   cardImage: {fileID: 21300000, guid: a2c15e36f8fe0554fade872934b51b6c, type: 3}
