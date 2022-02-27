@@ -44,10 +44,27 @@ public class AIPlayer : Player
         frontline = tempFrontLine;
     }
 
-    private string DecideOnSpawnableCardToPlay()
+    private string DecideOnSpawnableCardToPlay(SpawnableTiers tier)
     {
-        // TODO implement DecideOnCardToPlay() for the AI
-        return CardCatalogue.Soldier.CardName;
+        string[] LowTier = { CardCatalogue.Soldier.CardName, CardCatalogue.Little_Imp.CardName, CardCatalogue.Crabby.CardName, CardCatalogue.Egg_Thief.CardName };
+        string[] MidTier = { CardCatalogue.Mad_Slug.CardName, CardCatalogue.Yeti.CardName, CardCatalogue.Egg.CardName, CardCatalogue.Ghoul.CardName, CardCatalogue.Mad_Slug.CardName, CardCatalogue.Yeti.CardName, CardCatalogue.Egg.CardName, CardCatalogue.Ghoul.CardName, CardCatalogue.Healing_Sheep.CardName, CardCatalogue.Gate.CardName };
+        string[] HighTier = { CardCatalogue.The_Seventh_Demon.CardName, CardCatalogue.The_Seventh_Demon.CardName, CardCatalogue.The_Seventh_Demon.CardName, CardCatalogue.The_Great_Golem.CardName, CardCatalogue.The_Seventh_Demon.CardName, CardCatalogue.The_Seventh_Demon.CardName, CardCatalogue.The_Seventh_Demon.CardName, CardCatalogue.The_Great_Golem.CardName, CardCatalogue.Guard_Tower.CardName, CardCatalogue.Cursed_Ruins.CardName };
+
+        int choice;
+        switch (tier)
+        {
+            case SpawnableTiers.Low:
+                choice = UnityEngine.Random.Range(0, LowTier.Length);
+                return LowTier[choice];
+            case SpawnableTiers.Medium:
+                choice = UnityEngine.Random.Range(0, LowTier.Length);
+                return MidTier[choice];
+            case SpawnableTiers.High:
+                choice = UnityEngine.Random.Range(0, LowTier.Length);
+                return HighTier[choice];
+            default:
+                return LowTier[0];
+        }
     }
 
     private Vector2Int DecidePosition()
@@ -71,17 +88,113 @@ public class AIPlayer : Player
         return new Vector2Int(depth, width);
     }
 
-    public void PlaySpawnableCard()
+    public void PlayAICards()
     {
-        string cardToPlay = DecideOnSpawnableCardToPlay();
+        if (FlipCoin())
+        {
+            // Half of the turn the AI will not play anything - EZ mode
+            return;
+        }
+
+        if (gameManager.GameTurnsPlayed < 4)
+        {
+            PlaySpawnable(SpawnableTiers.Low);            
+        }
+        else if (gameManager.GameTurnsPlayed < 6)
+        {
+            if (FlipCoin())
+            {
+                PlaySpawnable(SpawnableTiers.Low);
+                PlaySpawnable(SpawnableTiers.Low);
+            }
+            else
+            {
+                PlaySpawnable(SpawnableTiers.Medium);
+            }
+        }
+        else if (gameManager.GameTurnsPlayed < 9)
+        {
+            if (FlipCoin())
+            {
+                PlaySpawnable(SpawnableTiers.Low);
+                PlaySpawnable(SpawnableTiers.Low);
+            }
+            else
+            {
+                PlaySpawnable(SpawnableTiers.Medium);
+                PlaySpawnable(SpawnableTiers.Medium);
+            }
+        }
+        else if (gameManager.GameTurnsPlayed < 12)
+        {
+            if (FlipCoin())
+            {
+                PlaySpawnable(SpawnableTiers.Low);
+                PlaySpawnable(SpawnableTiers.Low);
+                PlaySpawnable(SpawnableTiers.Medium);
+            }
+            else
+            {
+                if (FlipCoin())
+                {
+                    PlaySpawnable(SpawnableTiers.High);
+                }
+                else
+                {
+                    PlaySpawnable(SpawnableTiers.Medium);
+                    PlaySpawnable(SpawnableTiers.Medium);
+                }
+            }
+        }
+        else
+        {
+            if (FlipCoin())
+            {
+                PlaySpawnable(SpawnableTiers.High);
+                PlaySpawnable(SpawnableTiers.Low);
+            }
+            else
+            {
+                if (FlipCoin())
+                {
+                    PlaySpawnable(SpawnableTiers.Medium);
+                    PlaySpawnable(SpawnableTiers.Medium);
+                    PlaySpawnable(SpawnableTiers.Low);
+                }
+                else
+                {
+                    PlaySpawnable(SpawnableTiers.Low);
+                    PlaySpawnable(SpawnableTiers.Low);
+                    PlaySpawnable(SpawnableTiers.Low);
+                    PlaySpawnable(SpawnableTiers.Medium);
+                }
+            }
+        }
+    }
+
+    private void PlaySpawnable(SpawnableTiers tier)
+    {
+        string cardToPlay = DecideOnSpawnableCardToPlay(tier);
         Vector2Int depthWidth = DecidePosition();
-        if(depthWidth.x == -1) // In case DecidePosition didn't find an empty hex in 10 tries
+
+        if (depthWidth.x == -1) // In case DecidePosition didn't find an empty hex in 10 tries
         {
             return;
         }
         else
         {
             gameManager.SpawnPawn(cardToPlay, (int)depthWidth.y, (int)depthWidth.x, false);
+            GameLog.Log(this.gameObject, new LogEvent(LogEventCode.CardPlayed, cardToPlay));
         }
+    }
+
+    private bool FlipCoin()
+    {
+        return UnityEngine.Random.Range(0f, 1f) < 0.5f;
+    }
+
+    private enum SpawnableTiers
+    {
+        Low, Medium, High
     }
 }

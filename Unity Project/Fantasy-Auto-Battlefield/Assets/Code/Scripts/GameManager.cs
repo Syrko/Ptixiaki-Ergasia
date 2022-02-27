@@ -57,6 +57,9 @@ public partial class GameManager : MonoBehaviour
     BoardGenerator boardGenerator;
     GamePhases currentPhase;
 
+    private int gameTurnsPlayed = 1;
+
+    public int GameTurnsPlayed { get => gameTurnsPlayed; }
     public int MaxHP { get => maxHP; }
     public int MaxMana { get => maxMana; }
     public int MaxHandSize { get => maxHandSize; }
@@ -102,8 +105,6 @@ public partial class GameManager : MonoBehaviour
         // Prepare the UI
         SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.PLAYER_HP_CHANGED, MaxHP.ToString()));
         SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.DISABLE_PLAY_BUTTON));
-
-        opponent.PlaySpawnableCard(); // TODO remove PlaySpawnableCards for testing purposes
     }
 
     void ExecutePhaseProcess(GamePhases currentPhase)
@@ -116,9 +117,7 @@ public partial class GameManager : MonoBehaviour
                 break;
             case GamePhases.Standard_Phase:
                 ExecuteStandardPhase();
-                // TODO wrap in method
-                // opponent.PlaySpawnableCard();
-                // opponent.PlaySpawnableCard();
+                opponent.PlayAICards();
                 break;
             case GamePhases.Move_Phase:
                 ExecuteMovePhase();
@@ -134,6 +133,7 @@ public partial class GameManager : MonoBehaviour
 
     void ExecuteUpkeepProcess()
     {
+        gameTurnsPlayed++;
         player.DrawCardFromDeck();
         player.GainMana(manaPerRound);
         SwapInitiative();

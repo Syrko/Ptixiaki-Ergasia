@@ -55,6 +55,10 @@ public class GameLog : MonoBehaviour
                 {
                     instance.logText.text += "You played: " + logEvent.Details + "\n\n";
                 }
+                else if (sender.GetComponent<AIPlayer>() != null)
+                {
+                    instance.logText.text += "The AI played: " + logEvent.Details + "\n\n";
+                }
                 break;
         }
         instance.ScrollToBottom();
