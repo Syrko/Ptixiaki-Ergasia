@@ -47,7 +47,7 @@ public class CardInHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     public CardType? CardType { get => cardType; }
     public int CardCost { get => int.Parse(cardCost.text); }
-    public string CardName { get => cardName.text; }
+    public string CardName { get => cardName.text.Replace(' ', '_'); }
 
     private void Awake()
     {
