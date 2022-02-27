@@ -27,7 +27,13 @@ public class CardCatalogue
     public static CardCatalogueEntry Cursed_Ruins = new CardCatalogueEntry("Cursed_Ruins", CardType.Building);
 
     // =========== SPELLS ============
-    public static CardCatalogueEntry Strengthen = new CardCatalogueEntry("Strengthen", CardType.Spell);
+    public static CardCatalogueEntry Honey_Strength = new CardCatalogueEntry("Honey_Strength", CardType.Spell);
+    public static CardCatalogueEntry Magical_Conduit = new CardCatalogueEntry("Magical_Conduit", CardType.Spell);
+    public static CardCatalogueEntry Disintegrate = new CardCatalogueEntry("Disintegrate", CardType.Spell);
+    public static CardCatalogueEntry Cataclysm = new CardCatalogueEntry("Cataclysm", CardType.Spell);
+    public static CardCatalogueEntry Revitalize = new CardCatalogueEntry("Revitalize", CardType.Spell);
+    public static CardCatalogueEntry Intoxicate = new CardCatalogueEntry("Intoxicate", CardType.Spell);
+    public static CardCatalogueEntry Mask_Of_Control = new CardCatalogueEntry("Mask_Of_Control", CardType.Spell);
 
     public static CardType? GetType(string cardName)
     {

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e54bfd4b2b6e774cb2a8491db3ea772, type: 3}
+  m_Name: Magical_Conduit
+  m_EditorClassIdentifier: 
+  cardName: Magical_Conduit
+  cardCost: 0
+  cardText: Gain mana equal to the number of cards in your hand
+  cardType: 2
+  cardImage: {fileID: 21300000, guid: 061bf702461c0b94cbada8d8b98c75d4, type: 3}

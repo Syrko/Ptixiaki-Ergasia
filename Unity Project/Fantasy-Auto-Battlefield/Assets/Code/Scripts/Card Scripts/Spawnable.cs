@@ -179,7 +179,7 @@ public class Spawnable : Card
         }
     }
 
-    void Die()
+    public void Die()
     {
         foreach (Renderer renderer in this.transform.GetComponentsInChildren<Renderer>())
         {
@@ -198,7 +198,7 @@ public class Spawnable : Card
         return attack;
     }
 
-    private void ColorPawn()
+    public void ColorPawn()
     {
         Component[] borders = transform.Find("Border").gameObject.GetComponentsInChildren(typeof(Renderer));
         foreach (Component renderer in borders)
