@@ -252,6 +252,7 @@ public class MainUI : MonoBehaviour, IObserverUI
     public void onExitClick()
     {
         Debug.Log("Exiting...");
-        Application.Quit();
+        SubjectUI.RemoveAllObservers();
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
     }
 }
