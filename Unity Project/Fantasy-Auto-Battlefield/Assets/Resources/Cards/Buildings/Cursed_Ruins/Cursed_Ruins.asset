@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a742f756262b96f4fa7e36cad9a87584, type: 3}
   m_Name: Cursed_Ruins
   m_EditorClassIdentifier: 
-  cardName: 
-  cardCost: 0
-  cardText: 
-  cardType: 0
-  attack: 0
+  cardName: Cursed_Ruins
+  cardCost: 3
+  cardText: '"It''a (cursed) trap!"'
+  cardType: 1
+  attack: 100
   defense: 0
-  maxHitPoints: 0
-  attackPattern: 0
-  cardImage: {fileID: 0}
+  maxHitPoints: 1
+  attackPattern: 1
+  cardImage: {fileID: 21300000, guid: f361517d4192f6749911f8d7956de19c, type: 3}

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Yeti
   cardCost: 4
-  cardText: So far away from the Himalayas...
+  cardText: '"So far away from the Himalayas..."'
   cardType: 0
   attack: 4
   defense: 2

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Gate
   cardCost: 3
-  cardText: Pass through to enter... and exit!
+  cardText: '"Pass through to enter... and exit!"'
   cardType: 1
   attack: 1
   defense: 3

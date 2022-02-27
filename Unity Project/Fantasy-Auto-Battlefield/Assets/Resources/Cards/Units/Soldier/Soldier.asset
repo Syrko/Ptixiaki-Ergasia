@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Soldier
   cardCost: 1
-  cardText: Be calm and soldier on!
+  cardText: '"Be calm and soldier on!"'
   cardType: 0
   attack: 1
   defense: 0

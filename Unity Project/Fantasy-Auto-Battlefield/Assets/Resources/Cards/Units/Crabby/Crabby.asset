@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Crabby
   cardCost: 2
-  cardText: You mess with crabbo, you get stabbo!
+  cardText: '"You mess with crabbo, you get stabbo!"'
   cardType: 0
   attack: 2
   defense: 2

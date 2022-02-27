@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Little_Imp
   cardCost: 2
-  cardText: It has three eyes wo it sees better in the darkness
+  cardText: '"It has three eyes so it sees better in the darkness"'
   cardType: 0
   attack: 2
   defense: 0

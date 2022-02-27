@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: The_Great_Golem
   cardCost: 10
-  cardText: Hard as a rock!
+  cardText: '"Hard as a rock!"'
   cardType: 0
   attack: 5
   defense: 20

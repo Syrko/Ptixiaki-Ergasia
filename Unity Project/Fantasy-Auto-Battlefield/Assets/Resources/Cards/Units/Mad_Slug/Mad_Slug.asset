@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Mad_Slug
   cardCost: 3
-  cardText: '"WAAAAGH"'
+  cardText: '"WAAAAGH!!!!!"'
   cardType: 0
   attack: 10
   defense: 0
