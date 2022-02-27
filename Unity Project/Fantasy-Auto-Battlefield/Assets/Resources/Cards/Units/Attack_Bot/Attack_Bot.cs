@@ -7,7 +7,7 @@ public class Attack_Bot : MonoBehaviour, IEffectWhenSpawning
     public void ExecuteEffect()
     {
         int atkIncrease = FindObjectOfType<HumanPlayer>().Hand.CardsInHandCount;
-        gameObject.GetComponent<Unit>().AttackValue += atkIncrease;
+        gameObject.GetComponent<Unit>().IncreaseAttack(atkIncrease);
     }
 
     // Start is called before the first frame update
