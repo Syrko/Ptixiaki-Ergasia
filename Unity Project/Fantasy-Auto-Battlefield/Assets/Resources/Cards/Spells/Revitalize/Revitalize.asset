@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e54bfd4b2b6e774cb2a8491db3ea772, type: 3}
   m_Name: Revitalize
   m_EditorClassIdentifier: 
-  cardName: 
-  cardCost: 0
-  cardText: 
-  cardType: 0
-  cardImage: {fileID: 0}
+  cardName: Revitalize
+  cardCost: 3
+  cardText: Restore a unit to full hp
+  cardType: 2
+  cardImage: {fileID: 21300000, guid: 109b12857829d8c42ae945065a9a40b1, type: 3}

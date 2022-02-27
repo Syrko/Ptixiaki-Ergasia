@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Magical_Conduit : MonoBehaviour, IEffectWithTargetWhenSpawning
+public class Knowledge_Is_Power : MonoBehaviour, IEffectWithTargetWhenSpawning
 {
     public void ExecuteEffect(int depth, int width)
     {
@@ -11,7 +11,8 @@ public class Magical_Conduit : MonoBehaviour, IEffectWithTargetWhenSpawning
         if (occupant != null)
         {
             occupant.GetComponent<Spawnable>().TakeDamage(1);
-            player.GainMana(player.Hand.CardsInHandCount);
+            player.DrawCardFromDeck();
+            player.DrawCardFromDeck();
         }
 
         Destroy(this.gameObject);

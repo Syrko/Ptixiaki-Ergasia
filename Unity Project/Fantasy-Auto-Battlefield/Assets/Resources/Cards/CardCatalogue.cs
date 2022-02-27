@@ -34,6 +34,7 @@ public class CardCatalogue
     public static CardCatalogueEntry Revitalize = new CardCatalogueEntry("Revitalize", CardType.Spell);
     public static CardCatalogueEntry Intoxicate = new CardCatalogueEntry("Intoxicate", CardType.Spell);
     public static CardCatalogueEntry Mask_Of_Control = new CardCatalogueEntry("Mask_Of_Control", CardType.Spell);
+    public static CardCatalogueEntry Knowledge_Is_Power = new CardCatalogueEntry("Knowledge_Is_Power", CardType.Spell);
 
     public static CardType? GetType(string cardName)
     {

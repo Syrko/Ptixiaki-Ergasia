@@ -10,11 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e54bfd4b2b6e774cb2a8491db3ea772, type: 3}
-  m_Name: Magical_Conduit
+  m_Name: Knowledge_Is_Power
   m_EditorClassIdentifier: 
-  cardName: Magical_Conduit
-  cardCost: 1
-  cardText: Gain mana equal to the number of cards in your hand, using a unit or
-    building as a conduit (it takes one damage)
+  cardName: Knowledge_Is_Power
+  cardCost: 4
+  cardText: Draw 2 cards, using a unit or building as a conduit (it takes one damage)
   cardType: 2
-  cardImage: {fileID: 21300000, guid: 061bf702461c0b94cbada8d8b98c75d4, type: 3}
+  cardImage: {fileID: 21300000, guid: ae73bfc0ecfba814cbc3b8ef55c578dc, type: 3}
