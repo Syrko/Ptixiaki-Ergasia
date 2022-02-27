@@ -22,6 +22,9 @@ public class CardCatalogue
 
     // ========== Buildings ==========
     public static CardCatalogueEntry Gate = new CardCatalogueEntry("Gate", CardType.Building);
+    public static CardCatalogueEntry Magical_Well = new CardCatalogueEntry("Magical_Well", CardType.Building);
+    public static CardCatalogueEntry Guard_Tower = new CardCatalogueEntry("Guard_Tower", CardType.Building);
+    public static CardCatalogueEntry Cursed_Ruins = new CardCatalogueEntry("Cursed_Ruins", CardType.Building);
 
     // =========== SPELLS ============
     public static CardCatalogueEntry Strengthen = new CardCatalogueEntry("Strengthen", CardType.Spell);
