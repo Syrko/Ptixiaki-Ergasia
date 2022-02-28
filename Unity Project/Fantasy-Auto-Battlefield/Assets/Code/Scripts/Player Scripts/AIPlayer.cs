@@ -9,7 +9,7 @@ public class AIPlayer : Player
     [SerializeField]
     int maxFrontline = 3;
 
-    private int turnCounter = 1;
+    private int turnCounter = 0;
     public int TurnCounter { get => turnCounter; set => turnCounter = value; }
 
     private void Awake()
@@ -188,7 +188,7 @@ public class AIPlayer : Player
 
     public void PlayAICardsCycle()
     {
-        if(turnCounter == 12)
+        if(turnCounter >= 12)
         {
             turnCounter = 1;
         }

@@ -62,7 +62,7 @@ public partial class GameManager : MonoBehaviour
     BoardGenerator boardGenerator;
     GamePhases currentPhase;
 
-    private int gameTurnsPlayed = 1;
+    private int gameTurnsPlayed = 0;
 
     private SFXController sfxController;
 
@@ -148,7 +148,7 @@ public partial class GameManager : MonoBehaviour
 
     void ExecuteUpkeepProcess()
     {
-        gameTurnsPlayed++; // TODO remove one counter
+        gameTurnsPlayed++;
         opponent.TurnCounter++;
         player.DrawCardFromDeck();
         player.GainMana(manaPerRound);
