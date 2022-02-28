@@ -995,7 +995,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   helpPage: {fileID: 856770701}
-  creditsPage: {fileID: 0}
+  creditsPage: {fileID: 2108453048}
 --- !u!1 &417672087
 GameObject:
   m_ObjectHideFlags: 0
