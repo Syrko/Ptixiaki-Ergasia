@@ -4887,7 +4887,8 @@ MonoBehaviour:
     \r\n\r\nMusic by Panagiotis Syrios - https://www.youtube.com/channel/UCDEUqssp1V-4YPjRfcDmjgg\r\n\r\n===========================================================================\r\n\r\nA
     special mention to the really great TCG Cards Pack\r\nhttps://assetstore.unity.com/packages/2d/textures-materials/tcg-cards-pack-63019\r\n\r\n===========================================================================\r\n\r\nBase
     of Camera Movement Script\r\nhttps://gist.github.com/gunderson/d7f096bd07874f31671306318019d996\r\n\r\n===========================================================================\r\n\r\nAssets
-    from the Unity Asset Store\r\n\r\nCard shirts Lite\r\nhttps://assetstore.unity.com/packages/2d/gui/card-shirts-lite-165698\r\n\r\nDinner
+    from the Unity Asset Store\r\n---------------------------------------------------------------------------\r\n\r\nCard
+    shirts Lite\r\nhttps://assetstore.unity.com/packages/2d/gui/card-shirts-lite-165698\r\n\r\nDinner
     Table\r\nhttps://assetstore.unity.com/packages/3d/environments/fantasy/dinner-table-55180\r\n\r\nFantasy
     Skybox FREE\r\nhttps://assetstore.unity.com/packages/2d/textures-materials/sky/fantasy-skybox-free-18353\r\n\r\nFree
     Simple GUI\r\nhttps://assetstore.unity.com/packages/2d/gui/free-simple-gui-185448\r\n\r\nFREE
@@ -4897,7 +4898,9 @@ MonoBehaviour:
     Tavern Pack\r\nhttps://assetstore.unity.com/packages/3d/props/furniture/medieval-tavern-pack-112546\r\n\r\nOld
     Coin\r\nhttps://assetstore.unity.com/packages/3d/props/old-coin-49530\r\n\r\nProcedural
     fire\r\nhttps://assetstore.unity.com/packages/vfx/particles/fire-explosions/procedural-fire-141496\r\n\r\nRPG
-    inventory icons\r\nhttps://assetstore.unity.com/packages/2d/gui/icons/rpg-inventory-icons-56687\r\n\r\n"
+    inventory icons\r\nhttps://assetstore.unity.com/packages/2d/gui/icons/rpg-inventory-icons-56687\r\n\r\n===========================================================================\r\n\r\nSFX\r\n---------------------------------------------------------------------------\r\n\r\nFoley_Impact_Metal_Movement_Mono.wav\r\nhttps://freesound.org/people/Nox_Sound/sounds/569973/\r\n\r\nWhoosh.wav\r\nhttps://freesound.org/people/crackles04/sounds/369698/\r\n\r\ndistant
+    horns\r\nhttps://freesound.org/people/DANMITCH3LL/sounds/218488/\r\n\r\nVictory
+    and Defeat by Panagiotis Syrios - https://www.youtube.com/channel/UCDEUqssp1V-4YPjRfcDmjgg\r\n\r\n"
 --- !u!114 &2108453051
 MonoBehaviour:
   m_ObjectHideFlags: 0

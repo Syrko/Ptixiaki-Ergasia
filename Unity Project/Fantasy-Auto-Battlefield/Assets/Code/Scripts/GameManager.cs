@@ -59,6 +59,8 @@ public partial class GameManager : MonoBehaviour
 
     private int gameTurnsPlayed = 1;
 
+    private SFXController sfxController;
+
     public int GameTurnsPlayed { get => gameTurnsPlayed; }
     public int MaxHP { get => maxHP; }
     public int MaxMana { get => maxMana; }
@@ -73,6 +75,7 @@ public partial class GameManager : MonoBehaviour
         boardGenerator = FindObjectOfType<BoardGenerator>();
         Spawnable.explosionFX = Resources.Load<GameObject>("Explosion"); // Initialize the explosion effects for the attacks of the spawnables
         HexTile.TerrainEffectFX = Resources.Load<GameObject>("TerrainEffect");
+        sfxController = gameObject.GetComponent<SFXController>();
     }
 
     private void Start()
@@ -113,19 +116,24 @@ public partial class GameManager : MonoBehaviour
         switch (currentPhase)
         {
             case GamePhases.Upkeep_Phase:
+                sfxController.PlaySFX(SFXToPlay.Whoosh);
                 ExecuteUpkeepProcess();
                 break;
             case GamePhases.Standard_Phase:
+                sfxController.PlaySFX(SFXToPlay.Whoosh);
                 ExecuteStandardPhase();
                 opponent.PlayAICards();
                 break;
             case GamePhases.Move_Phase:
+                sfxController.PlaySFX(SFXToPlay.March);
                 ExecuteMovePhase();
                 break;
             case GamePhases.Combat_Phase:
+                sfxController.PlaySFX(SFXToPlay.Battle);
                 ExecuteCombatPhase();
                 break;
             case GamePhases.End_Phase:
+                sfxController.PlaySFX(SFXToPlay.Whoosh);
                 ExecuteEndPhase();
                 break;
         }
@@ -176,6 +184,7 @@ public partial class GameManager : MonoBehaviour
             resultLabel.gameObject.SetActive(true);
             resultPanel.SetActive(true);
             exitButton.gameObject.SetActive(true);
+            sfxController.PlaySFX(SFXToPlay.Draw);
         }
         else if (opponent.CurrentHP == 0)
         {
@@ -185,6 +194,7 @@ public partial class GameManager : MonoBehaviour
             resultLabel.gameObject.SetActive(true);
             resultPanel.SetActive(true);
             exitButton.gameObject.SetActive(true);
+            sfxController.PlaySFX(SFXToPlay.Victory);
         }
         else if (player.CurrentHP == 0)
         {
@@ -194,6 +204,7 @@ public partial class GameManager : MonoBehaviour
             resultLabel.gameObject.SetActive(true);
             resultPanel.SetActive(true);
             exitButton.gameObject.SetActive(true);
+            sfxController.PlaySFX(SFXToPlay.Defeat);
         }
     }
 
