@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Healing_Sheep
   m_EditorClassIdentifier: 
   cardName: Healing_Sheep
-  cardCost: 4
+  cardCost: 2
   cardText: Heal yourself 2 hitpoints when you play the Healing Sheep
   cardType: 0
   attack: 1

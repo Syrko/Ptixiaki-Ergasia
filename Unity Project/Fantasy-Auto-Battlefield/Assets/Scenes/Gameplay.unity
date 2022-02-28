@@ -3985,7 +3985,7 @@ MonoBehaviour:
   maxHP: 10
   maxMana: 10
   maxHandSize: 5
-  manaPerRound: 2
+  manaPerRound: 3
   player: {fileID: 1620924511}
   opponent: {fileID: 1759240869}
   resultLabel: {fileID: 509401836}

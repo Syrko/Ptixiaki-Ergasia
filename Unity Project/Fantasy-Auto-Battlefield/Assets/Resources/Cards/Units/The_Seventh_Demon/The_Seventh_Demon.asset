@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: The_Seventh_Demon
   cardCost: 7
-  cardText: '"Guess his magic Number!"'
+  cardText: '"Guess his lucky Number!"'
   cardType: 0
   attack: 7
   defense: 7

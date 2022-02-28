@@ -9,6 +9,9 @@ public class AIPlayer : Player
     [SerializeField]
     int maxFrontline = 3;
 
+    private int turnCounter = 1;
+    public int TurnCounter { get => turnCounter; set => turnCounter = value; }
+
     private void Awake()
     {
         maxHP = gameManager.MaxHP;
@@ -46,7 +49,7 @@ public class AIPlayer : Player
 
     private string DecideOnSpawnableCardToPlay(SpawnableTiers tier)
     {
-        string[] LowTier = { CardCatalogue.Soldier.CardName, CardCatalogue.Little_Imp.CardName, CardCatalogue.Crabby.CardName, CardCatalogue.Egg_Thief.CardName };
+        string[] LowTier = { CardCatalogue.Soldier.CardName, CardCatalogue.Soldier.CardName, CardCatalogue.Little_Imp.CardName, CardCatalogue.Crabby.CardName, CardCatalogue.Egg_Thief.CardName };
         string[] MidTier = { CardCatalogue.Mad_Slug.CardName, CardCatalogue.Yeti.CardName, CardCatalogue.Egg.CardName, CardCatalogue.Ghoul.CardName, CardCatalogue.Mad_Slug.CardName, CardCatalogue.Yeti.CardName, CardCatalogue.Egg.CardName, CardCatalogue.Ghoul.CardName, CardCatalogue.Healing_Sheep.CardName, CardCatalogue.Gate.CardName };
         string[] HighTier = { CardCatalogue.The_Seventh_Demon.CardName, CardCatalogue.The_Seventh_Demon.CardName, CardCatalogue.The_Seventh_Demon.CardName, CardCatalogue.The_Great_Golem.CardName, CardCatalogue.The_Seventh_Demon.CardName, CardCatalogue.The_Seventh_Demon.CardName, CardCatalogue.The_Seventh_Demon.CardName, CardCatalogue.The_Great_Golem.CardName, CardCatalogue.Guard_Tower.CardName, CardCatalogue.Cursed_Ruins.CardName };
 
@@ -88,12 +91,23 @@ public class AIPlayer : Player
         return new Vector2Int(depth, width);
     }
 
-    public void PlayAICards()
+    public void PlayAICardsSingle()
     {
-        if (FlipCoin())
+        if (gameManager.GameTurnsPlayed < 10)
         {
-            // Half of the turn the AI will not play anything - EZ mode
-            return;
+            if (FlipCoin())
+            {
+                // Half of the turns the AI will not play anything - EZ mode
+                return;
+            }
+        }
+        else
+        {
+            if (FlipCoin() && FlipCoin())
+            {
+                // 25% of the turns the AI will not play anything - EZ mode
+                return;
+            }
         }
 
         if (gameManager.GameTurnsPlayed < 4)
@@ -147,6 +161,105 @@ public class AIPlayer : Player
             }
         }
         else
+        {
+            if (FlipCoin())
+            {
+                PlaySpawnable(SpawnableTiers.High);
+                PlaySpawnable(SpawnableTiers.Low);
+            }
+            else
+            {
+                if (FlipCoin())
+                {
+                    PlaySpawnable(SpawnableTiers.Medium);
+                    PlaySpawnable(SpawnableTiers.Medium);
+                    PlaySpawnable(SpawnableTiers.Low);
+                }
+                else
+                {
+                    PlaySpawnable(SpawnableTiers.Low);
+                    PlaySpawnable(SpawnableTiers.Low);
+                    PlaySpawnable(SpawnableTiers.Low);
+                    PlaySpawnable(SpawnableTiers.Medium);
+                }
+            }
+        }
+    }
+
+    public void PlayAICardsCycle()
+    {
+        if(turnCounter == 12)
+        {
+            turnCounter = 1;
+        }
+        if (gameManager.GameTurnsPlayed < 10)
+        {
+            if (FlipCoin())
+            {
+                // Half of the turns the AI will not play anything - EZ mode
+                return;
+            }
+        }
+        else
+        {
+            if (FlipCoin() && FlipCoin())
+            {
+                // 25% of the turns the AI will not play anything - EZ mode
+                return;
+            }
+        }
+
+        if (turnCounter < 3)
+        {
+            PlaySpawnable(SpawnableTiers.Low);
+        }
+        else if (turnCounter < 5)
+        {
+            if (FlipCoin())
+            {
+                PlaySpawnable(SpawnableTiers.Low);
+                PlaySpawnable(SpawnableTiers.Low);
+            }
+            else
+            {
+                PlaySpawnable(SpawnableTiers.Medium);
+            }
+        }
+        else if (turnCounter < 8)
+        {
+            if (FlipCoin())
+            {
+                PlaySpawnable(SpawnableTiers.Low);
+                PlaySpawnable(SpawnableTiers.Low);
+            }
+            else
+            {
+                PlaySpawnable(SpawnableTiers.Medium);
+                PlaySpawnable(SpawnableTiers.Medium);
+            }
+        }
+        else if (turnCounter < 10)
+        {
+            if (FlipCoin())
+            {
+                PlaySpawnable(SpawnableTiers.Low);
+                PlaySpawnable(SpawnableTiers.Low);
+                PlaySpawnable(SpawnableTiers.Medium);
+            }
+            else
+            {
+                if (FlipCoin())
+                {
+                    PlaySpawnable(SpawnableTiers.High);
+                }
+                else
+                {
+                    PlaySpawnable(SpawnableTiers.Medium);
+                    PlaySpawnable(SpawnableTiers.Medium);
+                }
+            }
+        }
+        else if (turnCounter < 12)
         {
             if (FlipCoin())
             {

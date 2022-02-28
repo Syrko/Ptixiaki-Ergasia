@@ -17,7 +17,7 @@ MonoBehaviour:
   cardText: '"Big Birb, Strong Birb"'
   cardType: 0
   attack: 5
-  defense: 5
+  defense: 1
   maxHitPoints: 10
   attackPattern: 3
   cardImage: {fileID: 21300000, guid: 10b683f6da83acc4b9bef318c8b82bf7, type: 3}

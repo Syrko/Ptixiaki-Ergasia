@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Intoxicate
   cardCost: 2
-  cardText: Select a unit or building and decrease its attack by 1 and increase it
+  cardText: Select a unit or building and decrease its attack by 1 and increase its
     defense by 1
   cardType: 2
   cardImage: {fileID: 21300000, guid: 3ed5907479d97e24b9661e2d875ca51b, type: 3}

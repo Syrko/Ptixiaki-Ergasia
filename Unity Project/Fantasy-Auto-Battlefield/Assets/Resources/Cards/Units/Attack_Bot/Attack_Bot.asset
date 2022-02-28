@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Attack_Bot
   m_EditorClassIdentifier: 
   cardName: Attack_Bot
-  cardCost: 4
+  cardCost: 5
   cardText: When played gain attack equal to the cards in your hand
   cardType: 0
   attack: 1

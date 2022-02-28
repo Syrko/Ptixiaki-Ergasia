@@ -36,7 +36,7 @@ public partial class GameManager : MonoBehaviour
     [SerializeField]
     int maxHandSize = 5;
     [SerializeField]
-    int manaPerRound = 2;
+    int manaPerRound = 3;
     [Space(10f)]
     // ================================
     [Header("Players")]
@@ -122,7 +122,9 @@ public partial class GameManager : MonoBehaviour
             case GamePhases.Standard_Phase:
                 sfxController.PlaySFX(SFXToPlay.Whoosh);
                 ExecuteStandardPhase();
-                opponent.PlayAICards();
+                // TODO choose play mode for the ai
+                // opponent.PlayAICardsSingle();
+                opponent.PlayAICardsCycle();
                 break;
             case GamePhases.Move_Phase:
                 sfxController.PlaySFX(SFXToPlay.March);
@@ -141,7 +143,8 @@ public partial class GameManager : MonoBehaviour
 
     void ExecuteUpkeepProcess()
     {
-        gameTurnsPlayed++;
+        gameTurnsPlayed++; // TODO remove one counter
+        opponent.TurnCounter++;
         player.DrawCardFromDeck();
         player.GainMana(manaPerRound);
         SwapInitiative();
