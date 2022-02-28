@@ -25,9 +25,6 @@ public class SFXController : MonoBehaviour
     [SerializeField]
     AudioSource SFXAudioSource;
 
-    [SerializeField]
-    float SFXScale = 0.4f;
-
     public void PlaySFX(SFXToPlay sfx)
     {
         if (SFXAudioSource.isPlaying)
@@ -37,22 +34,22 @@ public class SFXController : MonoBehaviour
         switch (sfx)
         {
             case SFXToPlay.Battle:
-                SFXAudioSource.PlayOneShot(battle, SFXScale);
+                SFXAudioSource.PlayOneShot(battle);
                 break;
             case SFXToPlay.Whoosh:
-                SFXAudioSource.PlayOneShot(whoosh, SFXScale);
+                SFXAudioSource.PlayOneShot(whoosh);
                 break;
             case SFXToPlay.March:
-                SFXAudioSource.PlayOneShot(march, SFXScale);
+                SFXAudioSource.PlayOneShot(march);
                 break;
             case SFXToPlay.Victory:
-                SFXAudioSource.PlayOneShot(victory, SFXScale);
+                SFXAudioSource.PlayOneShot(victory);
                 break;
             case SFXToPlay.Defeat:
-                SFXAudioSource.PlayOneShot(defeat, SFXScale);
+                SFXAudioSource.PlayOneShot(defeat);
                 break;
             case SFXToPlay.Draw:
-                SFXAudioSource.PlayOneShot(draw, SFXScale);
+                SFXAudioSource.PlayOneShot(draw);
                 break;
         }
     }

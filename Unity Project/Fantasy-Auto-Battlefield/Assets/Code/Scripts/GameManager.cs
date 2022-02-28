@@ -54,6 +54,11 @@ public partial class GameManager : MonoBehaviour
     [SerializeField]
     Button exitButton;
 
+    [Space(10f)]
+    [Header("Music Player")]
+    [SerializeField]
+    AudioSource musicPlayer;
+
     BoardGenerator boardGenerator;
     GamePhases currentPhase;
 
@@ -187,6 +192,7 @@ public partial class GameManager : MonoBehaviour
             resultLabel.gameObject.SetActive(true);
             resultPanel.SetActive(true);
             exitButton.gameObject.SetActive(true);
+            musicPlayer.Stop();
             sfxController.PlaySFX(SFXToPlay.Draw);
         }
         else if (opponent.CurrentHP == 0)
@@ -197,6 +203,7 @@ public partial class GameManager : MonoBehaviour
             resultLabel.gameObject.SetActive(true);
             resultPanel.SetActive(true);
             exitButton.gameObject.SetActive(true);
+            musicPlayer.Stop();
             sfxController.PlaySFX(SFXToPlay.Victory);
         }
         else if (player.CurrentHP == 0)
@@ -207,6 +214,7 @@ public partial class GameManager : MonoBehaviour
             resultLabel.gameObject.SetActive(true);
             resultPanel.SetActive(true);
             exitButton.gameObject.SetActive(true);
+            musicPlayer.Stop();
             sfxController.PlaySFX(SFXToPlay.Defeat);
         }
     }
