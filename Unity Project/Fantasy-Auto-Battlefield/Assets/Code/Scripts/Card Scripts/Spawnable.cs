@@ -242,7 +242,10 @@ public class Spawnable : Card
                 switch (hexPatternTarget)
                 {
                     case "FL":
-                        possibleTarget = new Vector2Int(attackerPos.x + 1, attackerPos.y - 1);
+                        if (attackerPos.y % 2 == 0)
+                            possibleTarget = new Vector2Int(attackerPos.x, attackerPos.y - 1);
+                        else
+                            possibleTarget = new Vector2Int(attackerPos.x + 1, attackerPos.y - 1);
                         if (areCoordsInsideOfBounds(board, possibleTarget))
                         {
                             targets.Add(possibleTarget);
@@ -256,14 +259,20 @@ public class Spawnable : Card
                         }
                         break;
                     case "FR":
-                        possibleTarget = new Vector2Int(attackerPos.x + 1, attackerPos.y + 1);
+                        if (attackerPos.y % 2 == 0)
+                            possibleTarget = new Vector2Int(attackerPos.x, attackerPos.y + 1);
+                        else
+                            possibleTarget = new Vector2Int(attackerPos.x + 1, attackerPos.y +   1);
                         if (areCoordsInsideOfBounds(board, possibleTarget))
                         {
                             targets.Add(possibleTarget);
                         }
                         break;
                     case "BL":
-                        possibleTarget = new Vector2Int(attackerPos.x, attackerPos.y - 1);
+                        if (attackerPos.y % 2 == 0)
+                            possibleTarget = new Vector2Int(attackerPos.x - 1, attackerPos.y - 1);
+                        else
+                            possibleTarget = new Vector2Int(attackerPos.x + 0, attackerPos.y - 1);
                         if (areCoordsInsideOfBounds(board, possibleTarget))
                         {
                             targets.Add(possibleTarget);
@@ -277,7 +286,10 @@ public class Spawnable : Card
                         }
                         break;
                     case "BR":
-                        possibleTarget = new Vector2Int(attackerPos.x, attackerPos.y + 1);
+                        if (attackerPos.y % 2 == 0)
+                            possibleTarget = new Vector2Int(attackerPos.x - 1, attackerPos.y + 1);
+                        else
+                            possibleTarget = new Vector2Int(attackerPos.x, attackerPos.y + 1);
                         if (areCoordsInsideOfBounds(board, possibleTarget))
                         {
                             targets.Add(possibleTarget);
@@ -290,7 +302,10 @@ public class Spawnable : Card
                 switch (hexPatternTarget)
                 {
                     case "BR":
-                        possibleTarget = new Vector2Int(attackerPos.x + 1, attackerPos.y - 1);
+                        if (attackerPos.y % 2 == 0)
+                            possibleTarget = new Vector2Int(attackerPos.x, attackerPos.y - 1);
+                        else
+                            possibleTarget = new Vector2Int(attackerPos.x + 1, attackerPos.y - 1);
                         if (areCoordsInsideOfBounds(board, possibleTarget))
                         {
                             targets.Add(possibleTarget);
@@ -304,14 +319,20 @@ public class Spawnable : Card
                         }
                         break;
                     case "BL":
-                        possibleTarget = new Vector2Int(attackerPos.x + 1, attackerPos.y + 1);
+                        if (attackerPos.y % 2 == 0)
+                            possibleTarget = new Vector2Int(attackerPos.x, attackerPos.y + 1);
+                        else
+                            possibleTarget = new Vector2Int(attackerPos.x + 1, attackerPos.y + 1);
                         if (areCoordsInsideOfBounds(board, possibleTarget))
                         {
                             targets.Add(possibleTarget);
                         }
                         break;
                     case "FR":
-                        possibleTarget = new Vector2Int(attackerPos.x, attackerPos.y - 1);
+                        if (attackerPos.y % 2 == 0)
+                            possibleTarget = new Vector2Int(attackerPos.x - 1, attackerPos.y - 1);
+                        else
+                            possibleTarget = new Vector2Int(attackerPos.x + 0, attackerPos.y - 1);
                         if (areCoordsInsideOfBounds(board, possibleTarget))
                         {
                             targets.Add(possibleTarget);
@@ -325,7 +346,10 @@ public class Spawnable : Card
                         }
                         break;
                     case "FL":
-                        possibleTarget = new Vector2Int(attackerPos.x, attackerPos.y + 1);
+                        if (attackerPos.y % 2 == 0)
+                            possibleTarget = new Vector2Int(attackerPos.x - 1, attackerPos.y + 1);
+                        else
+                            possibleTarget = new Vector2Int(attackerPos.x, attackerPos.y + 1);
                         if (areCoordsInsideOfBounds(board, possibleTarget))
                         {
                             targets.Add(possibleTarget);
