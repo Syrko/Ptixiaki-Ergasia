@@ -2,6 +2,11 @@ using UnityEngine;
 using System;
 using System.Reflection;
 
+/// <summary>
+/// Very important class that contains all the cards in the game in entries that include their name and type.
+/// When creating a new entry, place your line of code in the appropriate group depending on type.
+/// The name of the variable and the string name of the card must be the same and contian underscores instead of whitespaces.
+/// </summary>
 public class CardCatalogue
 {
     // ============ Units ============
@@ -37,6 +42,10 @@ public class CardCatalogue
     public static CardCatalogueEntry Mask_Of_Control = new CardCatalogueEntry("Mask_Of_Control", CardType.Spell);
     public static CardCatalogueEntry Knowledge_Is_Power = new CardCatalogueEntry("Knowledge_Is_Power", CardType.Spell);
 
+    /// <summary>
+    /// Returns the card type, of the card with the name you provided.
+    /// Note: The value returned is nullable
+    /// </summary>
     public static CardType? GetType(string cardName)
     {
         CardCatalogueEntry entry = typeof(CardCatalogue).GetField(cardName).GetValue(null) as CardCatalogueEntry;
@@ -50,6 +59,9 @@ public class CardCatalogue
         }
     }
 
+    /// <summary>
+    /// <c>CardCatalogueEntry</c> is a simple class that is udes for storing the cards' name and type
+    /// </summary>
     public class CardCatalogueEntry
     {
         private string cardName;
