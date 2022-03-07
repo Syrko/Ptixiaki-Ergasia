@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Simple Monobehaviour to control when and which SFX is played 
+/// </summary>
 public class SFXController : MonoBehaviour
 {
     [SerializeField]
@@ -55,6 +58,9 @@ public class SFXController : MonoBehaviour
     }
 }
 
+/// <summary>
+/// Enumeration of the different SFX of the game
+/// </summary>
 public enum SFXToPlay
 {
     Battle,
