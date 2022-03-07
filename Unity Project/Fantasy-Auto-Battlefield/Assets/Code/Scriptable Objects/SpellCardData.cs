@@ -3,6 +3,10 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Used for storing data about the game's different spells.
+/// To create new data right-click in the unity editor and use the menu
+/// </summary>
 [CreateAssetMenu(fileName = "SpellCardData", menuName = "Spell Card Data", order = 52)]
 public class SpellCardData : ScriptableObject
 {

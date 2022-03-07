@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/// <summary>
+/// Used for storing data about the game's different tile kinds.
+/// To create new data right-click in the unity editor and use the menu
+/// </summary>
 [CreateAssetMenu(fileName = "TileData", menuName = "Tile Data", order = 51)]
 public class TileData : ScriptableObject
 {
