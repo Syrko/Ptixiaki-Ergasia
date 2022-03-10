@@ -43,6 +43,9 @@ public class BoardGenerator : MonoBehaviour
         ConstructBoard();
     }
 
+    /// <summary>
+    /// Constructs the board used in the current game session
+    /// </summary>
     private void ConstructBoard()
     {
         board = new GameObject[BoardDepth, BoardWidth];
@@ -91,6 +94,9 @@ public class BoardGenerator : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Shuffles the pool of hex tiles available for the board's creation
+    /// </summary>
     private List<TileType> RandomizeTilePool(List<TileType> tileTypePool)
     {
         List<TileType> tempPool = new List<TileType>();
@@ -114,6 +120,9 @@ public class BoardGenerator : MonoBehaviour
         return tempPool;
     }
 
+    /// <summary>
+    /// Instantiates the gameobjects used to represent the 3D board
+    /// </summary>
     private void InstantiateHexTiles(List<TileType> tileTypePool)
     {
         for (int d = 0; d < BoardDepth; d++)
