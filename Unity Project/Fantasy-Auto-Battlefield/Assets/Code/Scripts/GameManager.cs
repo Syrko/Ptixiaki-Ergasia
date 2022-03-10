@@ -4,7 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-// TODO GENERAL: Write many many comments
+/// <summary>
+/// <c>GameManager</c> is the most central class of the game. 
+/// It contains the logic of the game: 
+/// initializes the state of the session, and 
+/// progresses through the game phases.
+/// </summary>
 public partial class GameManager : MonoBehaviour
 {
     // ================================
@@ -127,8 +132,6 @@ public partial class GameManager : MonoBehaviour
             case GamePhases.Standard_Phase:
                 sfxController.PlaySFX(SFXToPlay.Whoosh);
                 ExecuteStandardPhase();
-                // TODO choose play mode for the ai
-                // opponent.PlayAICardsSingle();
                 opponent.PlayAICardsCycle();
                 break;
             case GamePhases.Move_Phase:
