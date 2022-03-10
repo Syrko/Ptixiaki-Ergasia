@@ -2,6 +2,10 @@ using System.Collections;
 using System;
 using UnityEngine;
 
+/// <summary>
+/// <c>AIPlayer</c> is a monobeahaviour that inherits from the <c>Player</c> class.
+/// It represents the oppontent of the user.
+/// </summary>
 public class AIPlayer : Player
 {
     [SerializeField]
@@ -22,6 +26,11 @@ public class AIPlayer : Player
         hasInitiative = false;
     }
 
+    /// <summary>
+    /// Determines the front line of the AI player.
+    /// It is not included in the shared bahaviour of the <c>Player</c> class, 
+    /// to account for the different perspective of the board.
+    /// </summary>
     private void DetermineFrontLine(GameObject[,] board)
     {
         int tempFrontLine = gameManager.BoardDepth - 1;
@@ -47,6 +56,11 @@ public class AIPlayer : Player
         frontline = tempFrontLine;
     }
 
+    /// <summary>
+    /// This method chooses randomly a card to play from a pool of cards.
+    /// </summary>
+    /// <param name="tier">The pool from which the card to be played wil be chosen.</param>
+    /// <returns></returns>
     private string DecideOnSpawnableCardToPlay(SpawnableTiers tier)
     {
         string[] LowTier = { CardCatalogue.Soldier.CardName, CardCatalogue.Soldier.CardName, CardCatalogue.Little_Imp.CardName, CardCatalogue.Crabby.CardName, CardCatalogue.Egg_Thief.CardName };
@@ -70,6 +84,10 @@ public class AIPlayer : Player
         }
     }
 
+    /// <summary>
+    /// This method decides where on the board (inside the limits of the frontline) will the AI play its card.
+    /// </summary>
+    /// <returns>The coordinates of the target hex on the board</returns>
     private Vector2Int DecidePosition()
     {
         DetermineFrontLine(gameManager.Board);
@@ -91,7 +109,12 @@ public class AIPlayer : Player
         return new Vector2Int(depth, width);
     }
 
-    // First iteration, not currently in use
+    /// <summary>
+    /// The bahaviour of the AI. The logic with which it determines what cards to play.
+    /// In the Single iteration, the AI progresses through waves from easier to harder depending on the amount of turns played.
+    /// When the hardest wave is reached, tthe AI keeps playing cards from that category.
+    /// !-- NOT CURRENTLY IN USE --!
+    /// </summary>
     public void PlayAICardsSingle()
     {
         if (gameManager.GameTurnsPlayed < 10)
@@ -187,6 +210,11 @@ public class AIPlayer : Player
         }
     }
 
+    /// <summary>
+    /// The bahaviour of the AI. The logic with which it determines what cards to play.
+    /// In the Cycle iteration, the AI progresses through waves from easier to harder depending on the amount of turns played.
+    /// When a number of turns is reached, the turn counter resets.
+    /// </summary>
     public void PlayAICardsCycle()
     {
         if(turnCounter >= 12)
@@ -275,6 +303,10 @@ public class AIPlayer : Player
         }
     }
 
+    /// <summary>
+    /// A method that encompasses the logic of determining which card and where the AI will play.
+    /// </summary>
+    /// <param name="tier"></param>
     private void PlaySpawnable(SpawnableTiers tier)
     {
         string cardToPlay = DecideOnSpawnableCardToPlay(tier);
@@ -291,11 +323,18 @@ public class AIPlayer : Player
         }
     }
 
+    /// <summary>
+    /// Helper method that returns a boolean value with a 1/2 chance.
+    /// Used to assist in the AI logic
+    /// </summary>
     private bool FlipCoin()
     {
         return UnityEngine.Random.Range(0f, 1f) < 0.5f;
     }
 
+    /// <summary>
+    /// Small enum used for the tiers of card pools available to the AI
+    /// </summary>
     private enum SpawnableTiers
     {
         Low, Medium, High

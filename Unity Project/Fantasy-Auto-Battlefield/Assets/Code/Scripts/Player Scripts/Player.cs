@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// <c>Player</c> is a monobeahaviour from which the <c>HumanPlayer</c> and <c>AIPlayer</c> inherit.
+/// It contains some shared functionality such as the taking of damage.
+/// </summary>
 public class Player : MonoBehaviour
 {
     protected int frontline;
@@ -14,6 +18,10 @@ public class Player : MonoBehaviour
     public int Frontline { get => frontline; }
     public int CurrentHP { get => currentHP; }
 
+    /// <summary>
+    /// The player takes the given amount of damage.
+    /// It also checks for the end of the game, by checking if at least one of the players reaches 0 hitpoints.
+    /// </summary>
     public void TakeDamage(int amount)
     {
         currentHP -= amount;
@@ -34,6 +42,9 @@ public class Player : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// The player heals the given amount of hitpoints up to the maximum
+    /// </summary>
     public void HealSelf(int amount)
     {
         currentHP += amount;

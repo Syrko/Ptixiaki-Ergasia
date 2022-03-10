@@ -2,9 +2,14 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// The <c>Hand</c> class represents the hand of the human player, i.e. contains their drawn cards.
+/// </summary>
 public class Hand : MonoBehaviour
 {
+    // Static index number to represent when the human player has no selected card
     public static readonly int NO_CARD_SELECTED = -1;
+
     [SerializeField]
     GameManager gameManager;
     [SerializeField]
@@ -20,12 +25,19 @@ public class Hand : MonoBehaviour
     public int SelectedCardIndex { get => selectedCardIndex; }
     public int CardsInHandCount { get { return cards.Count; } }
 
+    /// <summary>
+    /// Adds the given card to the hand
+    /// </summary>
+    /// <param name="card">The name of the card to add to the hand</param>
     public void AddCard(string card)
     {
         cards.Add(card);
         UpdateHandUI();
     }
     
+    /// <summary>
+    /// Updates the Hand UI by showing all the cards currently in hand
+    /// </summary>
     private void UpdateHandUI()
     {
         for (int cardIndex = 0; cardIndex < cards.Count; cardIndex++)
@@ -34,6 +46,9 @@ public class Hand : MonoBehaviour
         }
     }
     
+    /// <summary>
+    /// Hides and reveals the hand of the player in the UI
+    /// </summary>
     public void ToggleHand()
     {
         MainUI ui = FindObjectOfType<MainUI>();
@@ -64,6 +79,10 @@ public class Hand : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Calls the necessary functions to assign values to the UI template that displays a card in the hand of the human player
+    /// </summary>
+    /// <param name="cardIndex"></param>
     private void ShowCardInHand(int cardIndex)
     {
         string card = cards[cardIndex];
@@ -85,6 +104,10 @@ public class Hand : MonoBehaviour
         cardsInHand[cardIndex].UpdateBorder(isCardSelected);
     }
 
+    /// <summary>
+    /// Highlights the selected card on the UI and assigns its index to the <c>SelectedCardIndex</c>
+    /// </summary>
+    /// <param name="selectionIndex"></param>
     public void onCardSelection(int selectionIndex)
     {
         if(selectedCardIndex == selectionIndex)
@@ -111,6 +134,10 @@ public class Hand : MonoBehaviour
         UpdateHandUI();
     }
 
+    /// <summary>
+    /// Hides the unselected cards.
+    /// Used when playing a card.
+    /// </summary>
     public void HideUnselectedCards()
     {
         for (int index = 0; index < cardsInHand.Length; index++)
@@ -123,6 +150,9 @@ public class Hand : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Returns the gameobject of the selected card
+    /// </summary>
     public GameObject GetSelectedCardGameObject()
     {
         try
@@ -136,6 +166,10 @@ public class Hand : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Removes a card from the hand and sends it to the <c>DiscardPile</c>.
+    /// Used when playing a card.
+    /// </summary>
     public void RemoveCardFromHandAndSendToDiscard(CardInHand card)
     {
         card.EmptyCardType();

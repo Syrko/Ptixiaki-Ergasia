@@ -3,6 +3,10 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// The <c>Deck</c> class contains the cards used by the human player in the game.
+/// It gets refilled when it is empty.
+/// </summary>
 public class Deck : MonoBehaviour
 {
     [SerializeField]
@@ -16,12 +20,20 @@ public class Deck : MonoBehaviour
         ShuffleDeck();
     }
 
+    /// <summary>
+    /// Imports the cards with which the human player will play.
+    /// </summary>
     public void AssignDeckList(List<string> deck)
     {
         cards = deck;
         SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.DECK_COUNTER_CHANGED, cards.Count.ToString()));
     }
 
+    /// <summary>
+    /// If the deck is empty, it refills it with the <c>DiscardPile</c>.
+    /// Then it removes the top card, and return its name.
+    /// </summary>
+    /// <returns>The name of the card drawn</returns>
     public string DrawCard()
     {
         // If the deck is empty shuffle the discard into it

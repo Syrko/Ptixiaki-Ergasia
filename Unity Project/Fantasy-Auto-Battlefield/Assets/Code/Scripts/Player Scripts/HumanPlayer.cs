@@ -2,6 +2,10 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// <c>HumanPlayer</c> is a monobeahaviour that inherits from the <c>Player</c> class.
+/// It represents the user that plays the game.
+/// </summary>
 public class HumanPlayer : Player
 {
     [SerializeField]
@@ -38,6 +42,9 @@ public class HumanPlayer : Player
         hasInitiative = false;
     }
 
+    /// <summary>
+    /// The player gains the given amount of mana
+    /// </summary>
     public void GainMana(int amount)
     {
         currentMana += amount;
@@ -50,6 +57,9 @@ public class HumanPlayer : Player
         SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.PLAYER_MANA_CHANGED, currentMana.ToString()));
     }
 
+    /// <summary>
+    /// The player loses the given amount of mana
+    /// </summary>
     public void PayMana(int amount)
     {
         currentMana -= amount;
@@ -63,6 +73,9 @@ public class HumanPlayer : Player
         SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.PLAYER_MANA_CHANGED, currentMana.ToString()));
     }
 
+    /// <summary>
+    /// The player draws a card from their deck
+    /// </summary>
     public void DrawCardFromDeck()
     {
         string cardName = deck.DrawCard();
@@ -78,6 +91,11 @@ public class HumanPlayer : Player
         }
     }
 
+    /// <summary>
+    /// Determines the front line of the human player.
+    /// It is not included in the shared bahaviour of the <c>Player</c> class, 
+    /// to account for the different perspective of the board.
+    /// </summary>
     public void DetermineFrontLine(GameObject[,] board)
     {
         int tempFrontLine = 0;
