@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+/// <summary>
+/// This class is responsible for the UI of the Board.
+/// It also is a UI observer in order to recieve messages.
+/// </summary>
 public class BoardUI : MonoBehaviour, IObserverUI
 {
     [SerializeField]
@@ -53,11 +57,19 @@ public class BoardUI : MonoBehaviour, IObserverUI
         }
     }
 
+    /// <summary>
+    /// Swaps the initiative marker between the two players
+    /// </summary>
+    /// <param name="isHuman">Set as true if you want the coin to move to human player's side</param>
     private void MoveInitiativeToPlayer(bool isHuman)
     {
         StartCoroutine(SmoothLerp(2f, isHuman));
     }
 
+    /// <summary>
+    /// Coroutine responsible for the animation of the initiative coin's swapping
+    /// </summary>
+    /// <param name="isHuman">Set as true if you want the coin to move to human player's side</param>
     private IEnumerator SmoothLerp(float time, bool isHuman)
     {
         Vector3 startingPos;

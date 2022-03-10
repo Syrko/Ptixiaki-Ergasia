@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// The <c>GameLog</c> is used to print messages about the duel in the text box on top right corner of the screen.
+/// </summary>
 public class GameLog : MonoBehaviour
 {
     static GameLog instance;
@@ -92,6 +95,9 @@ public class GameLog : MonoBehaviour
     }
 }
 
+/// <summary>
+/// A <c>LogEvent</c> object contains the necessary information for the <c>GameLog</c> in order to print the appropriate message. 
+/// </summary>
 public class LogEvent
 {
     LogEventCode code;
@@ -107,6 +113,9 @@ public class LogEvent
     }
 }
 
+/// <summary>
+/// An enum of the codes about the tpes of <c>LogEvent</c>s
+/// </summary>
 public enum LogEventCode
 {
     PhaseChanged,

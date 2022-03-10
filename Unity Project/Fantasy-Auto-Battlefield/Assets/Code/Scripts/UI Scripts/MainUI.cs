@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+/// <summary>
+/// This class is responsible for most of the UI including the card info and tile info areas.
+/// It also is a UI observer in order to recieve messages.
+/// </summary>
 public class MainUI : MonoBehaviour, IObserverUI
 {
     [Header("Card Info")]

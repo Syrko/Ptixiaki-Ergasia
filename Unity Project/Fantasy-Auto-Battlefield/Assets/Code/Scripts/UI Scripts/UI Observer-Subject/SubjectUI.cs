@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// <c>SubjectUI</c> is a class that its static methods can be called to notify all the UI observers
+/// </summary>
 public class SubjectUI : MonoBehaviour
 {
     private static List<IObserverUI> observers = new List<IObserverUI>();

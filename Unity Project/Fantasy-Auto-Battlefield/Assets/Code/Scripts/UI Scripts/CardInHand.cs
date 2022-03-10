@@ -5,6 +5,9 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 
+/// <summary>
+/// Each <c>CardInHand</c> contains the behaviour for each of the five cards, that the human player may have drawn.
+/// </summary>
 public class CardInHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
 {
     public static bool cardIsBeingPlayed;
@@ -82,6 +85,9 @@ public class CardInHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         hand.onCardSelection(cardTrayIndex);
     }
 
+    /// <summary>
+    /// Displays a unit card
+    /// </summary>
     public void DrawUnit(UnitCardData unit, bool showImmediately)
     {
         DisableSpellMode();
@@ -103,6 +109,9 @@ public class CardInHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         }
     }
 
+    /// <summary>
+    /// Displays a building card
+    /// </summary>
     public void DrawBuilding(BuildingCardData building, bool showImmediately)
     {
         DisableSpellMode();
@@ -124,6 +133,9 @@ public class CardInHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         }
     }
 
+    /// <summary>
+    /// Displays a spell card
+    /// </summary>
     public void DrawSpell(SpellCardData spell, bool showImmediately)
     {
         EnableSpellMode();
@@ -151,6 +163,10 @@ public class CardInHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         gameObject.SetActive(true);
     }
 
+    /// <summary>
+    /// Updates the border of a card's border. The color changes appropriately if the card is selected or not,
+    /// and if the player has enough mana to play it.
+    /// </summary>
     public void UpdateBorder(bool selected)
     {
         if (selected)
@@ -175,6 +191,9 @@ public class CardInHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         cardType = null;
     }
 
+    /// <summary>
+    /// This method changes the components of the card template in order to accomodate the graphics of a Spell card
+    /// </summary>
     private void EnableSpellMode()
     {
         attackIcon.gameObject.SetActive(false);
@@ -186,6 +205,9 @@ public class CardInHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         cardHexPattern.gameObject.SetActive(false);
     }
 
+    /// <summary>
+    /// This method changes the components of the card template in order to accomodate the graphics of a Unit or Building card
+    /// </summary>
     private void DisableSpellMode()
     {
         attackIcon.gameObject.SetActive(true);

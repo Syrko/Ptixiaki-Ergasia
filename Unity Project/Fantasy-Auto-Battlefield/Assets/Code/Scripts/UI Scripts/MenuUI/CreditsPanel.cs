@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+/// <summary>
+/// UI class that loads the credits text and displays it in the appropriate panel
+/// </summary>
 public class CreditsPanel : MonoBehaviour
 {
     [SerializeField]

@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+/// <summary>
+/// <c>HelpPanel</c> contains the bahaviour of the game's help pages
+/// </summary>
 public class HelpPanel : MonoBehaviour
 {
     [SerializeField]

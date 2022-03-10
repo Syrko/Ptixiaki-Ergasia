@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// UI class with the behaviour of the main menu buttons
+/// </summary>
 public class MenuButtons : MonoBehaviour
 {
     [SerializeField]

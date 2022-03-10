@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// UI calss responsible for the carousel of images on the main menu
+/// </summary>
 public class MenuBackground : MonoBehaviour
 {
     [SerializeField]

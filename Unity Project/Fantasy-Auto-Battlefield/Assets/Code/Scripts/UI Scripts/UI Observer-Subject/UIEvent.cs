@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// <c>UIEvent</c>s contain the information necessary for observers to process a UI message when it is fired.
+/// </summary>
 public class UIEvent
 {
     EventUICodes code;
@@ -23,6 +26,9 @@ public class UIEvent
     }
 }
 
+/// <summary>
+/// Enum with UIEvent codes
+/// </summary>
 public enum EventUICodes
 {
     PLAYER_MANA_CHANGED,
