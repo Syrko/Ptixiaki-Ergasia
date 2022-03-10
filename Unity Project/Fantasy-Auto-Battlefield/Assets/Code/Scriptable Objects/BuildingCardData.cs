@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Used for storing data about the game's different buildings.
+/// To create new data right-click in the unity editor and use the menu
+/// </summary>
 [CreateAssetMenu(fileName = "BuildingCardData", menuName = "Building Card Data", order = 52)]
 public class BuildingCardData : ScriptableObject
 {
