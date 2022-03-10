@@ -193,21 +193,10 @@ public class AIPlayer : Player
         {
             turnCounter = 1;
         }
-        if (gameManager.GameTurnsPlayed < 10)
+        if (FlipCoin() && FlipCoin())
         {
-            if (FlipCoin())
-            {
-                // Half of the turns the AI will not play anything - EZ mode
-                return;
-            }
-        }
-        else
-        {
-            if (FlipCoin() && FlipCoin())
-            {
-                // 25% of the turns the AI will not play anything - EZ mode
-                return;
-            }
+            // 25% of the turns the AI will not play anything
+            return;
         }
 
         if (turnCounter < 3)

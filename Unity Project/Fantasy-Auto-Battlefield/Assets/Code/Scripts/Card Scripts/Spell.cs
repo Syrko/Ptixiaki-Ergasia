@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// <c>Spell</c> is monobehaviour inheriting from the Card class and is attached to 
+/// the gameobjects representing a Spell card
+/// </summary>
 public class Spell : Card
 {
     string cardName;
@@ -18,6 +22,11 @@ public class Spell : Card
     public CardType CardType { get => cardType; set => cardType = value; }
     public Sprite CardImage { get => cardImage; set => cardImage = value; }
 
+    /// <summary>
+    /// Initializes a new Spell with data from the appropriate Scriptable Object.
+    /// Should be called after attaching the script to a gameobject.
+    /// </summary>
+    /// <param name="spellName">The name of the spell you are creating.</param>
     public void InitializeSpell(string spellName)
     {
         SpellCardData data = SpellCardData.GetSpellDataFromName(spellName);

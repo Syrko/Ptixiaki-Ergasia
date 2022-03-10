@@ -1,6 +1,9 @@
 using UnityEngine;
 using TMPro;
 
+/// <summary>
+/// Small UI script that displays and the stats (Health, Attack, Defense) of the pawn and their changes
+/// </summary>
 public class PawnStats : MonoBehaviour
 {
     [SerializeField] GameObject attack;

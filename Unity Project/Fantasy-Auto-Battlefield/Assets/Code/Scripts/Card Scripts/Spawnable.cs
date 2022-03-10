@@ -2,12 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// <c>Spawnable</c> is monobehaviour inheriting from the Card class and is attached to 
+/// the gameobjects representing a Unit or a Building card, as the respective <c>Unit</c> and
+/// <c>Building</c> scripts inherit from this class.
+/// </summary>
 public class Spawnable : Card
 {
-    public static GameObject explosionFX;
-    public static int DamageAmountForBase = 1;
-    public static float spawnDespawnTime = 1f;
-    public static float spawnDespawnDisplacement = 0.75f;
+    public static GameObject explosionFX;                   // Particle Effect for the representation of a pawn's attack
+    public static int DamageAmountForBase = 1;              // How much damage may a pawn deal to the enemy base
+    public static float spawnDespawnTime = 1f;              // How long the despawn animation takes
+    public static float spawnDespawnDisplacement = 0.75f;   // The distance that the pawn moves when despawning
 
     PawnStats pawnUI;
 
@@ -55,6 +60,10 @@ public class Spawnable : Card
         StartCoroutine(Spawn(spawnDespawnTime, transform.position));
     }
 
+    /// <summary>
+    /// This method initiatializes the pawn's UI.
+    /// This method is called by the children classes when initializing themselves.
+    /// </summary>
     protected void InitializePawnUI()
     {
         pawnUI.AttackText.text = attack.ToString();
@@ -64,6 +73,9 @@ public class Spawnable : Card
         ColorPawn();
     }
 
+    /// <summary>
+    /// This method updates a pawn's UI with data taken from the pawn's <c>Unit</c> or <c>Building</c> script.
+    /// </summary>
     protected void UpdatePawnUI()
     {
         pawnUI.AttackText.text = attack.ToString();
@@ -76,6 +88,10 @@ public class Spawnable : Card
         pawnUI.HitpointsText.color = DetermineValueColor(maxHitPoints, currentHP);
     }
 
+    /// <summary>
+    /// The pawn takes an amount of damage.
+    /// </summary>
+    /// <param name="amount">The value of damage taken</param>
     public void TakeDamage(int amount)
     {
         currentHP -= amount;
@@ -88,6 +104,10 @@ public class Spawnable : Card
         UpdatePawnUI();
     }
 
+    /// <summary>
+    /// The pawn heals an amount of hitpoints.
+    /// </summary>
+    /// <param name="amount">The value of the heal</param>
     public void HealDamage(int amount)
     {
         currentHP += amount;
@@ -98,12 +118,20 @@ public class Spawnable : Card
         UpdatePawnUI();
     }
 
+    /// <summary>
+    /// Increase the attack of the pawn by the amount given
+    /// </summary>
+    /// <param name="amount">The amount of attack increase</param>
     public void IncreaseAttack(int amount)
     {
         attack += amount;
         UpdatePawnUI();
     }
 
+    /// <summary>
+    /// Decrease the attack of the pawn by the amount given
+    /// </summary>
+    /// <param name="amount">The amount of attack decrease</param>
     public void DecreaseAttack(int amount)
     {
         attack -= amount;
@@ -114,12 +142,20 @@ public class Spawnable : Card
         UpdatePawnUI();
     }
 
+    /// <summary>
+    /// Increase the defense of the pawn by the amount given
+    /// </summary>
+    /// <param name="amount">The amount of defense increase</param>
     public void IncreaseDefense(int amount)
     {
         defense += amount;
         UpdatePawnUI();
     }
 
+    /// <summary>
+    /// Decrease the defense of the pawn by the amount given
+    /// </summary>
+    /// <param name="amount">The amount of defense decrease</param>
     public void DecreaseDefense(int amount)
     {
         defense -= amount;
@@ -130,6 +166,12 @@ public class Spawnable : Card
         UpdatePawnUI();
     }
 
+    /// <summary>
+    /// This method is called when a pawn attacks.
+    /// It determines the possible targets of the pawn and then deals damage to the opposing entites (units, building, bases)
+    /// </summary>
+    /// <param name="board">The board array</param>
+    /// <param name="attackerPos">The current position of the pawn on the array</param>
     public void Attack(GameObject[,] board, Vector2Int attackerPos)
     {
         List<Vector2Int> targets = DetermineTargets(board, attackerPos);
@@ -179,6 +221,9 @@ public class Spawnable : Card
         }
     }
 
+    /// <summary>
+    /// This method handles the death of a pawn
+    /// </summary>
     public void Die()
     {
         foreach (Renderer renderer in this.transform.GetComponentsInChildren<Renderer>())
@@ -188,8 +233,15 @@ public class Spawnable : Card
         StartCoroutine(Despawn(spawnDespawnTime, transform.position));
     }
 
+    /// <summary>
+    /// Method that calculates the damage of that an attacker deals to a defender
+    /// </summary>
+    /// <param name="attacker">The <c>Spawnable</c> script of the attacker</param>
+    /// <param name="target">The <c>Spawnable</c> script of the defender</param>
+    /// <returns></returns>
     private int CalculateDamage(Spawnable attacker, Spawnable target)
     {
+        // The damage resulting from attacks is always at least 1
         int attack = attacker.attack - target.defense;
         if (attack <= 0)
         {
@@ -198,6 +250,9 @@ public class Spawnable : Card
         return attack;
     }
 
+    /// <summary>
+    /// This method colors the pawn's border depeneding on the identity of its owner
+    /// </summary>
     public void ColorPawn()
     {
         Component[] borders = transform.Find("Border").gameObject.GetComponentsInChildren(typeof(Renderer));
@@ -214,7 +269,11 @@ public class Spawnable : Card
         }
     }
 
-
+    /// <summary>
+    /// Simple method that checks if the a set of coordinates are inside the generated board array bounds
+    /// </summary>
+    /// <param name="board">The current game board</param>
+    /// <param name="depthWidth">A Vector2 where the first field is the depth and the second field is the width</param>
     private bool areCoordsInsideOfBounds(GameObject[,] board, Vector2Int depthWidth)
     {
         if (depthWidth.x >= 0 && depthWidth.x < board.GetLength(0))
@@ -227,6 +286,13 @@ public class Spawnable : Card
         return false;
     }
 
+    /// <summary>
+    /// This method scans the neighbouring hexes of the pawn, according to its targeting pattern,
+    /// and determines if they are occupied by enemies in order to attack them.
+    /// </summary>
+    /// <param name="board">The current game board array</param>
+    /// <param name="attackerPos">A Vector2 where the first field is the depth and the second field is the width</param>
+    /// <returns>A list with the coordinates of the valid targets</returns>
     private List<Vector2Int> DetermineTargets(GameObject[,] board, Vector2Int attackerPos)
     {
         List<Vector2Int> targets = new List<Vector2Int>();
@@ -361,12 +427,19 @@ public class Spawnable : Card
         return targets;
     }
 
+    /// <summary>
+    /// Instantieates an attack visual effect
+    /// </summary>
     private void AttackFX(int x, int y)
     {
         Vector3 pos = BoardManager.TranslateCoordinates(y, x, transform.position.y);
         GameObject temp = Instantiate(explosionFX, pos, Quaternion.identity);
     }
 
+    /// <summary>
+    /// Determine the color of the text representing a pawn's stats, depending on the value of the stats
+    /// compared to their original value
+    /// </summary>
     private Color DetermineValueColor(int originalValue, int currentValue)
     {
         if (originalValue > currentValue)
@@ -383,6 +456,9 @@ public class Spawnable : Card
         }
     }
 
+    /// <summary>
+    /// Coroutine that handles the animation of a pawn's despawning
+    /// </summary>
     private IEnumerator Despawn(float time, Vector3 currentPos)
     {
         SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.DISABLE_END_PHASE_BUTTON));
@@ -405,6 +481,9 @@ public class Spawnable : Card
         Destroy(this.gameObject);
     }
 
+    /// <summary>
+    /// Coroutine that handles the animation of a pawn's spawning
+    /// </summary>
     private IEnumerator Spawn(float time, Vector3 currentPos)
     {
         SubjectUI.Notify(this.gameObject, new UIEvent(EventUICodes.DISABLE_END_PHASE_BUTTON));
