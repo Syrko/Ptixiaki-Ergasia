@@ -1,0 +1,33 @@
+Abstract
+	description for each chapter
+
+Introduction
+	Acknowledge Unity
+	Genre description and mentions of other games (MTG, clash royale, TFT)
+
+Chapter 2 - Why use unity?
+		C#
+		Scriptable objects
+		Market
+	Game requirements (e.g windows)
+
+Chapter 3 - Gameplay Analysis
+	Game requirements (e.g windows)
+	Game description
+
+Chapter 4 - UI Presentation
+	UI Design and choices analysis
+
+Chapter 5 - Implementation
+	Class diagram presentation
+	List of scripts with a short description
+	Analysis of main scripts (BoardGenerator, GameManager, AIPlayer, Factories, etc.)
+	Presentation of the assets used
+
+Chapter 6 - Playing Fantasy Auto Battlefield
+
+Chapter 7 - Conclusions and future features
+
+Assets used (links)
+
+Bibliography
