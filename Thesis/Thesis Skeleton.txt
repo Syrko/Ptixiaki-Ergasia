@@ -22,6 +22,7 @@ Chapter 5 - Implementation
 	Class diagram presentation
 	List of scripts with a short description
 	Analysis of main scripts (BoardGenerator, GameManager, AIPlayer, Factories, etc.)
+	Card Creation Method
 	Presentation of the assets used
 
 Chapter 6 - Playing Fantasy Auto Battlefield
